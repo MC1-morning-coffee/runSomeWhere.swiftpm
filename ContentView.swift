@@ -3,17 +3,32 @@ import SwiftUI
 struct ContentView: View {
     
     var body: some View {
-        VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundColor(.accentColor)
-            Text("반갑읍니다...")
-                .font(Font.custom("morris9", size: 32))
-                .fontWeight(.bold)
-                .padding(.bottom, 8)
-            Text("World is Hello?")
-                .font(Font.custom("morris9", size: 24))
+        GeometryReader { geo in
+            VStack(){
+                Spacer()
+                Image(systemName: "globe")
+                    .imageScale(.large)
+                    .foregroundColor(.accentColor)
+                    .padding(.bottom, 1)
+                    .border(.red, width: 1)
+                Image("test")
+                    .resizable()
+                    .aspectRatio(contentMode: .fit)
+                    .frame(width: geo.size.width)
+                    .border(.red, width: 1)
+                Text("반갑읍니다...")
+                    .font(Font.custom("morris9", size: 32))
+                    .fontWeight(.bold)
+                    .padding()
+                    .border(.red, width: 1)
+                Text("World is Hello?")
+                    .font(Font.custom("morris9", size: 24))
+                    .border(.red, width: 1)
+                Spacer()
+            }
+            .border(.red, width: 1)
         }
+        
     }
 }
 
