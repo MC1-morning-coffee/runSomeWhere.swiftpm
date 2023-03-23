@@ -21,6 +21,11 @@ struct ContentView: View {
                     .fontWeight(.bold)
                     .padding()
                     .border(.red, width: 1)
+                Text("잘 부탁드립니다")
+                    .font(Font.custom("morris9", size: 32))
+                    .fontWeight(.bold)
+                    .padding()
+                    .border(.red, width: 1)
                 Text("World is Hello?")
                     .font(Font.custom("morris9", size: 24))
                     .border(.red, width: 1)
@@ -28,7 +33,6 @@ struct ContentView: View {
             }
             .border(.red, width: 1)
         }
-        
     }
 }
 
