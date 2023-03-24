@@ -19,7 +19,7 @@ struct ContentView: View {
                 Text("Just Test !!")
                     .font(Font.custom("morris9", size: 24))
                     .border(.red, width: 1)
-                Text("반갑읍니다...")
+                Text("자유롭게 바꿔여...")
                     .font(Font.custom("morris9", size: 32))
                     .fontWeight(.bold)
                     .padding()
