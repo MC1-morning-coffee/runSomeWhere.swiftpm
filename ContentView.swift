@@ -16,7 +16,7 @@ struct ContentView: View {
                     .aspectRatio(contentMode: .fit)
                     .frame(width: geo.size.width)
                     .border(.red, width: 1)
-                Text("테스트 ㅋ")
+                Text("테스트 zㅋ")
                     .font(Font.custom("morris9", size: 24))
                     .border(.red, width: 1)
                 Text("커피 한잔")
