@@ -31,10 +31,6 @@ struct ScriptBoxView: View {
             VStack(alignment: .leading) {
                 HStack(spacing: 0){
                     VStack(alignment: .leading, spacing: 0){
-//                        Text("말하는 사람")
-//                            .font(.title3)
-//                            .padding(.bottom, 8)
-//                            .border(.red, width: 1)
                         Text(scripts[scriptCount])
                             .frame(width: width - 32)
                     }

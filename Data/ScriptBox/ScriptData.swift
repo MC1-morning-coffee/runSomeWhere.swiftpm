@@ -7,11 +7,6 @@
 
 import Foundation
 
-enum speaker {
-    case system
-    case unknown
-}
-
 let openingScripts2 = [
     "아야..!",
     "어딘가에서 웅장한 목소리가 들려왔다.",
