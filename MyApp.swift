@@ -2,14 +2,15 @@ import SwiftUI
 
 @main
 struct MyApp: App {
+    let globalStore = GlobalStore()
     
     init() {
-        MyFont.registerFonts()
+        CustomFont.registerFonts(fontName: "morris9")
     }
     
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            ContentView().environmentObject(globalStore)
         }
     }
 }
