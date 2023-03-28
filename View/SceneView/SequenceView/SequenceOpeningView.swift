@@ -9,7 +9,7 @@ import SwiftUI
 
 struct SequenceOpeningView: View {
     var body: some View {
-        Text("Hello, World!!!!!")
+        Text("Scene opening View")
     }
 }
 

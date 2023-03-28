@@ -36,6 +36,9 @@ enum EnumDetailImage: CaseIterable {
     case key1 // 주머니에 열쇠가 들어있다.
     case key2 // 컬러스왑한 열쇠가 6개가 있다.
     case key3 // 열쇠 중 1개(커피)를 선택한다.
+
+enum EnumDirection: CaseIterable {
+    case left, right, back, front
 }
 
 class GlobalStore: ObservableObject {
