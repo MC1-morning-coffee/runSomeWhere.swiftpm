@@ -7,7 +7,7 @@ struct ContentView: View {
                 SceneView()
                 CharacterView()
                 ScriptBoxView(width: geo.size.width)
-                
+                QuizModalView()
             }
             .border(.red, width: 1)
            
