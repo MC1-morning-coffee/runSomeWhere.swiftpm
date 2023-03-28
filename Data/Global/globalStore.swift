@@ -29,6 +29,11 @@ enum EnumSpeaker: CaseIterable {
     case autodoor
 }
 
+
+enum EnumDirection: CaseIterable {
+    case left, right, back, front
+}
+
 class GlobalStore: ObservableObject {
     /**
      현재 Scene을 구분하기 위한 enum

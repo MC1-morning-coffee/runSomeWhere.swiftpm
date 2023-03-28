@@ -13,8 +13,21 @@ import SwiftUI
  3. 정답 클릭 시 닫힌다.
  */
 struct QuizModalView: View {
+    @State var isShowingModal: Bool = false
     
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        Text("Quiz Modal View")
+        Button {
+            isShowingModal = true
+        } label: {
+            Text("문제풀기")
+                .foregroundColor(.black)
+                .background(.white)
+        }.sheet(isPresented: $isShowingModal) { // 바인딩 변수 $isShowingModal
+            ZStack {
+                Color.orange.ignoresSafeArea()
+                Text("Modal View")
+            }
+        }
     }
 }
