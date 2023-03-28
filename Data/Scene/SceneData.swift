@@ -7,3 +7,8 @@
 
 import Foundation
 
+struct FACE_VIEW_INFO {
+    let size =  CGSize(width: 150, height: 200)
+    let srcRoot = "Face"
+}
+
