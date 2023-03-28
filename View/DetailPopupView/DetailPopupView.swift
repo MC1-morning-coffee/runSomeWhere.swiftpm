@@ -13,7 +13,8 @@ import SwiftUI
  */
 struct DetailPopupView: View {
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        Image("Frame_Mission_290_290")
+            .frame(width: 290, height: 290)
     }
 }
 

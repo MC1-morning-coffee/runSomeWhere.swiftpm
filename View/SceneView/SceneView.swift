@@ -14,19 +14,37 @@ struct SceneView: View {
         
     @EnvironmentObject
     var globalStore: GlobalStore
-    
+        
+    private func delayText() {
+        DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
+            globalStore.isPopupActive = true
+        }
+    }
     
     var body: some View {
         GeometryReader {
             geo in
+            
+            let deviceWidth = geo.size.width
+            let deviceHeight = geo.size.height
+            
             ZStack {
                 if globalStore.currentScene == .opeaning {
-                    SceneOpeningView()
+                    SequenceOpeningView()
                         .onAppear{
                             print(globalStore.currentSpeaker)
-                        }
+                            delayText()
+                    }
+                }
+                if globalStore.isPopupActive {
+                    DetailPopupView()
+                        .border(.red)
+                        .position(x: deviceWidth / 2, y: deviceHeight / 2)
+                        .transition(.asymmetric(insertion: .opacity.animation(.linear(duration: 2)), removal: .opacity.animation(.linear(duration: 2))))
                 }
             }
+            .frame(width: deviceWidth, height: deviceHeight)
+            .background(Color.brown)
         }
     }
 }

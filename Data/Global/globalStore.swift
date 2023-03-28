@@ -6,6 +6,7 @@
 //
 
 import Combine
+import SwiftUI
 
 enum EnumScene: CaseIterable {
     case opeaning
@@ -43,7 +44,15 @@ class GlobalStore: ObservableObject {
     var currentSpeaker = EnumSpeaker.system
     
     @Published
-    var isPopupActive = false
+    var isPopupActive = false {
+        didSet{
+            if isPopupActive == true {
+                DispatchQueue.main.asyncAfter(deadline: .now() + 4) {
+                    self.isPopupActive = false
+                }
+            }
+        }
+    }
 
     @Published
     var scriptCount = 0
