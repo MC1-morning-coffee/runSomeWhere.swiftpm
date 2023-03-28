@@ -5,9 +5,12 @@ struct ContentView: View {
         GeometryReader { geo in
             VStack(spacing: 0){
                 SceneView()
+                CharacterView()
                 ScriptBoxView(width: geo.size.width)
+                
             }
             .border(.red, width: 1)
+           
         }
     }
 }
