@@ -25,11 +25,14 @@ struct ScriptBoxView: View {
     var width: CGFloat
         
     var body: some View {
+        
+        let name = SEQUENCE_OPENING_SCRIPTS[0].0[0]
+        
         ZStack {
             VStack(alignment: .leading) {
                 HStack(spacing: 0){
                     VStack(alignment: .leading, spacing: 0){
-                        CustomText(value: "\(EnumSpeaker.coffee)", fontSize: 24)
+                        CustomText(value: "\(name)", fontSize: 24)
                             .padding(.bottom, 4)
                         CustomText(value: "내 열쇠와 색이 같은 문을 열고 들어가보자.")
                     }

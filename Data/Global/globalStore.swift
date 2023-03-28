@@ -63,7 +63,7 @@ class GlobalStore: ObservableObject {
      씬 별로 스크립트 진행도를 표현하기 위한 변수
      */
     var scriptCount = 0
-
+    
     init() {
         print("globalStore is ready")
     }
