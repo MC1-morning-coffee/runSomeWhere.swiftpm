@@ -1,16 +1,23 @@
 import SwiftUI
 
 struct ContentView: View {
+    
+    @EnvironmentObject
+    var globalStore: GlobalStore
+    
     var body: some View {
         GeometryReader { geo in
             VStack(spacing: 0){
                 SceneView()
-                CharacterView()
+//                CharacterView()
                 ScriptBoxView(width: geo.size.width)
-                QuizModalView()
+//                QuizModalView()
             }
             .border(.red, width: 1)
-           
+        }
+        .onAppear{
+            let safeAreaSize = getSafeAreaSize()
+            globalStore.updateSafeAreaSize(currentSafeAreaSize: safeAreaSize)
         }
     }
 }

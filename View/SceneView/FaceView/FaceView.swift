@@ -8,18 +8,14 @@
 import SwiftUI
 
 struct FaceView: View {
-
+    
     var direction = "left"
     var target = EnumSpeaker.coffee
     
-    private let VIEW_SIZE = CGSize(width: 150, height: 200)
-
-    private let IMAGE_PATH = "Face"
-    
+    private let structInfo = FACE_VIEW_INFO()
 
     var body: some View {
-        Image("\(IMAGE_PATH)_\(target)")
-            .frame(width: VIEW_SIZE.width, height: VIEW_SIZE.height)
-            .background(Color.green)
+        Image("\(structInfo.srcRoot)_\(target)")
+            .frame(width: structInfo.size.width, height: structInfo.size.height)
     }
 }

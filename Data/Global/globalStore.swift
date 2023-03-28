@@ -41,7 +41,7 @@ enum EnumDetailImage: CaseIterable {
 enum EnumDirection: CaseIterable {
     case left, right, back, front
 }
-    
+
 class GlobalStore: ObservableObject {
     /**
      현재 Scene을 구분하기 위한 enum
@@ -58,6 +58,16 @@ class GlobalStore: ObservableObject {
     @Published
     var currentSpeaker = EnumSpeaker.system
     /**
+     현재 스크립트를 말하는 대상들을 알기 위한 enum 배열
+     */
+    @Published
+    var currentFaces: [EnumSpeaker] = [EnumSpeaker.coffee]
+    /**
+    FaceView가 보여지는 상태인지 알기 위한 변수
+     */
+    @Published
+    var isFaceViewActive = false
+    /**
      현재 오브젝트의 디테일 이미지를 보여주는 팝업뷰가  열려있는지 확인하기 위한 변수
      */
     @Published
@@ -67,6 +77,17 @@ class GlobalStore: ObservableObject {
      씬 별로 스크립트 진행도를 표현하기 위한 변수
      */
     var scriptCount = 0
+    
+    /**
+     SafeArea의 값을 들고 있는 변수
+     */
+    @Published
+    var safeAreaSize: SafeAreaSize = (0, 0) {
+        didSet {
+            print("safeArea top: ", safeAreaSize.0)
+            print("safeArea btm: ", safeAreaSize.1)
+        }
+    }
     
     init() {
         print("globalStore is ready")
@@ -94,9 +115,23 @@ extension GlobalStore {
     }
 }
 
+// currentFaces
+extension GlobalStore {
+    func updateCurrentFaces(faces: [EnumSpeaker]) {
+        currentFaces = faces
+    }
+}
+
+// isFaceViewActive
+extension GlobalStore {
+    func toggleIsFaceViewActive() {
+        isFaceViewActive.toggle()
+    }
+}
+
 // isPopupActive
 extension GlobalStore {
-    func toggleIsPopupActive(){
+    func toggleIsPopupActive() {
         isPopupActive.toggle()
     }
 }
@@ -105,5 +140,12 @@ extension GlobalStore {
 extension GlobalStore {
     func addScriptCount() {
         scriptCount += 1
+    }
+}
+
+// safeAreaSize
+extension GlobalStore {
+    func updateSafeAreaSize(currentSafeAreaSize: SafeAreaSize) {
+        safeAreaSize = currentSafeAreaSize
     }
 }
