@@ -16,7 +16,7 @@ struct SceneView: View {
     var globalStore: GlobalStore
         
     private func delayText() {
-        DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
+        setTimeoutClosure(timeCount: 3) {
             globalStore.isPopupActive = true
         }
     }
@@ -35,6 +35,8 @@ struct SceneView: View {
                             print(globalStore.currentSpeaker)
                             delayText()
                     }
+                }else if globalStore.currentScene == .sequence1 {
+                    SequenceOneView()
                 }
                 if globalStore.isPopupActive {
                     DetailPopupView()
