@@ -26,7 +26,7 @@ struct ScriptBoxView: View {
         
     var body: some View {
         
-        let name = SEQUENCE_OPENING_SCRIPTS[0].0[0]
+        let name = findSpeaker(scriptCount: scriptCount)
         
         ZStack {
             VStack(alignment: .leading) {
