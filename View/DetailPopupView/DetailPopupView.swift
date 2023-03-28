@@ -12,8 +12,14 @@ import SwiftUI
  2. 값을 받아서 다른 이미지를 보여준다.
  */
 struct DetailPopupView: View {
+    var target: EnumDetailImage = .key1
+    
+    private let IMAGE_PATH = "Frame_290_290"
+    private let IMAGE_SIZE: CGFloat = 290
+    
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        Image("\(IMAGE_PATH)_\(target)")
+            .frame(width: IMAGE_SIZE, height: IMAGE_SIZE)
     }
 }
 

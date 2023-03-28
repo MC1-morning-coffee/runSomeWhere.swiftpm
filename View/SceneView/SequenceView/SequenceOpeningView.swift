@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct SceneOpeningView: View {
+struct SequenceOpeningView: View {
     var body: some View {
         Text("Scene opening View")
     }
