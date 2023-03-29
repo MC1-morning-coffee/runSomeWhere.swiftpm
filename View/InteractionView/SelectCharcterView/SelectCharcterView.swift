@@ -66,7 +66,9 @@ struct SelectCharcterView: View {
                     Spacer()
                     ForEach(charcters, id: \.self){ _charcters in
                         HStack(spacing: 0){
-                            ButtonSelectCharcterView(charcter: _charcters[0])
+                            ButtonSelectCharcterView(charcter: _charcters[0]){
+                                
+                            }
                             Spacer()
                             ButtonSelectCharcterView(charcter: _charcters[1]){
                                 if _charcters[1] == .coffee {
