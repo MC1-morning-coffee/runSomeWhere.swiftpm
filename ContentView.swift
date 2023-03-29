@@ -28,6 +28,9 @@ struct ContentView: View {
             }
         }
         .onAppear{
+            /**
+             safeArea size 등록
+             */
             let safeAreaSize = getSafeAreaSize()
             globalStore.updateSafeAreaSize(currentSafeAreaSize: safeAreaSize)
         }

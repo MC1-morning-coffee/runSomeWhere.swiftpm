@@ -9,4 +9,14 @@ import Foundation
 
 func handleSequenceTwo(globalStore: GlobalStore){
     // write here your logic!
+    let scriptCount = globalStore.scriptCount
+    switch scriptCount {
+        case 0:
+            globalStore.toggleIsFaceViewActive() // false
+            globalStore.updateCurrentDetailImage(detailImage: .Door)
+            globalStore.toggleIsPopupActive() // true
+//        ...
+    default:
+        print("sequence one is Ready")
+    }
 }

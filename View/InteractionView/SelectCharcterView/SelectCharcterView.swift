@@ -59,8 +59,8 @@ struct SelectCharcterView: View {
     
     private func handleSelectAnswer() {
         // here to logic
-        globalStore.toggleIsSelectCharcterViewActive()
-        globalStore.toggleIsPopupActive()
+        globalStore.toggleIsSelectCharcterViewActive() // false
+        globalStore.toggleIsPopupActive() // false
         globalStore.addScriptCount()
     }
     

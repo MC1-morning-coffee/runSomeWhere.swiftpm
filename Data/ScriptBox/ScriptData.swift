@@ -35,7 +35,6 @@ let SEQUENCE_OPENING_SCRIPTS: [Script] = [
     ([EnumSpeaker.unknown],
     "어라... 여기가 어디지...?"
     ),
-    
     ([EnumSpeaker.unknown],
     "CB...L?? 뭘 어떻게 하라는거야..!!"
     )
@@ -134,7 +133,7 @@ let SEQUENCE_THREE_SCRIPTS: [Script] = [
     ),
     ([EnumSpeaker.luna,
      EnumSpeaker.walker],
-    "워커: Import UIkit“var wind = “North”"
+    "워커: Import UIkit\nvar wind = “North”"
     ),
     ([EnumSpeaker.luna,
      EnumSpeaker.walker],
@@ -164,7 +163,7 @@ let SEQUENCE_THREE_SCRIPTS: [Script] = [
     ([EnumSpeaker.gomisac],
     "곰이작: 이건 우리가 주는 선물이니 섬을 탈출하면 열어보세요..축하합니다."
     ),
-    ([EnumSpeaker.unknown],
+    ([EnumSpeaker.walker, EnumSpeaker.olive],
     "와~드디어 탈출했다~!!!!"
     ),
 ]
