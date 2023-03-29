@@ -9,6 +9,14 @@ import SwiftUI
 
 struct ShipView: View {
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        Image("Object_Boat")
+            .fixedSize()
+            .position(x: 195, y: 300)
+    }
+}
+
+struct ShipView_Previews: PreviewProvider {
+    static var previews: some View {
+        ShipView()
     }
 }
