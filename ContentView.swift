@@ -10,17 +10,28 @@ struct ContentView: View {
      */
     @State
     private var isSelectCharcterViewActive = false
+
+        SEQUENCE_OPENING_SCRIPTS, SEQUENCE_ONE_SCRIPTS, SEQUENCE_TWO_SCRIPTS, SEQUENCE_THREE_SCRIPTS, SEQUENCE_ENDING_SCRIPTS]
+    @State
+    private var currentScripts: [Script] = []
+
     
     var body: some View {
         GeometryReader { geo in
             ZStack(alignment: .topLeading) {
                 VStack(spacing: 0){
                     SceneView()
-    //                CharacterView()
-                    ScriptBoxView(width: geo.size.width)
-    //                QuizModalView()
+                    CharacterView()
+                    // 모달 뷰를 중간까지만 띄우는 방법은 iOS16부터만 지원 가능..
+                    if #available(iOS 16.0, *) {
+                        QuizModalView()
+                    } else {
+                        // Fallback on earlier versions
+                    }
+                    ScriptBoxView(scripts: currentScripts, width: geo.size.width)
                 }
                 .border(.red, width: 1)
+                
                 if isSelectCharcterViewActive {
                     SelectCharcterView(width: geo.size.width)
                         .zIndex(1)
@@ -30,6 +41,7 @@ struct ContentView: View {
         }
         .onAppear{
             let safeAreaSize = getSafeAreaSize()
+            currentScripts = AllScripts[0]
             globalStore.updateSafeAreaSize(currentSafeAreaSize: safeAreaSize)
             setTimeoutClosure(timeCount: 3) {
             }
