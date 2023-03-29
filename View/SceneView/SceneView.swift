@@ -91,7 +91,7 @@ struct SceneView: View {
                 if globalStore.isPopupActive {
                     DetailPopupView()
                         .position(x: deviceWidth / 2, y: deviceHeight / 2)
-                        .transition(.asymmetric(insertion: .opacity.animation(.linear(duration: 2)), removal: .opacity.animation(.linear(duration: 2))))
+                        .transition(.asymmetric(insertion: .opacity.animation(.linear(duration: 0.4)), removal: .opacity.animation(.linear(duration: 0.4))))
                 }
             }
             .frame(width: deviceWidth, height: deviceHeight)

@@ -29,6 +29,10 @@ struct ScriptBoxView: View {
     private let SCRIPT_BOX_VIEW_BACKGROUND_IMAGE = "Background_Text"
     
     private func updateCurrentSequence() {
+        if !globalStore.isTapAble{
+            return
+        }
+        
         if globalStore.scriptCount == globalStore.currentScripts.count - 1 {
             currentSceneCount += 1
             if currentSceneCount > 4 {

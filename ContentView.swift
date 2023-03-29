@@ -19,7 +19,6 @@ struct ContentView: View {
 //                    }
                     ScriptBoxView(script: globalStore.currentScripts[globalStore.scriptCount], width: geo.size.width)
                 }
-                .border(.red, width: 1)
                 if globalStore.isSelectCharcterViewActive {
                     SelectCharcterView(width: geo.size.width)
                         .zIndex(1)

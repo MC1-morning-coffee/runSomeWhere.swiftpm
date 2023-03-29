@@ -17,6 +17,7 @@ func handleSequenceOpening(globalStore: GlobalStore){
             globalStore.updateCurrentDetailImage(detailImage: .Pouch)
         case 9:
             globalStore.updateCurrentDetailImage(detailImage: .Keys)
+            globalStore.toggleIsTapAble() // false
             globalStore.toggleIsSelectCharcterViewActive() // true
     default:
         print("openingEvent is Ready")

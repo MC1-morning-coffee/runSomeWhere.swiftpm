@@ -9,5 +9,6 @@ import SwiftUI
 
 struct CustomColor {
     static let scriptBox = Color(#colorLiteral(red: 0.6274509804, green: 0.6274509804, blue: 0.6274509804, alpha: 1))
+    static let scriptColor = Color(#colorLiteral(red: 0, green: 0, blue: 0, alpha: 1))
     // Add more here...
 }

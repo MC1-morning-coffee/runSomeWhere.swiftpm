@@ -94,7 +94,11 @@ class GlobalStore: ObservableObject {
             currentFaces = currentScripts[scriptCount].0
         }
     }
-    
+    /**
+     이벤트 중일 때 클릭해서 씬 넘어감 방지
+     */
+    @Published
+    var isTapAble = true
     /**
      현재 씬
      */
@@ -184,14 +188,23 @@ extension GlobalStore {
     }
 }
 
+// currentDetailImage
 extension GlobalStore {
     func updateCurrentDetailImage(detailImage: EnumDetailImage) {
         currentDetailImage = detailImage
     }
 }
 
+// isSelectCharcterViewActive
 extension GlobalStore {
     func toggleIsSelectCharcterViewActive() {
         isSelectCharcterViewActive.toggle()
+    }
+}
+
+// isTapAble
+extension GlobalStore {
+    func toggleIsTapAble() {
+        isTapAble.toggle()
     }
 }

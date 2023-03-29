@@ -103,7 +103,7 @@ let SEQUENCE_THREE_SCRIPTS: [Script] = [
     "헨리: (너희 납치된거야…)"
     ),
     ([EnumSpeaker.muho],
-    "무호: 어, 나 오는 길에 배 도면을 발견했는데…이걸로 뭘 할 수 있을까?"
+    "무호: 어, 나 오는 길에\n배 도면을 발견했는데…이걸로 뭘 할 수 있을까?"
     ),
     ([EnumSpeaker.olive],
     "올리브: 나는 천, 헨리는 나무를 발견했어!"

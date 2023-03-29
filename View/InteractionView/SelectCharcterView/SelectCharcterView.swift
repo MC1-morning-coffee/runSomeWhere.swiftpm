@@ -55,6 +55,7 @@ struct SelectCharcterView: View {
     @EnvironmentObject
     var globalStore: GlobalStore
     
+    private let SCRIPT_BOX_VIEW_BACKGROUND_IMAGE = "Background_Text"
     private let charcters: [enumCharcter] = [.walker, .coffee, .luna, .olive, .muho, .henry]
     
     private func handleSelectAnswer() {
@@ -62,22 +63,31 @@ struct SelectCharcterView: View {
         globalStore.toggleIsSelectCharcterViewActive() // false
         globalStore.toggleIsPopupActive() // false
         globalStore.addScriptCount()
+        globalStore.toggleIsTapAble() // true
     }
     
     private let gridColumns = [GridItem(),GridItem()]
     
     var body: some View {
         GeometryReader { geo in
-            ZStack {
+            ZStack(alignment: .topLeading) {
+                let offset = CGFloat(16)
+                
+                // Background Image
+                Image(SCRIPT_BOX_VIEW_BACKGROUND_IMAGE)
+                    .zIndex(-1)
+                    .offset(y: offset)
                 LazyVGrid(columns: gridColumns) {
-                    ForEach(charcters, id: \.self){ _charcters in
-                        ButtonSelectCharcterView(charcter: _charcters) {
+                    ForEach(Array(charcters.enumerated()), id: \.offset){ index, _charcters in
+                        ButtonSelectCharcterView(charcter: _charcters, index: index) {
                             if _charcters == .coffee {
                                 handleSelectAnswer()
                             }
                         }
                         .frame(minHeight: 48)
                     }
+                    .offset(y: 16)
+                    .padding(.horizontal, 24)
                     .frame(maxHeight: .infinity)
                 }
                 .frame(maxHeight: .infinity)
