@@ -52,11 +52,16 @@ struct SelectCharcterView: View {
     // TODO: change device width
     var width = CGFloat(390)
     
+    @EnvironmentObject
+    var globalStore: GlobalStore
+    
     private let charcters: [enumCharcter] = [.walker, .coffee, .luna, .olive, .muho, .henry]
     
     private func handleSelectAnswer() {
         // here to logic
-        print("hello coffee")
+        globalStore.toggleIsSelectCharcterViewActive()
+        globalStore.toggleIsPopupActive()
+        globalStore.addScriptCount()
     }
     
     private let gridColumns = [GridItem(),GridItem()]
@@ -79,8 +84,7 @@ struct SelectCharcterView: View {
             }
             .padding(16)
             .frame(width: width, height: SCRIPT_BOX_HEIGHT)
-            .border(.red, width: 1)
-            .background(CustomColor.scriptBoxColor)
+            .background(CustomColor.scriptBox)
             .onTapGesture {
                 print("SelectCharcter")
             }

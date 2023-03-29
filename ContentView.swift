@@ -5,12 +5,6 @@ struct ContentView: View {
     @EnvironmentObject
     var globalStore: GlobalStore
     
-    /**
-     SelectCharcterView를 토글하기 위한 값
-     */
-    @State
-    private var isSelectCharcterViewActive = false
-
     var body: some View {
         GeometryReader { geo in
             ZStack(alignment: .topLeading) {
@@ -26,7 +20,7 @@ struct ContentView: View {
                     ScriptBoxView(script: globalStore.currentScripts[globalStore.scriptCount], width: geo.size.width)
                 }
                 .border(.red, width: 1)
-                if isSelectCharcterViewActive {
+                if globalStore.isSelectCharcterViewActive {
                     SelectCharcterView(width: geo.size.width)
                         .zIndex(1)
                         .offset(y: geo.size.height - SCRIPT_BOX_HEIGHT)
@@ -36,12 +30,6 @@ struct ContentView: View {
         .onAppear{
             let safeAreaSize = getSafeAreaSize()
             globalStore.updateSafeAreaSize(currentSafeAreaSize: safeAreaSize)
-            globalStore.toggleIsFaceViewActive()
-            setTimeoutClosure(timeCount: 4) {
-//                isSelectCharcterViewActive.toggle()
-//                globalStore.currentDetailImage = .Keys
-                
-            }
         }
     }
 }

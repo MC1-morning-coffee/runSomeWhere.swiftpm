@@ -80,6 +80,11 @@ class GlobalStore: ObservableObject {
     @Published
     var isPopupActive = false
     /**
+     SelectCharcterView를 토글하기 위한 값
+     */
+    @Published
+    var isSelectCharcterViewActive = false
+    /**
      씬 별로 스크립트 진행도를 표현하기 위한 변수
      */
     @Published
@@ -89,6 +94,7 @@ class GlobalStore: ObservableObject {
             currentFaces = currentScripts[scriptCount].0
         }
     }
+    
     /**
      현재 씬
      */
@@ -105,7 +111,7 @@ class GlobalStore: ObservableObject {
             print("safeArea btm: ", safeAreaSize.1)
         }
     }
-
+    
     init() {
         print("globalStore is ready")
     }
@@ -181,5 +187,11 @@ extension GlobalStore {
 extension GlobalStore {
     func updateCurrentDetailImage(detailImage: EnumDetailImage) {
         currentDetailImage = detailImage
+    }
+}
+
+extension GlobalStore {
+    func toggleIsSelectCharcterViewActive() {
+        isSelectCharcterViewActive.toggle()
     }
 }

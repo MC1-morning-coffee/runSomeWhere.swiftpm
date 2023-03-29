@@ -19,4 +19,3 @@ struct CustomText: View {
             .foregroundColor(color)
     }
 }
-
