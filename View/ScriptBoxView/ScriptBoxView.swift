@@ -44,6 +44,9 @@ struct ScriptBoxView: View {
             VStack(alignment: .leading) {
                 HStack(spacing: 0){
                     VStack(alignment: .leading, spacing: 0){
+                        CustomText(value: "\(coffee)", fontSize: 24)
+                            .padding(.bottom, 4)
+                        CustomText(value: "\(SEQUENCE_ONE_SCRIPTS)")
 //                        CustomText(value: "\(speaker)", fontSize: 24)
 //                            .padding(.bottom, 4)
 //                        CustomText(value: "\(script)")
