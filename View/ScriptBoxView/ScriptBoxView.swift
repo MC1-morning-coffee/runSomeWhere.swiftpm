@@ -24,7 +24,9 @@ struct ScriptBoxView: View {
     
     var script: Script
     var width: CGFloat
-        
+    
+    private let SCRIPT_BOX_VIEW_BACKGROUND_IMAGE = "Background_Text"
+    
     private func updateCurrentSequence() {
         if globalStore.scriptCount > globalStore.currentScripts.count - 2 {
             currentSceneCount += 1
@@ -49,29 +51,34 @@ struct ScriptBoxView: View {
         return _speaker
     }
     
-    
     var body: some View {
-        ZStack {
+        ZStack(alignment: .topLeading) {
+            Image(SCRIPT_BOX_VIEW_BACKGROUND_IMAGE)
+                .zIndex(-1)
+                .offset(y: 16)
             VStack(alignment: .leading) {
                 HStack(spacing: 0){
                     VStack(alignment: .leading, spacing: 0){
-                        CustomText(value: setSpeaker(),
-                                   fontSize: 24)
-                            .padding(.bottom, 4)
+                        // speaker
+//                        if script.0[0] != .unknown {
+//                            CustomText(value: setSpeaker(),
+//                                       fontSize: 24)
+//                                .padding(.bottom, 4)
+//                        }
                         CustomText(value: "\(script.1)")
                     }
+                    .padding(24)
                     Spacer()
                 }
-                .border(.red, width: 1)
+                .offset(y: 20)
                 Spacer()
             }
-            .border(.red, width: 1)
+            .zIndex(10)
             Spacer()
         }
         .padding(16)
         .frame(width: width, height: SCRIPT_BOX_HEIGHT)
-        .border(.red, width: 1)
-        .background(CustomColor.scriptBoxColor)
+        .background(Color(CustomColor.scriptBox))
         .onTapGesture {
             updateCurrentSequence()
         }

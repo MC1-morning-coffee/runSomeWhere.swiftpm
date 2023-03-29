@@ -52,16 +52,6 @@ struct SceneView: View {
         }
     }
     
-    /**
-     동작 테스트용 코드
-     */
-    private func delayText() {
-        setTimeoutClosure(timeCount: 3) {
-            globalStore.isPopupActive = true
-            globalStore.updateCurrentFaces(faces: [.coffee, .muho])
-        }
-    }
-
     var body: some View {
         GeometryReader {
             geo in
@@ -111,6 +101,7 @@ struct SceneView: View {
             .onAppear{
 //                동작 테스트용 코드
 //                globalStore.updateCurrentFaces(faces: [.coffee])
+                globalStore.toggleIsPopupActive()
                 globalStore.toggleIsFaceViewActive()
                 updateRightFaceViewPositionX(value: deviceWidth)
 //                updateLeftFaceViewPositionX(value: -FACE_VIEW_INFO_SIZE.width)

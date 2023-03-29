@@ -25,7 +25,7 @@ struct ButtonSelectCharcterView: View {
             CustomText(value: charcter.personalColor)
                 .frame(minWidth: 0, maxWidth: .infinity, maxHeight: .infinity)
         }
-        .frame(minWidth: 0, maxWidth: .infinity, maxHeight: .infinity)
+        .frame(minWidth: 0, maxWidth: .infinity ,maxHeight: .infinity)
         .background(Color(charcter.personalUIColor))
         .border(.blue)
         
