@@ -8,7 +8,19 @@
 import SwiftUI
 
 struct SequenceTwoView: View {
+    
     var body: some View {
-        Text("Scene Two View")
+        HStack{
+            Text("Scene Two View")
+            AutoDoorView()
+                .position(x: 195, y: 165)
+            AutoDoorView()
+        }
+    }
+}
+
+struct SequenceTwoView_Previews: PreviewProvider{
+    static var previews: some View{
+        SequenceTwoView()
     }
 }

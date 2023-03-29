@@ -64,7 +64,7 @@ let SEQUENCE_ONE_SCRIPTS: [Script] = [
     ([EnumSpeaker.system],
     "걷는 중..."
     ),
-    ([EnumSpeaker.coffee],
+    ([EnumSpeaker.system],
     "저게 뭐지...?"
     ),
     ([EnumSpeaker.coffee],
@@ -90,6 +90,7 @@ let SEQUENCE_ONE_SCRIPTS: [Script] = [
 let SEQUENCE_TWO_SCRIPTS: [Script] = [
     ([EnumSpeaker.system],
     "앞에 자동문과 버튼이 있다."
+     //여기는 헨리 담당입니당
     ),
 ]
 
@@ -173,6 +174,7 @@ let SEQUENCE_ENDING_SCRIPTS: [Script] = [
     ([EnumSpeaker.muho],
     "무야호~~ 도착했다!"
     ),
+    // 여기부터는 블랙에 화이트 .center 정렬 글씨
     ([EnumSpeaker.unknown],
     "자 이제 열어볼까? 어떤 보물이지...?"
     ),
