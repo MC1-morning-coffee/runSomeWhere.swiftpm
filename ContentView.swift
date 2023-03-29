@@ -29,10 +29,15 @@ struct ContentView: View {
         GeometryReader { geo in
             VStack(spacing: 0){
                 SceneView()
-//                CharacterView()
-                ScriptBoxView(scripts: currentScripts, width: geo.size.width
-                )
-//                QuizModalView()
+                CharacterView()
+                // 모달 뷰를 중간까지만 띄우는 방법은 iOS16부터만 지원 가능..
+                if #available(iOS 16.0, *) {
+                    QuizModalView()
+                } else {
+                    // Fallback on earlier versions
+                }
+                ScriptBoxView(scripts: currentScripts, width: geo.size.width)
+                
             }
             .border(.red, width: 1)
         }
