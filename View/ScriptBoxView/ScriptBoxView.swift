@@ -19,37 +19,46 @@ struct ScriptBoxView: View {
     @EnvironmentObject
     var globalStore: GlobalStore
     
-
-//    var sceneCount: Int
-    var scripts: [Script]
-    
     @State
     var currentSceneCount: Int = 0
     
-    @State
-    var scriptCount = 0
-    
+    var script: Script
     var width: CGFloat
-    
-    func updateCurrentSequence() {
-        globalStore.scriptCount += 1
+        
+    private func updateCurrentSequence() {
+        if globalStore.scriptCount > globalStore.currentScripts.count - 2 {
+            currentSceneCount += 1
+            if currentSceneCount > 4 {
+                return
+            }
+            globalStore.updateCurrentScene(scene: .allCases[currentSceneCount])
+        }else{
+            globalStore.scriptCount += 1
+        }
+    }
+        
+    // Speaker
+    private func setSpeaker()->String {
+        // 둘이상이면?
+        var _speaker = "\(script.0[0])"
+        
+        if script.0.count > 1 {
+            _speaker = "\(script.0[0]), \(script.0[1])"
+        }
+        
+        return _speaker
     }
     
+    
     var body: some View {
-//        var speaker = findSpeaker(scriptCount: scriptCount, scripts: scripts)
-//        var script = findScript(scriptCount: scriptCount, scripts: scripts)
-        
         ZStack {
             VStack(alignment: .leading) {
                 HStack(spacing: 0){
                     VStack(alignment: .leading, spacing: 0){
-                        CustomText(value: "\(name)", fontSize: 24)
+                        CustomText(value: setSpeaker(),
+                                   fontSize: 24)
                             .padding(.bottom, 4)
-                        CustomText(value: "\(script)")
-//                        CustomText(value: "\(speaker)", fontSize: 24)
-//                            .padding(.bottom, 4)
-//                        CustomText(value: "\(script)")
-
+                        CustomText(value: "\(script.1)")
                     }
                     Spacer()
                 }
@@ -65,7 +74,6 @@ struct ScriptBoxView: View {
         .background(CustomColor.scriptBoxColor)
         .onTapGesture {
             updateCurrentSequence()
-            print(scriptCount)
         }
     }
 }

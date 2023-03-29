@@ -8,7 +8,7 @@
 import Combine
 import SwiftUI
 
-enum EnumScene: CaseIterable {
+enum EnumScene: Int, CaseIterable {
     case opeaning
     case sequence1
     case sequence2
@@ -72,11 +72,16 @@ class GlobalStore: ObservableObject {
      */
     @Published
     var isPopupActive = false
-    @Published
     /**
      씬 별로 스크립트 진행도를 표현하기 위한 변수
      */
+    @Published
     var scriptCount = 0
+    /**
+     현재 씬
+     */
+    @Published
+    var currentScripts = ALL_SCRIPTS[0]
     
     /**
      SafeArea의 값을 들고 있는 변수
@@ -112,6 +117,7 @@ extension GlobalStore: ObservableStore {
 extension GlobalStore {
     func updateCurrentScene (scene: EnumScene){
         currentScene = scene
+        updateCurrnetScripts(sceneCount: scene.rawValue)
     }
 }
 
@@ -140,6 +146,12 @@ extension GlobalStore {
 extension GlobalStore {
     func addScriptCount() {
         scriptCount += 1
+    }
+}
+
+extension GlobalStore {
+    func updateCurrnetScripts(sceneCount: Int) {
+        currentScripts = ALL_SCRIPTS[sceneCount]
     }
 }
 

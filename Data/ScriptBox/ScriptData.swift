@@ -53,9 +53,6 @@ let SEQUENCE_OPENING_SCRIPTS: [Script] = [
     ([EnumSpeaker.unknown],
     "철컥... 문이 열렸다!"
     ),
-    
-    
-    
 ]
 
 let SEQUENCE_ONE_SCRIPTS: [Script] = [
@@ -96,7 +93,6 @@ let SEQUENCE_TWO_SCRIPTS: [Script] = [
     "앞에 자동문과 버튼이 있다."
     ),
 ]
-
 
 let SEQUENCE_THREE_SCRIPTS: [Script] = [
     ([EnumSpeaker.walker],
@@ -172,7 +168,6 @@ let SEQUENCE_THREE_SCRIPTS: [Script] = [
     ([EnumSpeaker.unknown],
     "와~드디어 탈출했다~!!!!"
     ),
-    
 ]
 
 let SEQUENCE_ENDING_SCRIPTS: [Script] = [
@@ -191,4 +186,12 @@ let SEQUENCE_ENDING_SCRIPTS: [Script] = [
     ([EnumSpeaker.system],
     "강렬한 빛이 쏟아져나오며 여섯명이 또 다시 사라졌다."
     ),
+]
+
+let ALL_SCRIPTS: [[Script]] = [
+    SEQUENCE_OPENING_SCRIPTS,
+    SEQUENCE_ONE_SCRIPTS,
+    SEQUENCE_TWO_SCRIPTS,
+    SEQUENCE_THREE_SCRIPTS,
+    SEQUENCE_ENDING_SCRIPTS
 ]

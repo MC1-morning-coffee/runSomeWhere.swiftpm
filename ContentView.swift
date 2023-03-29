@@ -11,10 +11,6 @@ struct ContentView: View {
     @State
     private var isSelectCharcterViewActive = false
 
-    @State
-    private var currentScripts: [Script] = []
-
-    
     var body: some View {
         GeometryReader { geo in
             ZStack(alignment: .topLeading) {
@@ -27,7 +23,7 @@ struct ContentView: View {
 //                    } else {
 //                        // Fallback on earlier versions
 //                    }
-                    ScriptBoxView(scripts: currentScripts, width: geo.size.width)
+                    ScriptBoxView(script: globalStore.currentScripts[globalStore.scriptCount], width: geo.size.width)
                 }
                 .border(.red, width: 1)
                 if isSelectCharcterViewActive {
@@ -40,9 +36,9 @@ struct ContentView: View {
         .onAppear{
             let safeAreaSize = getSafeAreaSize()
             globalStore.updateSafeAreaSize(currentSafeAreaSize: safeAreaSize)
-            setTimeoutClosure(timeCount: 3) {
+//            setTimeoutClosure(timeCount: 3) {
 //                isSelectCharcterViewActive.toggle()
-            }
+//            }
         }
     }
 }
