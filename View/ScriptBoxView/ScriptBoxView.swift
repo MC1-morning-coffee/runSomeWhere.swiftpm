@@ -29,6 +29,9 @@ struct ScriptBoxView: View {
     private let SCRIPT_BOX_VIEW_BACKGROUND_IMAGE = "Background_Text"
     
     private func updateCurrentSequence() {
+        if !globalStore.isTapAble{
+            return
+        }
         
         if globalStore.scriptCount == globalStore.currentScripts.count - 1 {
             currentSceneCount += 1
@@ -40,30 +43,9 @@ struct ScriptBoxView: View {
         }else{
             globalStore.scriptCount += 1
         }
-        updateFaces()
+        handleSceneEvent(globalStore: globalStore)
     }
         
-    private func updateFaces() {
-        if globalStore.currentScene == .sequence1 {
-            // 커피 등장
-//            if globalStore.scriptCount == 2 {
-//                globalStore.toggleIsFaceViewActive() // true
-//            }else if globalStore.scriptCount == 5 {
-//                globalStore.toggleIsFaceViewActive() // false
-//            // 무호 등장
-//            }else if globalStore.scriptCount == 6 {
-//                globalStore.toggleIsFaceViewActive() // true
-//            }else if globalStore.scriptCount == 7 {
-//                globalStore.toggleIsFaceViewActive()
-//            }
-//        }
-//        if globalStore.currentScene == .sequence2 {
-//            if globalStore.scriptCount == 0 {
-//                globalStore.toggleIsFaceViewActive()
-//            }
-        }
-    }
-    
     // Speaker
     private func setSpeaker()->String {
         // 둘이상이면?
@@ -103,7 +85,7 @@ struct ScriptBoxView: View {
         }
         .padding(16)
         .frame(width: width, height: SCRIPT_BOX_HEIGHT)
-        .background(Color(CustomColor.scriptBox))
+        .background(CustomColor.scriptBox)
         .onTapGesture {
             updateCurrentSequence()
         }
