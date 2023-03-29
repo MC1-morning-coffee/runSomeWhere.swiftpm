@@ -16,6 +16,8 @@ struct SceneView: View {
     var globalStore: GlobalStore
     
     private let FACE_VIEW_INFO_SIZE = FACE_VIEW_INFO().size
+    
+    @State var move: Int = 0
 
     /**
      rightFaceView의 애니메이션 효과를 위한 값
@@ -70,7 +72,24 @@ struct SceneView: View {
             ZStack(alignment: .topLeading) {
                 // SequenceViewContainer
                 HStack {
+                    Image("Background_Black")
+                        //.position(x: 195, y: 422)
+                        .offset(x: 195, y: {
+                            if move%2 == 0 { // move변수가 짝수이면
+                                return -50
+                            } else {
+                                return -400
+                            }
+                        }()) //move가 true이면 위쪽으로 이동하기
+                        .animation(.easeOut(duration: 2), value: move) //애니메이션 효과
                     AnyView(setSequenceView(currentScene: globalStore.currentScene))
+                    
+                    Button {
+                        move += 1
+                    } label: {
+                        Text("move the character!")
+                            .foregroundColor(.white)
+                    }
                 }
                 .frame(width: deviceWidth, height: deviceHeight)
                 .background(Color.green)

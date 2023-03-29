@@ -15,6 +15,7 @@ import SwiftUI
 3. 스크립트가 다 나타나면 커서가 깜빡이며 탭 클릭이 가능하다.
  */
 struct ScriptBoxView: View {
+    @State private var isFlickering = false
     
     @EnvironmentObject
     var globalStore: GlobalStore
@@ -46,6 +47,9 @@ struct ScriptBoxView: View {
 //                        CustomText(value: "\(speaker)", fontSize: 24)
 //                            .padding(.bottom, 4)
 //                        CustomText(value: "\(script)")
+                        Image("Image_Button").opacity(isFlickering ? 0.01 : 1.0).animation(Animation.easeOut(duration: 0.3).repeatForever(autoreverses: true)).onAppear() {
+                            isFlickering = true
+                        }
                     }
                     Spacer()
                 }
@@ -60,7 +64,8 @@ struct ScriptBoxView: View {
         .border(.red, width: 1)
         .background(CustomColor.scriptBoxColor)
         .onTapGesture {
-            updateCurrentSequence()
+            //updateCurrentSequence()
+            scriptCount += 1
             print(scriptCount)
         }
     }
