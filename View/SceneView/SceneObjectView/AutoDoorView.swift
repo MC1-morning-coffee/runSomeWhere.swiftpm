@@ -17,12 +17,12 @@ struct AutoDoorView: View {
             /*.resizable()
              .frame(width: 100, height: 65)*/
                 .position(x: 195, y: 165)
-                .offset(x: isAnimating ? -50 : 0)
+                .offset(x: isAnimating ? -40 : 0)
             Image("Object_Door_Right")
             /*.resizable()
              .frame(width: 100, height: 65)*/
                 .position(x: 195, y: 165)
-                .offset(x: isAnimating ? 50 : 0)
+                .offset(x: isAnimating ? 40 : 0)
             Image("Object_Door_Frame")
                 .position(x: 195, y: 165)
             /*.resizable()
@@ -38,7 +38,6 @@ struct AutoDoorView: View {
             self.isAnimating = true
         }
     }
-
 }
 
 struct AutoDoor_Previews: PreviewProvider{
