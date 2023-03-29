@@ -36,16 +36,16 @@ struct ScriptBoxView: View {
     }
     
     var body: some View {
-        var speaker = findSpeaker(scriptCount: scriptCount, scripts: scripts)
-        var script = findScript(scriptCount: scriptCount, scripts: scripts)
+//        var speaker = findSpeaker(scriptCount: scriptCount, scripts: scripts)
+//        var script = findScript(scriptCount: scriptCount, scripts: scripts)
         
         ZStack {
             VStack(alignment: .leading) {
                 HStack(spacing: 0){
                     VStack(alignment: .leading, spacing: 0){
-                        CustomText(value: "\(speaker)", fontSize: 24)
-                            .padding(.bottom, 4)
-                        CustomText(value: "\(script)")
+//                        CustomText(value: "\(speaker)", fontSize: 24)
+//                            .padding(.bottom, 4)
+//                        CustomText(value: "\(script)")
                     }
                     Spacer()
                 }

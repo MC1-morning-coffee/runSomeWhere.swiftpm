@@ -11,7 +11,6 @@ struct ContentView: View {
     @State
     private var isSelectCharcterViewActive = false
 
-        SEQUENCE_OPENING_SCRIPTS, SEQUENCE_ONE_SCRIPTS, SEQUENCE_TWO_SCRIPTS, SEQUENCE_THREE_SCRIPTS, SEQUENCE_ENDING_SCRIPTS]
     @State
     private var currentScripts: [Script] = []
 
@@ -21,7 +20,7 @@ struct ContentView: View {
             ZStack(alignment: .topLeading) {
                 VStack(spacing: 0){
                     SceneView()
-                    CharacterView()
+//                    CharacterView()
                     // 모달 뷰를 중간까지만 띄우는 방법은 iOS16부터만 지원 가능..
                     if #available(iOS 16.0, *) {
                         QuizModalView()
@@ -41,7 +40,6 @@ struct ContentView: View {
         }
         .onAppear{
             let safeAreaSize = getSafeAreaSize()
-            currentScripts = AllScripts[0]
             globalStore.updateSafeAreaSize(currentSafeAreaSize: safeAreaSize)
             setTimeoutClosure(timeCount: 3) {
             }
