@@ -45,7 +45,7 @@ struct ScriptBoxView: View {
             Spacer()
         }
         .padding(16)
-        .frame(width: width, height: 212)
+        .frame(width: width, height: SCRIPT_BOX_HEIGHT)
         .border(.red, width: 1)
         .background(CustomColor.scriptBoxColor)
         .onTapGesture {

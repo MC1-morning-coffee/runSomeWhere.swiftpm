@@ -67,7 +67,7 @@ struct SceneView: View {
             geo in
             let deviceWidth = geo.size.width
             let deviceHeight = geo.size.height
-            ZStack(alignment:.leading) {
+            ZStack(alignment: .topLeading) {
                 // SequenceViewContainer
                 HStack {
                     AnyView(setSequenceView(currentScene: globalStore.currentScene))
@@ -76,7 +76,8 @@ struct SceneView: View {
                 .background(Color.green)
                 // FaceViewArea
                 if globalStore.isFaceViewActive {
-                    let facePositionY = deviceHeight - 212 - FACE_VIEW_INFO_SIZE.height + globalStore.safeAreaSize.1
+                    let facePositionY = deviceHeight
+                    - FACE_VIEW_INFO_SIZE.height
                     // 시작은 무조건 오른쪽부터 시작
                     FaceView(direction: "right", target: globalStore.currentFaces[0])
                         .border(.red)
@@ -84,7 +85,7 @@ struct SceneView: View {
                         .animation(.linear(duration: 0.4), value: rightFaceViewPositionX)
                         .offset(x: rightFaceViewPositionX, y: facePositionY)
                         .onAppear{
-//                            updateRightFaceViewPositionX(value: deviceWidth - FACE_VIEW_INFO_SIZE.width) // 동작 테스트 용 코드
+                            updateRightFaceViewPositionX(value: deviceWidth - FACE_VIEW_INFO_SIZE.width) // 동작 테스트 용 코드
                         }
                     // currentFaces의 index 1번째가 있을 경우 무조건 왼쪽에서 보여짐.
                     if globalStore.currentFaces.count > 1 {
@@ -110,8 +111,8 @@ struct SceneView: View {
             .onAppear{
 //                동작 테스트용 코드
 //                globalStore.updateCurrentFaces(faces: [.coffee])
-//                globalStore.toggleIsFaceViewActive()
-//                updateRightFaceViewPositionX(value: deviceWidth)
+                globalStore.toggleIsFaceViewActive()
+                updateRightFaceViewPositionX(value: deviceWidth)
 //                updateLeftFaceViewPositionX(value: -FACE_VIEW_INFO_SIZE.width)
             }
         }
