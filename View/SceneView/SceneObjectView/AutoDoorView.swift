@@ -10,6 +10,22 @@ import SwiftUI
 struct AutoDoorView: View {
     
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        ZStack{
+            Image("Object_Door_Frame")
+                .resizable()
+                .frame(width: 100, height: 65)
+            Image("Object_Door_Left")
+                .resizable()
+                .frame(width: 100, height: 65)
+            Image("Object_Door_Right")
+                .resizable()
+                .frame(width: 100, height: 65)
+        }
+    }
+}
+
+struct AutoDoor_Previews: PreviewProvider{
+    static var previews: some View{
+        AutoDoorView()
     }
 }
