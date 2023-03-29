@@ -11,6 +11,8 @@ typealias Script = ([EnumSpeaker], String)
 
 let SCRIPT_BOX_HEIGHT = CGFloat(194)
 
+let CURSOR_SIZE = CGFloat(80)
+
 let SEQUENCE_OPENING_SCRIPTS: [Script] = [
     ([EnumSpeaker.system],
     "모든 것이 평화롭던 어느날..."
@@ -53,23 +55,17 @@ let SEQUENCE_OPENING_SCRIPTS: [Script] = [
     ([EnumSpeaker.unknown],
     "철컥... 문이 열렸다!"
     ),
-    
-    
-    
 ]
 
 let SEQUENCE_ONE_SCRIPTS: [Script] = [
     ([EnumSpeaker.system],
-    "앗! 물이 쫄쫄 나오는 정수기에 앞이 막혀있다"
-    ),
-    ([EnumSpeaker.system],
-    "걷는 중..."
+    "..."
     ),
     ([EnumSpeaker.system],
     "걷는 중..."
     ),
     ([EnumSpeaker.coffee],
-    "커피: 저게 뭐지...?"
+    "저게 뭐지...?"
     ),
     ([EnumSpeaker.coffee],
     "커피: 앗! 물이 쫄쫄 나오는 정수기에 앞이 막혀있다..."
@@ -83,10 +79,10 @@ let SEQUENCE_ONE_SCRIPTS: [Script] = [
     ([EnumSpeaker.system],
     "부스럭...부스럭..."
     ),
-    ([EnumSpeaker.muho],
+    ([EnumSpeaker.coffee, EnumSpeaker.muho],
     "무호: 문제를 풀었구나 커피!! 같이 가자!!"
     ),
-    ([EnumSpeaker.coffee],
+    ([EnumSpeaker.coffee, EnumSpeaker.muho],
     "커피: 그래, 같이 가자 무호!"
     ),
 ]
@@ -96,7 +92,6 @@ let SEQUENCE_TWO_SCRIPTS: [Script] = [
     "앞에 자동문과 버튼이 있다."
     ),
 ]
-
 
 let SEQUENCE_THREE_SCRIPTS: [Script] = [
     ([EnumSpeaker.walker],
@@ -172,7 +167,6 @@ let SEQUENCE_THREE_SCRIPTS: [Script] = [
     ([EnumSpeaker.unknown],
     "와~드디어 탈출했다~!!!!"
     ),
-    
 ]
 
 let SEQUENCE_ENDING_SCRIPTS: [Script] = [
@@ -191,4 +185,12 @@ let SEQUENCE_ENDING_SCRIPTS: [Script] = [
     ([EnumSpeaker.system],
     "강렬한 빛이 쏟아져나오며 여섯명이 또 다시 사라졌다."
     ),
+]
+
+let ALL_SCRIPTS: [[Script]] = [
+    SEQUENCE_OPENING_SCRIPTS,
+    SEQUENCE_ONE_SCRIPTS,
+    SEQUENCE_TWO_SCRIPTS,
+    SEQUENCE_THREE_SCRIPTS,
+    SEQUENCE_ENDING_SCRIPTS
 ]

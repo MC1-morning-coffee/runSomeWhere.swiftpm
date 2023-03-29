@@ -8,7 +8,7 @@
 import Combine
 import SwiftUI
 
-enum EnumScene: CaseIterable {
+enum EnumScene: Int, CaseIterable {
     case opeaning
     case sequence1
     case sequence2
@@ -31,11 +31,12 @@ enum EnumSpeaker: CaseIterable {
 }
 
 enum EnumDetailImage: CaseIterable {
-    case joljol
-    case autodoor
-    case key1 // 주머니에 열쇠가 들어있다.
-    case key2 // 컬러스왑한 열쇠가 6개가 있다.
-    case key3 // 열쇠 중 1개(커피)를 선택한다.
+    case CBL
+    case Pouch // 주머니에 열쇠가 들어있다.
+    case Keys // 컬러스왑한 열쇠가 6개가 있다.
+    case Redkey // 열쇠 중 1개(커피)를 선택한다.
+    case Water
+    case Door
 }
 
 enum EnumDirection: CaseIterable {
@@ -49,7 +50,8 @@ class GlobalStore: ObservableObject {
     @Published
     var currentScene = EnumScene.opeaning {
         didSet {
-            scriptCount = 0
+//            scriptCount = 0
+            print("Scene is Change")
         }
     }
     /**
@@ -61,7 +63,12 @@ class GlobalStore: ObservableObject {
      현재 스크립트를 말하는 대상들을 알기 위한 enum 배열
      */
     @Published
-    var currentFaces: [EnumSpeaker] = [EnumSpeaker.coffee]
+    var currentFaces: [EnumSpeaker] = [EnumSpeaker.system]
+    /**
+     현재 디테일 이미지의 값을 변경하기 위한 변수
+     */
+    @Published
+    var currentDetailImage: EnumDetailImage = .Pouch
     /**
     FaceView가 보여지는 상태인지 알기 위한 변수
      */
@@ -72,11 +79,21 @@ class GlobalStore: ObservableObject {
      */
     @Published
     var isPopupActive = false
-    @Published
     /**
      씬 별로 스크립트 진행도를 표현하기 위한 변수
      */
-    var scriptCount = 0
+    @Published
+    var scriptCount = 0 {
+        didSet {
+            print("scriptCount: ", scriptCount)
+            currentFaces = currentScripts[scriptCount].0
+        }
+    }
+    /**
+     현재 씬
+     */
+    @Published
+    var currentScripts = ALL_SCRIPTS[0]
     
     /**
      SafeArea의 값을 들고 있는 변수
@@ -112,6 +129,7 @@ extension GlobalStore: ObservableStore {
 extension GlobalStore {
     func updateCurrentScene (scene: EnumScene){
         currentScene = scene
+        updateCurrnetScripts(sceneCount: scene.rawValue)
     }
 }
 
@@ -141,11 +159,27 @@ extension GlobalStore {
     func addScriptCount() {
         scriptCount += 1
     }
+    
+    func resetScriptCount() {
+        scriptCount = 0
+    }
+}
+
+extension GlobalStore {
+    func updateCurrnetScripts(sceneCount: Int) {
+        currentScripts = ALL_SCRIPTS[sceneCount]
+    }
 }
 
 // safeAreaSize
 extension GlobalStore {
     func updateSafeAreaSize(currentSafeAreaSize: SafeAreaSize) {
         safeAreaSize = currentSafeAreaSize
+    }
+}
+
+extension GlobalStore {
+    func updateCurrentDetailImage(detailImage: EnumDetailImage) {
+        currentDetailImage = detailImage
     }
 }

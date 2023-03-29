@@ -13,10 +13,10 @@ struct ButtonSelectCharcterView: View {
     
     var completion: () -> Void = {print("Hello")}
     
-//    init(charcter: enumCharcter = .coffee, completion: @escaping ()->Void) {
-//        self.charcter = charcter
-//        self.completion = completion
-//    }
+    init(charcter: enumCharcter = .coffee, completion: @escaping ()->Void) {
+        self.charcter = charcter
+        self.completion = completion
+    }
     
     var body: some View {
         Button {
@@ -25,7 +25,7 @@ struct ButtonSelectCharcterView: View {
             CustomText(value: charcter.personalColor)
                 .frame(minWidth: 0, maxWidth: .infinity, maxHeight: .infinity)
         }
-        .frame(minWidth: 0, maxWidth: .infinity, maxHeight: .infinity)
+        .frame(minWidth: 0, maxWidth: .infinity ,maxHeight: .infinity)
         .background(Color(charcter.personalUIColor))
         .border(.blue)
         
