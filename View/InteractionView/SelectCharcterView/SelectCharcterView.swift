@@ -52,34 +52,30 @@ struct SelectCharcterView: View {
     // TODO: change device width
     var width = CGFloat(390)
     
-    private let charcters: [[enumCharcter]] = [[.walker, .coffee], [.luna, .olive], [.muho, .henry]]
+    private let charcters: [enumCharcter] = [.walker, .coffee, .luna, .olive, .muho, .henry]
     
     private func handleSelectAnswer() {
         // here to logic
         print("hello coffee")
     }
     
+    private let gridColumns = [GridItem(),GridItem()]
+    
     var body: some View {
         GeometryReader { geo in
             ZStack {
-                VStack(alignment: .leading) {
-                    Spacer()
+                LazyVGrid(columns: gridColumns) {
                     ForEach(charcters, id: \.self){ _charcters in
-                        HStack(spacing: 0){
-                            ButtonSelectCharcterView(charcter: _charcters[0])
-                            Spacer()
-                            ButtonSelectCharcterView(charcter: _charcters[1]){
-                                if _charcters[1] == .coffee {
-                                    handleSelectAnswer()
-                                }
+                        ButtonSelectCharcterView(charcter: _charcters) {
+                            if _charcters == .coffee {
+                                handleSelectAnswer()
                             }
                         }
-                        .frame(maxHeight: .infinity)
-                        .border(.red, width: 1)
+                        .frame(minHeight: 48)
                     }
-                    Spacer()
+                    .frame(maxHeight: .infinity)
                 }
-                .border(.red, width: 1)
+                .frame(maxHeight: .infinity)
             }
             .padding(16)
             .frame(width: width, height: SCRIPT_BOX_HEIGHT)
@@ -89,6 +85,5 @@ struct SelectCharcterView: View {
                 print("SelectCharcter")
             }
         }
-    
     }
 }

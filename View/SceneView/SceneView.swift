@@ -16,6 +16,8 @@ struct SceneView: View {
     var globalStore: GlobalStore
     
     private let FACE_VIEW_INFO_SIZE = FACE_VIEW_INFO().size
+    
+    @State var move: Int = 0
 
     /**
      rightFaceView의 애니메이션 효과를 위한 값
@@ -31,6 +33,17 @@ struct SceneView: View {
 
     private func updateRightFaceViewPositionX(value: CGFloat) {
         rightFaceViewPositionX = value
+    }
+    
+    
+    private func showCharcterFaceView() {
+        if globalStore.currentScene == .sequence1 {
+            if globalStore.scriptCount == 4 {
+                globalStore.toggleIsFaceViewActive()
+            }else if globalStore.scriptCount == 6 {
+                globalStore.toggleIsFaceViewActive()
+            }
+        }
     }
     
     private func updateLeftFaceViewPositionX(value: CGFloat) {
@@ -52,16 +65,6 @@ struct SceneView: View {
         }
     }
     
-    /**
-     동작 테스트용 코드
-     */
-    private func delayText() {
-        setTimeoutClosure(timeCount: 3) {
-            globalStore.isPopupActive = true
-            globalStore.updateCurrentFaces(faces: [.coffee, .muho])
-        }
-    }
-
     var body: some View {
         GeometryReader {
             geo in
@@ -71,6 +74,22 @@ struct SceneView: View {
                 // SequenceViewContainer
                 HStack {
                     AnyView(setSequenceView(currentScene: globalStore.currentScene))
+//                    Image("Background_Black")
+//                        //.position(x: 195, y: 422)
+//                        .offset(x: 195, y: {
+//                            if move%2 == 0 { // move변수가 짝수이면
+//                                return -50
+//                            } else {
+//                                return -400
+//                            }
+//                        }()) //move가 true이면 위쪽으로 이동하기
+//                        .animation(.easeOut(duration: 2), value: move) //애니메이션 효과
+//                    Button {
+//                        move += 1
+//                    } label: {
+//                        Text("move the character!")
+//                            .foregroundColor(.white)
+//                    }
                 }
                 .frame(width: deviceWidth, height: deviceHeight)
                 .background(Color.green)
@@ -80,8 +99,6 @@ struct SceneView: View {
                     - FACE_VIEW_INFO_SIZE.height
                     // 시작은 무조건 오른쪽부터 시작
                     FaceView(direction: "right", target: globalStore.currentFaces[0])
-                        .border(.red)
-                        .background(Color.cyan)
                         .animation(.linear(duration: 0.4), value: rightFaceViewPositionX)
                         .offset(x: rightFaceViewPositionX, y: facePositionY)
                         .onAppear{
@@ -90,12 +107,10 @@ struct SceneView: View {
                     // currentFaces의 index 1번째가 있을 경우 무조건 왼쪽에서 보여짐.
                     if globalStore.currentFaces.count > 1 {
                         FaceView(direction: "left", target: globalStore.currentFaces[1])
-                            .border(.red)
-                            .background(Color.yellow)
                             .animation(.linear(duration: 0.4), value: leftFaceViewPositionX)
                             .offset(x: leftFaceViewPositionX, y: facePositionY)
                             .onAppear{
-//                                updateLeftFaceViewPositionX(value: 0) // 동작 테스트용 코드
+                                updateLeftFaceViewPositionX(value: 0) // 동작 테스트용 코드
                             }
                     }
                 }
@@ -110,10 +125,9 @@ struct SceneView: View {
             .background(Color.brown)
             .onAppear{
 //                동작 테스트용 코드
-//                globalStore.updateCurrentFaces(faces: [.coffee])
-                globalStore.toggleIsFaceViewActive()
+//                globalStore.toggleIsPopupActive()
                 updateRightFaceViewPositionX(value: deviceWidth)
-//                updateLeftFaceViewPositionX(value: -FACE_VIEW_INFO_SIZE.width)
+                updateLeftFaceViewPositionX(value: -FACE_VIEW_INFO_SIZE.width)
             }
         }
     }

@@ -29,10 +29,10 @@ struct CharacterView: View {
         // Luna의 Image
         VStack{
             Image(objectImage)
-                .resizable()
-                .aspectRatio(contentMode: .fit)
-                .frame(width: 100, height: 100)
-                .border(.red)
+                .resizable() //이미지 크기 조절을 하기 위해 사용
+                .aspectRatio(contentMode: .fit) //너비 높이 비율
+                .frame(width: 100, height: 100) //사이즈 조정
+                .border(.red) //주변 꾸미기
                 .offset(y: {
                     if move%2 == 0 { // move변수가 짝수이면
                         return -50
@@ -40,7 +40,7 @@ struct CharacterView: View {
                         return -400
                     }
                 }()) //move가 true이면 위쪽으로 이동하기
-                .animation(.easeOut(duration: 2), value: move)
+                .animation(.easeOut(duration: 2), value: move) //애니메이션 효과
                 .onAppear{
                     print(luna.name)
                 }
