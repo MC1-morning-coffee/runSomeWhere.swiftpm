@@ -36,16 +36,16 @@ struct ScriptBoxView: View {
     }
     
     var body: some View {
-        var speaker = findSpeaker(scriptCount: scriptCount, scripts: scripts)
-        var script = findScript(scriptCount: scriptCount, scripts: scripts)
+//        var speaker = findSpeaker(scriptCount: scriptCount, scripts: scripts)
+//        var script = findScript(scriptCount: scriptCount, scripts: scripts)
         
         ZStack {
             VStack(alignment: .leading) {
                 HStack(spacing: 0){
                     VStack(alignment: .leading, spacing: 0){
-                        CustomText(value: "\(speaker)", fontSize: 24)
-                            .padding(.bottom, 4)
-                        CustomText(value: "\(script)")
+//                        CustomText(value: "\(speaker)", fontSize: 24)
+//                            .padding(.bottom, 4)
+//                        CustomText(value: "\(script)")
                     }
                     Spacer()
                 }
@@ -56,7 +56,7 @@ struct ScriptBoxView: View {
             Spacer()
         }
         .padding(16)
-        .frame(width: width, height: 212)
+        .frame(width: width, height: SCRIPT_BOX_HEIGHT)
         .border(.red, width: 1)
         .background(CustomColor.scriptBoxColor)
         .onTapGesture {

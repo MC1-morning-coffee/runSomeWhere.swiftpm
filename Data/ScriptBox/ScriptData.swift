@@ -9,6 +9,8 @@ import Foundation
 
 typealias Script = ([EnumSpeaker], String)
 
+let SCRIPT_BOX_HEIGHT = CGFloat(194)
+
 let SEQUENCE_OPENING_SCRIPTS: [Script] = [
     ([EnumSpeaker.unknown],
     "아야..!"

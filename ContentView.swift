@@ -6,45 +6,43 @@ struct ContentView: View {
     var globalStore: GlobalStore
     
     /**
-     스크립트 배열을 변경하기 위한 값
+     SelectCharcterView를 토글하기 위한 값
      */
     @State
-    var currentSceneCount: Int = 0
-    
-    let AllScripts: [[Script]] = [
-        SEQUENCE_OPENING_SCRIPTS, SEQUENCE_ONE_SCRIPTS, SEQUENCE_TWO_SCRIPTS, SEQUENCE_THREE_SCRIPTS, SEQUENCE_ENDING_SCRIPTS]
+    private var isSelectCharcterViewActive = false
+
     @State
     private var currentScripts: [Script] = []
-    
-    func updateCurrentSequence() {
-        if globalStore.scriptCount > currentScripts.count {
-            let _currentSceneCount = currentSceneCount + 1
-            currentSceneCount += 1
-            globalStore.updateCurrentScene(scene: EnumScene.allCases[_currentSceneCount])
-        }
-    }
-    
+
     
     var body: some View {
         GeometryReader { geo in
-            VStack(spacing: 0){
-                SceneView()
-                CharacterView()
-                // 모달 뷰를 중간까지만 띄우는 방법은 iOS16부터만 지원 가능..
-                if #available(iOS 16.0, *) {
-                    QuizModalView()
-                } else {
-                    // Fallback on earlier versions
+            ZStack(alignment: .topLeading) {
+                VStack(spacing: 0){
+                    SceneView()
+//                    CharacterView()
+                    // 모달 뷰를 중간까지만 띄우는 방법은 iOS16부터만 지원 가능..
+                    if #available(iOS 16.0, *) {
+                        QuizModalView()
+                    } else {
+                        // Fallback on earlier versions
+                    }
+                    ScriptBoxView(scripts: currentScripts, width: geo.size.width)
                 }
-                ScriptBoxView(scripts: currentScripts, width: geo.size.width)
+                .border(.red, width: 1)
                 
+                if isSelectCharcterViewActive {
+                    SelectCharcterView(width: geo.size.width)
+                        .zIndex(1)
+                        .offset(y: geo.size.height - SCRIPT_BOX_HEIGHT)
+                }
             }
-            .border(.red, width: 1)
         }
         .onAppear{
             let safeAreaSize = getSafeAreaSize()
-            currentScripts = AllScripts[0]
             globalStore.updateSafeAreaSize(currentSafeAreaSize: safeAreaSize)
+            setTimeoutClosure(timeCount: 3) {
+            }
         }
     }
 }
