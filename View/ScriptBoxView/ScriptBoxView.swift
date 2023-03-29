@@ -15,19 +15,30 @@ import SwiftUI
 3. 스크립트가 다 나타나면 커서가 깜빡이며 탭 클릭이 가능하다.
  */
 struct ScriptBoxView: View {
-//    @Binding
+    
+    @EnvironmentObject
+    var globalStore: GlobalStore
+    
+
 //    var sceneCount: Int
-    var scripts = "";
+    var scripts: [Script]
+    
+    @State
+    var currentSceneCount: Int = 0
     
     @State
     var scriptCount = 0
     
     var width: CGFloat
     
+    func updateCurrentSequence() {
+        globalStore.scriptCount += 1
+    }
+    
     var body: some View {
+//        var speaker = findSpeaker(scriptCount: scriptCount, scripts: scripts)
+//        var script = findScript(scriptCount: scriptCount, scripts: scripts)
         
-        let name = SEQUENCE_OPENING_SCRIPTS[scriptCount].0[0]
-        let script = SEQUENCE_OPENING_SCRIPTS[scriptCount].1
         ZStack {
             VStack(alignment: .leading) {
                 HStack(spacing: 0){
@@ -35,6 +46,10 @@ struct ScriptBoxView: View {
                         CustomText(value: "\(name)", fontSize: 24)
                             .padding(.bottom, 4)
                         CustomText(value: "\(script)")
+//                        CustomText(value: "\(speaker)", fontSize: 24)
+//                            .padding(.bottom, 4)
+//                        CustomText(value: "\(script)")
+
                     }
                     Spacer()
                 }
@@ -45,11 +60,11 @@ struct ScriptBoxView: View {
             Spacer()
         }
         .padding(16)
-        .frame(width: width, height: 212)
+        .frame(width: width, height: SCRIPT_BOX_HEIGHT)
         .border(.red, width: 1)
         .background(CustomColor.scriptBoxColor)
         .onTapGesture {
-            self.scriptCount += 1
+            updateCurrentSequence()
             print(scriptCount)
         }
     }

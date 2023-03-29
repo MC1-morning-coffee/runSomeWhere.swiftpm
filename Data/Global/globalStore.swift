@@ -88,7 +88,7 @@ class GlobalStore: ObservableObject {
             print("safeArea btm: ", safeAreaSize.1)
         }
     }
-    
+
     init() {
         print("globalStore is ready")
     }

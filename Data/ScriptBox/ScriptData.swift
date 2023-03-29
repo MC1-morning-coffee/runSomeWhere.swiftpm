@@ -9,6 +9,8 @@ import Foundation
 
 typealias Script = ([EnumSpeaker], String)
 
+let SCRIPT_BOX_HEIGHT = CGFloat(194)
+
 let SEQUENCE_OPENING_SCRIPTS: [Script] = [
     ([EnumSpeaker.system],
     "모든 것이 평화롭던 어느날..."
@@ -119,15 +121,3 @@ let SEQUENCE_ENDING_SCRIPTS: [Script] = [
     "강렬한 빛이 쏟아져나오며 여섯명이 또 다시 사라졌다."
     ),
 ]
-
-
-
-
-
-
-
-
-
-
-
-
