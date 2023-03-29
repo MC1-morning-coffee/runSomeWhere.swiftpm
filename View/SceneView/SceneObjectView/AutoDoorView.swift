@@ -12,6 +12,9 @@ struct AutoDoorView: View {
     @State private var isAnimating = false
     
     var body: some View {
+        //Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        VStack{
+        
         ZStack {
             Image("Object_Door_Left")
             /*.resizable()
