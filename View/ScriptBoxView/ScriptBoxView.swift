@@ -28,17 +28,44 @@ struct ScriptBoxView: View {
     private let SCRIPT_BOX_VIEW_BACKGROUND_IMAGE = "Background_Text"
     
     private func updateCurrentSequence() {
-        if globalStore.scriptCount > globalStore.currentScripts.count - 2 {
+        
+        if globalStore.scriptCount == globalStore.currentScripts.count - 1 {
             currentSceneCount += 1
             if currentSceneCount > 4 {
                 return
             }
             globalStore.updateCurrentScene(scene: .allCases[currentSceneCount])
+            globalStore.resetScriptCount()
         }else{
             globalStore.scriptCount += 1
         }
+//        globalStore.updateCurrentFaces(faces: script.0)
+        print(script.0)
+        print(script.1)
+        updateFaces()
     }
         
+    private func updateFaces() {
+        if globalStore.currentScene == .sequence1 {
+            // 커피 등장
+//            if globalStore.scriptCount == 2 {
+//                globalStore.toggleIsFaceViewActive() // true
+//            }else if globalStore.scriptCount == 5 {
+//                globalStore.toggleIsFaceViewActive() // false
+//            // 무호 등장
+//            }else if globalStore.scriptCount == 6 {
+//                globalStore.toggleIsFaceViewActive() // true
+//            }else if globalStore.scriptCount == 7 {
+//                globalStore.toggleIsFaceViewActive()
+//            }
+//        }
+//        if globalStore.currentScene == .sequence2 {
+//            if globalStore.scriptCount == 0 {
+//                globalStore.toggleIsFaceViewActive()
+//            }
+        }
+    }
+    
     // Speaker
     private func setSpeaker()->String {
         // 둘이상이면?

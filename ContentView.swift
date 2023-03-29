@@ -36,9 +36,11 @@ struct ContentView: View {
         .onAppear{
             let safeAreaSize = getSafeAreaSize()
             globalStore.updateSafeAreaSize(currentSafeAreaSize: safeAreaSize)
+            globalStore.toggleIsFaceViewActive()
             setTimeoutClosure(timeCount: 4) {
 //                isSelectCharcterViewActive.toggle()
 //                globalStore.currentDetailImage = .Keys
+                
             }
         }
     }

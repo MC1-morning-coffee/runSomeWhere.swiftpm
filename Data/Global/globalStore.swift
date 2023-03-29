@@ -50,7 +50,8 @@ class GlobalStore: ObservableObject {
     @Published
     var currentScene = EnumScene.opeaning {
         didSet {
-            scriptCount = 0
+//            scriptCount = 0
+            print("Scene is Change")
         }
     }
     /**
@@ -82,7 +83,12 @@ class GlobalStore: ObservableObject {
      씬 별로 스크립트 진행도를 표현하기 위한 변수
      */
     @Published
-    var scriptCount = 0
+    var scriptCount = 0 {
+        didSet {
+            print("scriptCount: ", scriptCount)
+            currentFaces = currentScripts[scriptCount].0
+        }
+    }
     /**
      현재 씬
      */
@@ -152,6 +158,10 @@ extension GlobalStore {
 extension GlobalStore {
     func addScriptCount() {
         scriptCount += 1
+    }
+    
+    func resetScriptCount() {
+        scriptCount = 0
     }
 }
 

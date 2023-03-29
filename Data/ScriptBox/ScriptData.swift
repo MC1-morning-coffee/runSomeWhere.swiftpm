@@ -57,16 +57,13 @@ let SEQUENCE_OPENING_SCRIPTS: [Script] = [
 
 let SEQUENCE_ONE_SCRIPTS: [Script] = [
     ([EnumSpeaker.system],
-    "앗! 물이 쫄쫄 나오는 정수기에 앞이 막혀있다"
-    ),
-    ([EnumSpeaker.system],
-    "걷는 중..."
+    "..."
     ),
     ([EnumSpeaker.system],
     "걷는 중..."
     ),
     ([EnumSpeaker.coffee],
-    "커피: 저게 뭐지...?"
+    "저게 뭐지...?"
     ),
     ([EnumSpeaker.coffee],
     "커피: 앗! 물이 쫄쫄 나오는 정수기에 앞이 막혀있다..."
@@ -80,10 +77,10 @@ let SEQUENCE_ONE_SCRIPTS: [Script] = [
     ([EnumSpeaker.system],
     "부스럭...부스럭..."
     ),
-    ([EnumSpeaker.muho],
+    ([EnumSpeaker.coffee, EnumSpeaker.muho],
     "무호: 문제를 풀었구나 커피!! 같이 가자!!"
     ),
-    ([EnumSpeaker.coffee],
+    ([EnumSpeaker.coffee, EnumSpeaker.muho],
     "커피: 그래, 같이 가자 무호!"
     ),
 ]

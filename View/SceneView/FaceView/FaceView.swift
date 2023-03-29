@@ -15,7 +15,7 @@ struct FaceView: View {
     private let structInfo = FACE_VIEW_INFO()
 
     var body: some View {
-        Image("\(structInfo.srcRoot)_\(target)")
+        Image("\(structInfo.srcRoot)_\(target)".capitalized)
             .frame(width: structInfo.size.width, height: structInfo.size.height)
     }
 }
