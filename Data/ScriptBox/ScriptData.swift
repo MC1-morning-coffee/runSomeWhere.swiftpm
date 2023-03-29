@@ -47,3 +47,5 @@ let SEQUENCE_ENDING_SCRIPTS: [Script] = [
     "무야호~~ 도착했다!"
     ),
 ]
+
+
