@@ -44,7 +44,6 @@ struct SceneView: View {
                 globalStore.toggleIsFaceViewActive()
             }
         }
-        
     }
     
     private func updateLeftFaceViewPositionX(value: CGFloat) {
@@ -74,24 +73,23 @@ struct SceneView: View {
             ZStack(alignment: .topLeading) {
                 // SequenceViewContainer
                 HStack {
-                    Image("Background_Black")
-                        //.position(x: 195, y: 422)
-                        .offset(x: 195, y: {
-                            if move%2 == 0 { // move변수가 짝수이면
-                                return -50
-                            } else {
-                                return -400
-                            }
-                        }()) //move가 true이면 위쪽으로 이동하기
-                        .animation(.easeOut(duration: 2), value: move) //애니메이션 효과
                     AnyView(setSequenceView(currentScene: globalStore.currentScene))
-                    
-                    Button {
-                        move += 1
-                    } label: {
-                        Text("move the character!")
-                            .foregroundColor(.white)
-                    }
+//                    Image("Background_Black")
+//                        //.position(x: 195, y: 422)
+//                        .offset(x: 195, y: {
+//                            if move%2 == 0 { // move변수가 짝수이면
+//                                return -50
+//                            } else {
+//                                return -400
+//                            }
+//                        }()) //move가 true이면 위쪽으로 이동하기
+//                        .animation(.easeOut(duration: 2), value: move) //애니메이션 효과
+//                    Button {
+//                        move += 1
+//                    } label: {
+//                        Text("move the character!")
+//                            .foregroundColor(.white)
+//                    }
                 }
                 .frame(width: deviceWidth, height: deviceHeight)
                 .background(Color.green)
@@ -127,7 +125,7 @@ struct SceneView: View {
             .background(Color.brown)
             .onAppear{
 //                동작 테스트용 코드
-                globalStore.toggleIsPopupActive()
+//                globalStore.toggleIsPopupActive()
                 updateRightFaceViewPositionX(value: deviceWidth)
                 updateLeftFaceViewPositionX(value: -FACE_VIEW_INFO_SIZE.width)
             }

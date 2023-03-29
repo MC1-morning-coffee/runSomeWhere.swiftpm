@@ -40,9 +40,6 @@ struct ScriptBoxView: View {
         }else{
             globalStore.scriptCount += 1
         }
-//        globalStore.updateCurrentFaces(faces: script.0)
-        print(script.0)
-        print(script.1)
         updateFaces()
     }
         
@@ -79,35 +76,34 @@ struct ScriptBoxView: View {
         return _speaker
     }
     
+    
     var body: some View {
         ZStack(alignment: .topLeading) {
+            let offset = CGFloat(16)
+            
+            // Background Image
             Image(SCRIPT_BOX_VIEW_BACKGROUND_IMAGE)
                 .zIndex(-1)
-                .offset(y: 16)
+                .offset(y: offset)
+            // Cursor Pointer
+            CursorView()
+                .frame(width: CURSOR_SIZE, height: CURSOR_SIZE)
+                .offset(x: width - CURSOR_SIZE - offset , y: SCRIPT_BOX_HEIGHT - CURSOR_SIZE)
             VStack(alignment: .leading) {
-                HStack(spacing: 0){
-                    VStack(alignment: .leading, spacing: 0){
-                        // speaker
-//                        if script.0[0] != .unknown {
-//                            CustomText(value: setSpeaker(),
-//                                       fontSize: 24)
-//                                .padding(.bottom, 4)
-//                        }
-                        CustomText(value: "\(script.1)")
-                        Image("Image_Button").opacity(isFlickering ? 0.01 : 1.0).animation(Animation.easeOut(duration: 0.3).repeatForever(autoreverses: true)).onAppear() {
-                            isFlickering = true
+                    HStack(spacing: 0){
+                        VStack(alignment: .leading, spacing: 0){
+                            CustomText(value: "\(script.1)")
+                        }
+                        .padding(24)
+                        Spacer()
                     }
-                    .padding(24)
-                    Spacer()
-                }
-                .offset(y: 20)
-                Spacer()
+                    .offset(y: 20)
             }
             .zIndex(10)
-            Spacer()
         }
         .padding(16)
         .frame(width: width, height: SCRIPT_BOX_HEIGHT)
+        .background(Color(CustomColor.scriptBox))
         .onTapGesture {
             updateCurrentSequence()
         }

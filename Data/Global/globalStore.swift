@@ -63,7 +63,7 @@ class GlobalStore: ObservableObject {
      현재 스크립트를 말하는 대상들을 알기 위한 enum 배열
      */
     @Published
-    var currentFaces: [EnumSpeaker] = [EnumSpeaker.coffee]
+    var currentFaces: [EnumSpeaker] = [EnumSpeaker.system]
     /**
      현재 디테일 이미지의 값을 변경하기 위한 변수
      */

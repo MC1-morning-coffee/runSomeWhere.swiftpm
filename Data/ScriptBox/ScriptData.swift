@@ -11,6 +11,8 @@ typealias Script = ([EnumSpeaker], String)
 
 let SCRIPT_BOX_HEIGHT = CGFloat(194)
 
+let CURSOR_SIZE = CGFloat(80)
+
 let SEQUENCE_OPENING_SCRIPTS: [Script] = [
     ([EnumSpeaker.system],
     "모든 것이 평화롭던 어느날..."
