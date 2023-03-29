@@ -36,7 +36,7 @@ struct ContentView: View {
                 } else {
                     // Fallback on earlier versions
                 }
-                ScriptBoxView(width: geo.size.width)
+                ScriptBoxView(scripts: currentScripts, width: geo.size.width)
                 
             }
             .border(.red, width: 1)
