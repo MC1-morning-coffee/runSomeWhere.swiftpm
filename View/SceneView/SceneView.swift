@@ -35,17 +35,6 @@ struct SceneView: View {
         rightFaceViewPositionX = value
     }
     
-    
-    private func showCharcterFaceView() {
-        if globalStore.currentScene == .sequence1 {
-            if globalStore.scriptCount == 4 {
-                globalStore.toggleIsFaceViewActive()
-            }else if globalStore.scriptCount == 6 {
-                globalStore.toggleIsFaceViewActive()
-            }
-        }
-    }
-    
     private func updateLeftFaceViewPositionX(value: CGFloat) {
         leftFaceViewPositionX = value
     }
@@ -71,28 +60,18 @@ struct SceneView: View {
             let deviceWidth = geo.size.width
             let deviceHeight = geo.size.height
             ZStack(alignment: .topLeading) {
+                
                 // SequenceViewContainer
                 HStack {
                     AnyView(setSequenceView(currentScene: globalStore.currentScene))
-//                    Image("Background_Black")
-//                        //.position(x: 195, y: 422)
-//                        .offset(x: 195, y: {
-//                            if move%2 == 0 { // move변수가 짝수이면
-//                                return -50
-//                            } else {
-//                                return -400
-//                            }
-//                        }()) //move가 true이면 위쪽으로 이동하기
-//                        .animation(.easeOut(duration: 2), value: move) //애니메이션 효과
-//                    Button {
-//                        move += 1
-//                    } label: {
-//                        Text("move the character!")
-//                            .foregroundColor(.white)
-//                    }
                 }
                 .frame(width: deviceWidth, height: deviceHeight)
                 .background(Color.green)
+                if globalStore.isPopupActive {
+                    DetailPopupView()
+                        .position(x: deviceWidth / 2, y: deviceHeight / 2)
+                        .transition(.asymmetric(insertion: .opacity.animation(.linear(duration: 0.4)), removal: .opacity.animation(.linear(duration: 0.4))))
+                }
                 // FaceViewArea
                 if globalStore.isFaceViewActive {
                     let facePositionY = deviceHeight
@@ -113,12 +92,6 @@ struct SceneView: View {
                                 updateLeftFaceViewPositionX(value: 0) // 동작 테스트용 코드
                             }
                     }
-                }
-                if globalStore.isPopupActive {
-                    DetailPopupView()
-                        .border(.red)
-                        .position(x: deviceWidth / 2, y: deviceHeight / 2)
-                        .transition(.asymmetric(insertion: .opacity.animation(.linear(duration: 2)), removal: .opacity.animation(.linear(duration: 2))))
                 }
             }
             .frame(width: deviceWidth, height: deviceHeight)

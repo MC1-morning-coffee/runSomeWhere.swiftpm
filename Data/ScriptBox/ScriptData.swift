@@ -35,7 +35,9 @@ let SEQUENCE_OPENING_SCRIPTS: [Script] = [
     ([EnumSpeaker.unknown],
     "어라... 여기가 어디지...?"
     ),
-    
+    ([EnumSpeaker.system],
+    " "
+    ),
     ([EnumSpeaker.unknown],
     "CB...L?? 뭘 어떻게 하라는거야..!!"
     )
@@ -67,11 +69,17 @@ let SEQUENCE_ONE_SCRIPTS: [Script] = [
     ([EnumSpeaker.system],
     "저게 뭐지...?"
     ),
+    ([EnumSpeaker.system],
+    " "
+    ),
     ([EnumSpeaker.coffee],
     "커피: 앗! 물이 쫄쫄 나오는 정수기에 앞이 막혀있다..."
     ),
     ([EnumSpeaker.coffee],
     "커피: 이런... 얼른 지나가야 할텐데..."
+    ),
+    ([EnumSpeaker.system],
+    " "
     ),
     ([EnumSpeaker.coffee],
     "커피: 쫄쫄 나오는 정수기가 사라졌다...! 이건 껌easy!!"
@@ -95,6 +103,9 @@ let SEQUENCE_TWO_SCRIPTS: [Script] = [
 ]
 
 let SEQUENCE_THREE_SCRIPTS: [Script] = [
+    ([EnumSpeaker.system],
+    " "
+    ),
     ([EnumSpeaker.walker],
     "워커: 다들 문제 풀고 온 거야?"
     ),
@@ -105,7 +116,7 @@ let SEQUENCE_THREE_SCRIPTS: [Script] = [
     "헨리: (너희 납치된거야…)"
     ),
     ([EnumSpeaker.muho],
-    "무호: 어, 나 오는 길에 배 도면을 발견했는데…이걸로 뭘 할 수 있을까?"
+    "무호: 어, 나 오는 길에\n배 도면을 발견했는데…이걸로 뭘 할 수 있을까?"
     ),
     ([EnumSpeaker.olive],
     "올리브: 나는 천, 헨리는 나무를 발견했어!"
@@ -135,7 +146,7 @@ let SEQUENCE_THREE_SCRIPTS: [Script] = [
     ),
     ([EnumSpeaker.luna,
      EnumSpeaker.walker],
-    "워커: Import UIkit“var wind = “North”"
+    "워커: Import UIkit\nvar wind = “North”"
     ),
     ([EnumSpeaker.luna,
      EnumSpeaker.walker],
@@ -153,8 +164,14 @@ let SEQUENCE_THREE_SCRIPTS: [Script] = [
     ([EnumSpeaker.coffee],
     "커피: 노는 이렇게 젓는겁니다."
     ),
+    ([EnumSpeaker.system],
+    " "
+    ),
     ([EnumSpeaker.unknown],
     "우와아아아아!!!!!!"
+    ),
+    ([EnumSpeaker.system],
+    " "
     ),
     ([EnumSpeaker.coffee],
     "커피: 꺅!! 저건 누구지?"
@@ -171,6 +188,9 @@ let SEQUENCE_THREE_SCRIPTS: [Script] = [
 ]
 
 let SEQUENCE_ENDING_SCRIPTS: [Script] = [
+    ([EnumSpeaker.system],
+    " "
+    ),
     ([EnumSpeaker.muho],
     "무야호~~ 도착했다!"
     ),
@@ -181,11 +201,20 @@ let SEQUENCE_ENDING_SCRIPTS: [Script] = [
     ([EnumSpeaker.system],
     "6개의 열쇠를 꽂아서 보물상자를 열었다."
     ),
+    ([EnumSpeaker.system],
+    " "
+    ),
+    ([EnumSpeaker.system],
+    " "
+    ),
     ([EnumSpeaker.unknown],
     "어어어어!!!"
     ),
     ([EnumSpeaker.system],
     "강렬한 빛이 쏟아져나오며 여섯명이 또 다시 사라졌다."
+    ),
+    ([EnumSpeaker.system],
+    "The end..."
     ),
 ]
 

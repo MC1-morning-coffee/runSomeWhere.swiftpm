@@ -1,6 +1,7 @@
 {
   "images" : [
     {
+      "filename" : "Object_Arrow_1.png",
       "idiom" : "universal",
       "scale" : "1x"
     },
@@ -9,7 +10,6 @@
       "scale" : "2x"
     },
     {
-      "filename" : "Frame_Mission_290_290.jpg",
       "idiom" : "universal",
       "scale" : "3x"
     }

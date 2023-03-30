@@ -39,8 +39,9 @@ enum EnumDetailImage: CaseIterable {
     case Door
 }
 
+// 이미지를 교체하기 위한 EnumDirection
 enum EnumDirection: CaseIterable {
-    case left, right, back, front
+    case Front, Back_1, Back_2, Left, Right
 }
 
 class GlobalStore: ObservableObject {
@@ -80,6 +81,11 @@ class GlobalStore: ObservableObject {
     @Published
     var isPopupActive = false
     /**
+     SelectCharcterView를 토글하기 위한 값
+     */
+    @Published
+    var isSelectCharcterViewActive = false
+    /**
      씬 별로 스크립트 진행도를 표현하기 위한 변수
      */
     @Published
@@ -89,6 +95,11 @@ class GlobalStore: ObservableObject {
             currentFaces = currentScripts[scriptCount].0
         }
     }
+    /**
+     이벤트 중일 때 클릭해서 씬 넘어감 방지
+     */
+    @Published
+    var isTapAble = true
     /**
      현재 씬
      */
@@ -105,7 +116,7 @@ class GlobalStore: ObservableObject {
             print("safeArea btm: ", safeAreaSize.1)
         }
     }
-
+    
     init() {
         print("globalStore is ready")
     }
@@ -178,8 +189,23 @@ extension GlobalStore {
     }
 }
 
+// currentDetailImage
 extension GlobalStore {
     func updateCurrentDetailImage(detailImage: EnumDetailImage) {
         currentDetailImage = detailImage
+    }
+}
+
+// isSelectCharcterViewActive
+extension GlobalStore {
+    func toggleIsSelectCharcterViewActive() {
+        isSelectCharcterViewActive.toggle()
+    }
+}
+
+// isTapAble
+extension GlobalStore {
+    func toggleIsTapAble() {
+        isTapAble.toggle()
     }
 }
