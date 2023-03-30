@@ -75,7 +75,10 @@ struct SceneBackgroundView: View {
         }
     }
     
-
+    @State
+    private var isBlinkActive = false
+    
+    
     @State
     private var isLastScript = false
     
@@ -85,6 +88,12 @@ struct SceneBackgroundView: View {
             currentBg = .opening
             if scriptCount == 3 {
                 isBlurActive = false
+                setTimeoutClosure(timeCount: 100) {
+                    isBlinkActive = true
+                }
+            }
+            if scriptCount == 4 {
+                isBlinkActive = false
             }
             if scriptCount == 12 {
                 globalStore.turnOffIsTapAble()
@@ -196,6 +205,13 @@ struct SceneBackgroundView: View {
     var body: some View {
         ZStack(alignment: .bottom){
             
+            if isBlinkActive {
+                SequenceBlinkView()
+                    .frame(width: CGFloat(390), height: 650)
+                    .zIndex(100)
+                
+            }
+            
             /**
              실제 배경 이미지
              */
@@ -217,6 +233,7 @@ struct SceneBackgroundView: View {
                 .frame(width: CGFloat(390), height: 650)
                 .opacity(isBlurActive ?  1 : 0)
                 .animation(.easeInOut(duration: 1), value: isBlurActive)
+            
         }
         .edgesIgnoringSafeArea(.all)
         .onReceive(globalStore.$scriptCount, perform: { currentCount in
