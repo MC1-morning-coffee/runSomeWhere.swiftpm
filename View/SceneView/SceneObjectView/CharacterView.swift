@@ -34,6 +34,10 @@ struct CharacterView: View {
             imageName = "\(objectName)Back_1"
         case .Back_2:
             imageName = "\(objectName)Back_2"
+        case .Side_1:
+            imageName = "\(objectName)Side_1"
+        case .Side_2:
+            imageName = "\(objectName)Side_2"
         }
     }
     
@@ -58,6 +62,17 @@ struct CharacterView: View {
                             } else {
                                 imageNumber = 1
                                 updateImage(direction: .Back_1, Name: objectName)
+                            }
+                        }
+                    }
+                    else if(makeDirection == EnumDirection.Side_1){
+                        setTimeIntervalClosure(Count: 0) {
+                            if imageNumber == 1 {
+                                imageNumber = 2
+                                updateImage(direction: .Side_2, Name: objectName)
+                            } else {
+                                imageNumber = 1
+                                updateImage(direction: .Side_1, Name: objectName)
                             }
                         }
                     }

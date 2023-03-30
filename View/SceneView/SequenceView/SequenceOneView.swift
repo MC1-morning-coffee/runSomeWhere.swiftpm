@@ -28,16 +28,50 @@ struct SequenceOneView: View {
     @EnvironmentObject var globalStore: GlobalStore
     @State var isPaddleBtnActive = false
     @State private var isCharacterMove = true
+    @State private var isJolJol = false
+    @State private var isJolJolMove = false
+    @State private var isMuho = false
     
     private func handleSequenceView(scriptCount: Int) {
         switch scriptCount {
-        case 1:
+        case 1, 4, 5, 6, 10, 11:
             isCharacterMove = false
-            print(isCharacterMove)
             print("scriptCount", scriptCount)
+            
             DispatchQueue.main.asyncAfter(deadline: .now() + 0.001) {
                 isCharacterMove = true
             }
+        case 2: // JolJol 나옴
+            isCharacterMove = false
+            print("scriptCount", scriptCount)
+            
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.001) {
+                isCharacterMove = true
+            }
+            isJolJolMove = true
+        case 3: // JolJol 움직임
+            isCharacterMove = false
+            isJolJolMove = false
+            print("scriptCount", scriptCount)
+            
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.001) {
+                isCharacterMove = true
+            }
+            isJolJol = true
+        case 7: // JolJol 없어짐
+            isCharacterMove = false
+            isJolJol = false
+            isJolJolMove = false
+            print("scriptCount", scriptCount)
+            
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.001) {
+                isCharacterMove = true
+            }
+        case 8:
+            isMuho = true
+        case 9:
+            isMuho = false
+            
         default:
             print("scriptCount", scriptCount)
         }
@@ -49,9 +83,18 @@ struct SequenceOneView: View {
             
             if isCharacterMove {
                 CharacterView(objectName: "BigCoffee_", makeDirection: .Back_1, start: (195, 540), end: (0, 0))
-            } else {
-                EmptyView()
             }
+            
+            if isJolJol {
+                JolJolView(start: (195, 150), end: (0, 0), imageOffset: true)
+            }
+            if isJolJolMove {
+                JolJolView(start: (195, 150), end: (0, -150), imageOffset: true)
+            }
+            if isMuho {
+                CharacterView(objectName: "BigMuho_", makeDirection: .Side_1, start: (0, 440), end: (100, 0))
+            }
+            
         }
         .onReceive(globalStore.$scriptCount, perform: { currentCount in
             handleSequenceView(scriptCount: currentCount)
