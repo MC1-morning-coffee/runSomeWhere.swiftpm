@@ -13,7 +13,7 @@ struct QuizButtonView: View {
             Button {
                 
             } label: {
-                Text("A")
+                CustomText(value: "A", fontSize: 18, color: Color.black)
                     .frame(width: 180, height: 70)
                     .foregroundColor(.white)
                     .background(.gray)
@@ -22,7 +22,7 @@ struct QuizButtonView: View {
             Button {
                 
             } label: {
-                Text("B")
+                CustomText(value: "B", fontSize: 18, color: Color.black)
                     .frame(width: 180, height: 70)
                     .foregroundColor(.white)
                     .background(.gray)
@@ -31,7 +31,7 @@ struct QuizButtonView: View {
             Button {
                 
             } label: {
-                Text("C")
+                CustomText(value: "C", fontSize: 18, color: Color.black)
                     .frame(width: 180, height: 70)
                     .foregroundColor(.white)
                     .background(.gray)
@@ -40,7 +40,7 @@ struct QuizButtonView: View {
             Button {
                 
             } label: {
-                Text("D")
+                CustomText(value: "D", fontSize: 18, color: Color.black)
                     .frame(width: 180, height: 70)
                     .foregroundColor(.white)
                     .background(.gray)
