@@ -9,6 +9,7 @@ import SwiftUI
 
 struct ButtonSelectCharcterView: View {
     
+    @State
     var charcter: enumCharcter = .coffee
     var index: Int
     var completion: () -> Void = {print("Hello")}
@@ -23,7 +24,7 @@ struct ButtonSelectCharcterView: View {
         Button {
             completion()
         } label: {
-            CustomText(value: "\(index + 1). \(charcter.personalColor)")
+            CustomText(value: "\(index + 1). \(charcter.personalColor)", color: charcter == .coffee ? .red : CustomColor.scriptColor)
                 .frame(minWidth: 0, maxWidth: .infinity, maxHeight: .infinity)
         }
         .frame(minWidth: 0, maxWidth: .infinity ,maxHeight: .infinity)
