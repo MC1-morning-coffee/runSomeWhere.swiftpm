@@ -11,6 +11,8 @@ func handleSequenceEnding(globalStore: GlobalStore){
     // write here your logic!
     let scriptCount = globalStore.scriptCount
     switch scriptCount {
+        case 0:
+            globalStore.resetUI()
         case 1:
             globalStore.toggleIsFaceViewActive() // false
         case 2:

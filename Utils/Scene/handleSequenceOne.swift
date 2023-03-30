@@ -11,6 +11,8 @@ func handleSequenceOne(globalStore: GlobalStore){
     // write here your logic!
     let scriptCount = globalStore.scriptCount
     switch scriptCount {
+        case 0:
+            globalStore.resetUI()
         case 3:
             globalStore.updateCurrentDetailImage(detailImage: .Water)
             globalStore.turnOnIsPopupActive()

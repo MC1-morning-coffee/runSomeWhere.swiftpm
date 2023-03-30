@@ -120,6 +120,13 @@ class GlobalStore: ObservableObject {
     @Published
     var isQuizSequence = false
     
+    
+    func resetUI() {
+        turnOffIsPopupActive()
+        turnOffIsFaceViewActive()
+        turnOnIsTapAble()
+    }
+    
     init() {
         print("globalStore is ready")
     }
