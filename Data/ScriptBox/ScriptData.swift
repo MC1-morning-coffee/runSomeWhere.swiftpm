@@ -35,7 +35,6 @@ let SEQUENCE_OPENING_SCRIPTS: [Script] = [
     ([EnumSpeaker.unknown],
     "어라... 여기가 어디지...?"
     ),
-    
     ([EnumSpeaker.unknown],
     "CB...L?? 뭘 어떻게 하라는거야..!!"
     )
@@ -104,7 +103,7 @@ let SEQUENCE_THREE_SCRIPTS: [Script] = [
     "헨리: (너희 납치된거야…)"
     ),
     ([EnumSpeaker.muho],
-    "무호: 어, 나 오는 길에 배 도면을 발견했는데…이걸로 뭘 할 수 있을까?"
+    "무호: 어, 나 오는 길에\n배 도면을 발견했는데…이걸로 뭘 할 수 있을까?"
     ),
     ([EnumSpeaker.olive],
     "올리브: 나는 천, 헨리는 나무를 발견했어!"
@@ -134,7 +133,7 @@ let SEQUENCE_THREE_SCRIPTS: [Script] = [
     ),
     ([EnumSpeaker.luna,
      EnumSpeaker.walker],
-    "워커: Import UIkit“var wind = “North”"
+    "워커: Import UIkit\nvar wind = “North”"
     ),
     ([EnumSpeaker.luna,
      EnumSpeaker.walker],
@@ -164,7 +163,7 @@ let SEQUENCE_THREE_SCRIPTS: [Script] = [
     ([EnumSpeaker.gomisac],
     "곰이작: 이건 우리가 주는 선물이니 섬을 탈출하면 열어보세요..축하합니다."
     ),
-    ([EnumSpeaker.unknown],
+    ([EnumSpeaker.walker, EnumSpeaker.olive],
     "와~드디어 탈출했다~!!!!"
     ),
 ]

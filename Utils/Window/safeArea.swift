@@ -10,6 +10,9 @@ import SwiftUI
 
 typealias SafeAreaSize = (CGFloat, CGFloat)
 
+/**
+ safeArea의 사이즈를 구하는 함수
+ */
 func getSafeAreaSize() -> SafeAreaSize {
     var safeAreaSize: SafeAreaSize = (0, 0)
     
