@@ -16,7 +16,7 @@ struct WindReverseView: View {
     var body: some View {
         Image(windImages[currentImageIndex])
             .ignoresSafeArea(.all)
-            .opacity(40)
+            .opacity(30)
             .onAppear {
                 let timer = Timer.scheduledTimer(withTimeInterval: 0.6, repeats: true){ _ in
                     currentImageIndex = (currentImageIndex + 1) % windImages.count

@@ -12,13 +12,15 @@ struct WindView: View {
     let windImages = ["Object_Wind_1", "Object_Wind_2", "Object_Wind_3", "Object_Wind_4"]
     
     @State private var currentImageIndex = 0
+    @State private var opacityChange = false
     
     var body: some View {
     
             Image(windImages[currentImageIndex])
                 .ignoresSafeArea(.all)
-                .opacity(70)
+                .opacity(60)
                 .onAppear {
+                    opacityChange = true
                     let timer = Timer.scheduledTimer(withTimeInterval: 0.3, repeats: true){ _ in
                         currentImageIndex = (currentImageIndex + 1) % windImages.count
                     }
