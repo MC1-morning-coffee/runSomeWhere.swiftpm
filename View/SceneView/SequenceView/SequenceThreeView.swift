@@ -111,6 +111,7 @@ struct SequenceThreeView: View {
             print("scriptCount", scriptCount)
         }
     }
+    
     var body: some View {
         ZStack(alignment: .topLeading){
             Text("globalStore.scriptCount: \(globalStore.scriptCount)")
