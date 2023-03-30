@@ -67,6 +67,11 @@ struct SceneView: View {
                 }
                 .frame(width: deviceWidth, height: deviceHeight)
                 .background(Color.green)
+                if globalStore.isPopupActive {
+                    DetailPopupView()
+                        .position(x: deviceWidth / 2, y: deviceHeight / 2)
+                        .transition(.asymmetric(insertion: .opacity.animation(.linear(duration: 0.4)), removal: .opacity.animation(.linear(duration: 0.4))))
+                }
                 // FaceViewArea
                 if globalStore.isFaceViewActive {
                     let facePositionY = deviceHeight
@@ -87,11 +92,6 @@ struct SceneView: View {
                                 updateLeftFaceViewPositionX(value: 0) // 동작 테스트용 코드
                             }
                     }
-                }
-                if globalStore.isPopupActive {
-                    DetailPopupView()
-                        .position(x: deviceWidth / 2, y: deviceHeight / 2)
-                        .transition(.asymmetric(insertion: .opacity.animation(.linear(duration: 0.4)), removal: .opacity.animation(.linear(duration: 0.4))))
                 }
             }
             .frame(width: deviceWidth, height: deviceHeight)
