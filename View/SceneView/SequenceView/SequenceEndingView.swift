@@ -77,6 +77,10 @@ struct SequenceEndingView: View {
     var currentSceneCount: Int = 0
     
     private func updateCurrentSequence() {
+        if globalStore.scriptCount > 7 {
+            return
+        }
+        
         if !globalStore.isTapAble{
             return
         }
