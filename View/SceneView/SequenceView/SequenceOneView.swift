@@ -36,8 +36,8 @@ struct SequenceOneView: View {
     
     
     
-    let backgroundMusicFiles = ["BGM_Adventure_Rest", "Walk"]
-    let soundEffectFiles = ["SFX_SeqOne_sound_neutral6", "SFX_SeqOne_lowhealth_alarmloop7", "SFX_SeqOne_sound_neutral11", "SFX_SeqOne_alarm_loop6", "SFX_SeqOne_coin_double7"] // add the names of your sound effect files here
+    let backgroundMusicFiles = ["BGM_Adventure_Rest"]
+    let soundEffectFiles = ["SFX_SeqOne_sound_neutral6", "SFX_SeqOne_lowhealth_alarmloop7", "SFX_SeqOne_sound_neutral11", "SFX_SeqOne_alarm_loop6", "SFX_SeqOne_coin_double7", "Walk"] // add the names of your sound effect files here
     let musicFileExtension = "wav" // add the extension of your music files here
     let musicFileExtension1 = "m4a"
     //let soundEffectCountIntervals = [2, 4] // play sound effects when the count is equal to these values
@@ -110,11 +110,17 @@ struct SequenceOneView: View {
             handleSequenceView(scriptCount: currentCount)
             switch currentCount {
             case 0:
-                let musicFileName = backgroundMusicFiles[1] // count starts at 1, but array index starts at 0
+                let musicFileName = backgroundMusicFiles[0] // count starts at 1, but array index starts at 0
                 let musicFileUrl = Bundle.main.url(forResource: musicFileName, withExtension: musicFileExtension)!
                 backgroundMusicPlayer = AVPlayer(url: musicFileUrl)
                 backgroundMusicPlayer?.volume = volume
                 backgroundMusicPlayer?.play()
+                
+//                let effectFileName = soundEffectFiles[0] // count starts at 1, but array index starts at 0
+//                let effectFileUrl = Bundle.main.url(forResource: effectFileName, withExtension: musicFileExtension1)!
+//                soundEffectPlayer = AVPlayer(url: effectFileUrl)
+//                soundEffectPlayer?.volume = volume1
+//                soundEffectPlayer?.play()
             case 1:
                 let musicFileName = soundEffectFiles[0] // count starts at 1, but array index starts at 0
                 let musicFileUrl = Bundle.main.url(forResource: musicFileName, withExtension: musicFileExtension)!

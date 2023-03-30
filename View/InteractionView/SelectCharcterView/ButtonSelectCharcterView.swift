@@ -24,7 +24,7 @@ struct ButtonSelectCharcterView: View {
         Button {
             completion()
         } label: {
-            CustomText(value: "\(index + 1). \(charcter.personalColor)", color: charcter == .coffee ? .red : CustomColor.scriptColor)
+            CustomText(value: "\(index + 1). \(charcter.personalColor)", color: CustomColor.scriptColor)
                 .frame(minWidth: 0, maxWidth: .infinity, maxHeight: .infinity)
         }
         .frame(minWidth: 0, maxWidth: .infinity ,maxHeight: .infinity)
