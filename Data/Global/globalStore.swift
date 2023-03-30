@@ -9,6 +9,7 @@ import Combine
 import SwiftUI
 
 enum EnumScene: Int, CaseIterable {
+//    case intro
     case opeaning
     case sequence1
     case sequence2
@@ -37,11 +38,12 @@ enum EnumDetailImage: CaseIterable {
     case Redkey // 열쇠 중 1개(커피)를 선택한다.
     case Water
     case Door
+    case Treasure
 }
 
 // 이미지를 교체하기 위한 EnumDirection
 enum EnumDirection: CaseIterable {
-    case Front, Back_1, Back_2, Left, Right
+    case Front, Back_1, Back_2, Left, Right,Side_1, Side_2
 }
 
 class GlobalStore: ObservableObject {
@@ -120,6 +122,9 @@ class GlobalStore: ObservableObject {
     @Published
     var isQuizSequence = false
     
+    
+    @Published
+    var paddleCount = 0
     
     func resetUI() {
         turnOffIsPopupActive()

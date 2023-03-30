@@ -57,6 +57,8 @@ struct SequenceThreeView: View {
     @State
     var isGomissacColor = false
     
+    @State
+    var isLastScene = false
     
     @State private var isWoodMoveActive = false
     @State private var isFabricMoveActive = false
@@ -97,20 +99,35 @@ struct SequenceThreeView: View {
             isMagicCircleOn = false
         case 19:
             isPaddleOn = true
-        case 22:
+        case 21:
             isPeopleOnBoat = false
-            isPeopleMoving3 = true
             isPaddleOn = false
             isBoatMove = true
+            isPeopleMoving3 = true
+            
+        case 22:
+            //            isPeopleOnBoat = false
+            //            isPaddleOn = false
+            //            isBoatMove = true
             isGomissacMove = true
         case 23:
             isGomissacColor = true
             isBoatMove = false
+        case 25:
+            isLastScene = true
+            isPeopleMoving3 = false
+            setTimeoutClosure(timeCount: 2000) {
+                isGomissacColor = false
+                isLastScene = false
+            }
+        
+ 
             
         default:
             print("scriptCount", scriptCount)
         }
     }
+    
     var body: some View {
         ZStack(alignment: .topLeading){
             Text("globalStore.scriptCount: \(globalStore.scriptCount)")
@@ -122,24 +139,44 @@ struct SequenceThreeView: View {
             }
             
             if isPeopleMoving3 {
-                CharacterView2(objectName: walker.name, makeDirection: EnumDirection.Back_1, start: (150, 320), end: (-100, 30))
-                CharacterView2(objectName: luna.name, makeDirection: EnumDirection.Back_1, start: (160, 330), end: (-70, 80))
-                CharacterView2(objectName: coffee.name, makeDirection: EnumDirection.Back_1, start: (180, 340), end: (-30, 100))
-                CharacterView2(objectName: muho.name, makeDirection: EnumDirection.Back_1, start: (190, 330), end: (20, 115))
-                CharacterView2(objectName: olive.name, makeDirection: EnumDirection.Back_1, start: (210, 340), end: (70, 60))
-                CharacterView2(objectName: henry.name, makeDirection: EnumDirection.Back_1, start: (230, 350), end: (110, 10))
-                
+                CharacterView2(objectName: walker.name, makeDirection:
+                                isLastScene ? EnumDirection.Front :  EnumDirection.Back_1, start: (150, 320), end: (-100, 30))
+                CharacterView2(objectName: luna.name, makeDirection:
+                                isLastScene ? EnumDirection.Front :  EnumDirection.Back_1, start: (160, 330), end: (-70, 80))
+                CharacterView2(objectName: coffee.name, makeDirection:
+                                isLastScene ? EnumDirection.Front :  EnumDirection.Back_1, start: (180, 340), end: (-30, 100))
+                CharacterView2(objectName: muho.name, makeDirection:
+                                isLastScene ? EnumDirection.Front :  EnumDirection.Back_1, start: (190, 330), end: (20, 115))
+                CharacterView2(objectName: olive.name, makeDirection:
+                                isLastScene ? EnumDirection.Front :  EnumDirection.Back_1, start: (210, 340), end: (70, 60))
+                CharacterView2(objectName: henry.name, makeDirection:
+                                isLastScene ? EnumDirection.Front :  EnumDirection.Back_1, start: (230, 350), end: (110, 10))
+            }
+            
+            if isLastScene {
+                CharacterView2(objectName: walker.name, makeDirection:
+                                EnumDirection.Front, start: (50, 400), end: (0,0))
+                CharacterView2(objectName: luna.name, makeDirection:
+                                EnumDirection.Front, start: (90, 460), end: (0,0))
+                CharacterView2(objectName: coffee.name, makeDirection:
+                                EnumDirection.Front, start: (150, 490), end: (0,0))
+                CharacterView2(objectName: muho.name, makeDirection:
+                                EnumDirection.Front, start: (210, 495), end: (0,0))
+                CharacterView2(objectName: olive.name, makeDirection:
+                                EnumDirection.Front, start: (280, 450), end: (0,0))
+                CharacterView2(objectName: henry.name, makeDirection:
+                                EnumDirection.Front, start: (340, 410), end: (0,0))
             }
             
             if isBoatMove {
                 Image("Object_Boat")
                     .position(x: 195, y: 310)
                     .offset(x: 0, y: (isBoatMoveActive ? 500 : 0))
-                        .onAppear {
-                            withAnimation(.easeInOut(duration: 2)){
-                                isBoatMoveActive.toggle()
-                            }
+                    .onAppear {
+                        withAnimation(.easeInOut(duration: 2)){
+                            isBoatMoveActive.toggle()
                         }
+                    }
             }
             
             if isGomissacMove {
@@ -163,11 +200,7 @@ struct SequenceThreeView: View {
                         }
                     }
             }
-        
-            
         }
-        
-        
         .onReceive(globalStore.$scriptCount, perform: { currentCount in
             handleSequenceView(scriptCount: currentCount)
         })

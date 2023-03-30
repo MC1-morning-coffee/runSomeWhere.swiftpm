@@ -35,40 +35,29 @@ struct QuizModalView: View {
                 .background(.opacity(0))
         }.sheet(isPresented: $isShowingModal) {
             //Text("modal view")
-            VStack (alignment: .leading){
-                Spacer()
-                QuestionView().padding()
-                Spacer()
-                AnswerView().padding()
-                Spacer()
-                /*
-                Button(action: self.presentation.wrappedValue.dismiss()){
-                    Text("TestButton")
-                }
-                 */
-
-                
-                
-                /*QuizButtonView {
-                    presentation.wrappedValue.dismiss()
-                    
-                }
-                 */
-                
-                if globalStore.currentScene == EnumScene.sequence1 {
-                    QuizButtonView1(isShowingModal: $isShowingModal, quizFalse: $quizFalse){
+            ZStack{
+                Image(globalStore.currentScene == EnumScene.sequence1 ? "Quiz_1" : "Quiz_2" )
+                    .offset(y: globalStore.safeAreaSize.1 / 2)
+                VStack (alignment: .leading){
+                    Spacer()
+                    QuestionView()
+                        .padding(.horizontal, 24)
+                        .offset(y: 16)
+                    Spacer(minLength: 24)
+                    AnswerView()
+                        .padding(.horizontal, 24)
+                    Spacer()
+                    if globalStore.currentScene == EnumScene.sequence1 {
+                        QuizButtonView1(isShowingModal: $isShowingModal, quizFalse: $quizFalse){
+                        }
+                    }
+                    else {
+                        QuizButtonView(isShowingModal: $isShowingModal, quizFalse: $quizFalse){
+                        }
                     }
                 }
-                
-                else {
-                    QuizButtonView(isShowingModal: $isShowingModal, quizFalse: $quizFalse){
-                                    }
-                }
-//                QuizButtonView(isShowingModal: $isShowingModal, quizFalse: $quizFalse){
-//
-//                                }
-                
             }
+            .background(CustomColor.scriptBox)
             .presentationDetents([.medium, .large], selection: $settingsDetent)
         }
         .onAppear{

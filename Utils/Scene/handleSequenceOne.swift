@@ -13,18 +13,21 @@ func handleSequenceOne(globalStore: GlobalStore){
     switch scriptCount {
         case 0:
             globalStore.resetUI()
-        case 3:
+        case 2:
             globalStore.updateCurrentDetailImage(detailImage: .Water)
             globalStore.turnOnIsPopupActive()
-        case 4:
+        case 3:
             globalStore.turnOnIsFaceViewActive()
-        case 5:
+        case 4:
             globalStore.turnOffIsPopupActive()
-        case 6:
+        case 5:
             globalStore.turnOffIsFaceViewActive()
             globalStore.turnOnIsQuizSequence()
             globalStore.turnOffIsTapAble()
-        
+        case 7:
+            globalStore.turnOffIsFaceViewActive()
+        case 8:
+            globalStore.turnOnIsFaceViewActive()
         //case 7: handleSequenceQuizOne() //실행될 것
     default:
         print("sequence one is Ready")
