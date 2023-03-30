@@ -13,8 +13,7 @@ public func setTimeIntervalClosure(Count: Int ,completion: @escaping ()->()) {
         DispatchQueue.main.asyncAfter(deadline: .now() + DispatchTimeInterval.milliseconds(250)) {
             completion()
             setTimeIntervalClosure(Count: Count + 1, completion: completion)
-            
         }
     }
-    
+
 }

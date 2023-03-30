@@ -10,7 +10,9 @@ import SwiftUI
 
 struct SequenceOpeningView: View {
     @EnvironmentObject var globalStore: GlobalStore
-    
+    //var test1 = 0
+    var isHidden: Bool = false
+        
     var body: some View {
         Text("Scene opening View")
         // 캐릭터자체를 띄우는 뷰 -> 사람에 따라서 olive.name이런식으로 넣으면 됨 (UserData를 참고하면 됨!)
