@@ -82,11 +82,11 @@ struct CharacterView: View {
                     if (imageNumber == 1){
                         imageNumber = 2
                         updateImage(direction: .Back_2, Name: objectName)
-                        print(imageNumber)
+//                        print(imageNumber)
                     } else {
                         imageNumber = 1
                         updateImage(direction: .Back_1, Name: objectName)
-                        print(imageNumber)
+//                        print(imageNumber)
                     }
                 }
             }
