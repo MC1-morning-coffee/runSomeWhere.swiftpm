@@ -19,7 +19,7 @@ struct SequenceEndingView: View {
     @State private var treasure = false
     @State private var MC2 = false
     
-    
+    let backgroundMusicFiles = ["BGM_PopPop"]
     let soundEffectFiles = ["SFX_SeqEnd_coin_cluster8", "SFX_SeqEnd_sounds_fanfare1"] // add the names of your sound effect files here
     let musicFileExtension = "wav" // add the extension of your music files here
     //let soundEffectCountIntervals = [2, 4] // play sound effects when the count is equal to these values
@@ -137,6 +137,12 @@ struct SequenceEndingView: View {
         .onReceive(globalStore.$scriptCount, perform: { currentCount in
             handleSequenceView(scriptCount: currentCount)
             switch currentCount {
+            case 0 :
+                let musicFileName = backgroundMusicFiles[0] // count starts at 1, but array index starts at 0
+                let musicFileUrl = Bundle.main.url(forResource: musicFileName, withExtension: musicFileExtension)!
+                backgroundMusicPlayer = AVPlayer(url: musicFileUrl)
+                backgroundMusicPlayer?.volume = volume
+                backgroundMusicPlayer?.play()
             case 4:
                 let musicFileName = soundEffectFiles[0] // count starts at 1, but array index starts at 0
                 let musicFileUrl = Bundle.main.url(forResource: musicFileName, withExtension: musicFileExtension)!

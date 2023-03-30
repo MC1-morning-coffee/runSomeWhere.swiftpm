@@ -44,8 +44,8 @@ struct SequenceTwoView: View {
     
     
     
-    let backgroundMusicFiles = ["Walk"]
-     let soundEffectFiles = ["SFX_SeqTwo_sound_nagger2", "SFX_SeqTwo_sounds_button6", "SFX_SeqTwo_interaction20", "SFX_SeqTwo_menu_move4", "SFX_SeqOne_sound_neutral11"] // add the names of your sound effect files here
+     let backgroundMusicFiles = ["BGM_Adventure_Rest"]
+     let soundEffectFiles = ["Walk", "SFX_SeqTwo_sound_nagger2", "SFX_SeqTwo_sounds_button6", "SFX_SeqTwo_interaction20", "SFX_SeqTwo_menu_move4", "SFX_SeqOne_sound_neutral11"] // add the names of your sound effect files here
      let musicFileExtension = "wav" // add the extension of your music files here
      let musicFileExtension1 = "wav"
      //let soundEffectCountIntervals = [2, 4] // play sound effects when the count is equal to these values

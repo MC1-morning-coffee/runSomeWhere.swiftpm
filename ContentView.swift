@@ -2,7 +2,6 @@ import SwiftUI
 import AVFoundation
 
 struct ContentView: View {
-    
     @EnvironmentObject
     var globalStore: GlobalStore
         
@@ -44,3 +43,12 @@ struct ContentView: View {
     }
 }
 
+struct ContentView_Previews: PreviewProvider {
+    static var previews: some View {
+        let globalStore = GlobalStore()
+        ContentView().environmentObject(globalStore)
+            .previewDevice(PreviewDevice(rawValue: "iPhone 14"))
+            .previewDisplayName("iPhone 14")
+        
+    }
+}

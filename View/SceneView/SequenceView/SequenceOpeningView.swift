@@ -117,12 +117,12 @@ struct SequenceOpeningView: View {
                 soundEffectPlayer = AVPlayer(url: effectFileUrl)
                 soundEffectPlayer?.volume = volume1
                 soundEffectPlayer?.play()
-            case 4 :
-                let effectFileName = soundEffectFiles[1] // count starts at 1, but array index starts at 0
-                let effectFileUrl = Bundle.main.url(forResource: effectFileName, withExtension: musicFileExtension1)!
-                soundEffectPlayer = AVPlayer(url: effectFileUrl)
-                soundEffectPlayer?.volume = volume1
-                soundEffectPlayer?.play()
+//            case 4 :
+//                let effectFileName = soundEffectFiles[1] // count starts at 1, but array index starts at 0
+//                let effectFileUrl = Bundle.main.url(forResource: effectFileName, withExtension: musicFileExtension1)!
+//                soundEffectPlayer = AVPlayer(url: effectFileUrl)
+//                soundEffectPlayer?.volume = volume1
+//                soundEffectPlayer?.play()
             case 6 :
                 let effectFileName = soundEffectFiles[2] // count starts at 1, but array index starts at 0
                 let effectFileUrl = Bundle.main.url(forResource: effectFileName, withExtension: musicFileExtension1)!
