@@ -1,18 +1,11 @@
 //
 //  SwiftUIView.swift
-//  
+//
 //
 //  Created by Yun Dongbeom on 2023/03/27.
 //
 
 import SwiftUI
-
-struct SequenceOneView: View {
-    var body: some View {
-        Text("Scene One View")
-    }
-}
-
 
 /*시퀀스 원
  - BigCoffee_Back_1/2 걸음(12걸음 뒤 자동으로 멈춤)
@@ -29,4 +22,49 @@ struct SequenceOneView: View {
  
  - BigMuho_Side_1/2 걸음(12걸음 뒤 자동으로 멈춤)
  
-  */
+ */
+
+struct SequenceOneView: View {
+    @EnvironmentObject var globalStore: GlobalStore
+    @State var isPaddleBtnActive = false
+    @State private var isCharacterMove = true
+    
+    private func handleSequenceView(scriptCount: Int) {
+        switch scriptCount {
+        case 1...11:
+            isCharacterMove = false
+            print(isCharacterMove)
+            print("scriptCount", scriptCount)
+            
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.001) {
+                isCharacterMove = true
+            }
+
+            print(isCharacterMove)
+        default:
+            print("scriptCount", scriptCount)
+        }
+    }
+    
+    var body: some View {
+        ZStack(alignment: .topLeading){
+            Text("globalStore.scriptCount: \(globalStore.scriptCount)")
+            
+            if isCharacterMove {
+                CharacterView(objectName: "BigCoffee_", makeDirection: .Back_1, start: (195, 540), end: (0, 0))
+            } else {
+                EmptyView()
+            }
+        }
+        .onReceive(globalStore.$scriptCount, perform: { currentCount in
+            handleSequenceView(scriptCount: currentCount)
+        })
+        
+    }
+}
+
+struct SequenceOneView_Previews: PreviewProvider {
+    static var previews: some View {
+        SequenceOneView()
+    }
+}
