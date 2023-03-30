@@ -61,11 +61,13 @@ struct SceneView: View {
             let deviceHeight = geo.size.height
             ZStack(alignment: .topLeading) {
                 // SequenceViewContainer
+                SceneBackgroundView()
+                    .frame(width: deviceWidth, height: deviceHeight)
+                    .border(.orange)
                 HStack {
                     AnyView(setSequenceView(currentScene: globalStore.currentScene))
                 }
                 .frame(width: deviceWidth, height: deviceHeight)
-                .background(Color.green)
                 if globalStore.isPopupActive {
                     DetailPopupView()
                         .position(x: deviceWidth / 2, y: deviceHeight / 2)

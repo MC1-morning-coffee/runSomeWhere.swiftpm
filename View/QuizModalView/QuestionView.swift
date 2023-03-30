@@ -8,18 +8,25 @@
 import SwiftUI
 
 struct QuestionView: View {
+    @EnvironmentObject
+    var globalStore: GlobalStore
+    
+//    @Binding var isStart: Bool
+
+    let q = QUESTION_TWO["question"] as? String ?? ""
+    let q1 = QUESTION_TWO["question1"] as? String ?? ""
+
     // QuizData에 있는 question값을 가져와서 String으로 형 변환해준다
-    let q: String = QUESTION_TWO["question"] as? String ?? ""
     
     var body: some View {
-        CustomText(value: "\(q)", fontSize: 23, color: Color.black)
-            .border(.red)
+        if globalStore.currentScene == EnumScene.sequence1 {
+            CustomText(value: "\(q)", fontSize: 23, color: Color.black)
+                .border(.red)
+        }
+        else {
+            CustomText(value: "\(q1)", fontSize: 23, color: Color.black)
+                .border(.red)
+        }
         // Text(QUESTION_TWO["question"] as? String ?? "") .border(.red)
-    }
-}
-
-struct QuestionView_Previews: PreviewProvider {
-    static var previews: some View {
-        QuestionView()
     }
 }

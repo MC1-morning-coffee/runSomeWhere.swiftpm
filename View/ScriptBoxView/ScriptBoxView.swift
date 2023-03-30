@@ -7,7 +7,6 @@
 
 import SwiftUI
 
-
 /**
  필요한 기능
 1. 탭 클릭 시 스크립트가 변경된다.
@@ -23,8 +22,14 @@ struct ScriptBoxView: View {
     @State
     var currentSceneCount: Int = 0
     
+    //@Binding var isStart: Bool
+    //@State var isStart: Bool = false
+    
     var script: Script
     var width: CGFloat
+    
+    
+    //weak var titleLabel: UILabel!
     
     private let SCRIPT_BOX_VIEW_BACKGROUND_IMAGE = "Background_Text"
     
@@ -88,6 +93,7 @@ struct ScriptBoxView: View {
         .background(CustomColor.scriptBox)
         .onTapGesture {
             updateCurrentSequence()
+//            isStart = true
         }
     }
 }

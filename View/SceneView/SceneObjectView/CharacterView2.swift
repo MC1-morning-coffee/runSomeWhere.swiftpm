@@ -7,13 +7,16 @@
 
 import SwiftUI
 
-struct CharacterView: View {
+struct CharacterView2: View {
     var objectName: String // 오브젝트의 이름
     var makeDirection: EnumDirection // 오브젝트 방향
     var start: (Float, Float) // 시작 위치
     var end: (Float, Float) // 끝 위치
     
-    @State var imageNumber: Int = 1 // 뚜벅거리는 기능을 위한 변수
+    
+    // 버튼을 누르면 move+1씩 증가함 -> 홀수 짝수에 따라서 오브젝트의 위치를 바꾸도록 함 -> 나중에 scenNumber에 따라서 바뀌도록 수정해야 함
+    //@State var move: Int = 0
+    @State var imageNumber: Int = 1
     @State var imageName: String = "" // 여기에 이미지의 이름을 저장
     @State var imageOffset: Bool = false
     
@@ -46,7 +49,7 @@ struct CharacterView: View {
                 .edgesIgnoringSafeArea(.all)
                 .offset(x:  (imageOffset ? CGFloat(end.0) : 0), y: imageOffset ? CGFloat(end.1) : 0)
                 .onAppear{
-                    withAnimation(.linear(duration: 3.0)){
+                    withAnimation(.linear(duration: 1.5)){
                         self.imageOffset.toggle()
                     }
                     // .Back_1이거나 Back_2이면 뚜벅뚜벅 효과주기
@@ -68,9 +71,9 @@ struct CharacterView: View {
         }
     }
 }
-struct CharacterView_Previews: PreviewProvider {
+struct CharacterView2_Previews: PreviewProvider {
     static var previews: some View {
-        CharacterView(objectName: henry.name, makeDirection: EnumDirection.Back_1, start: (0, 0), end: (100, 100))
+        CharacterView2(objectName: henry.name, makeDirection: EnumDirection.Back_1, start: (0, 0), end: (195, 422))
     }
     
 }

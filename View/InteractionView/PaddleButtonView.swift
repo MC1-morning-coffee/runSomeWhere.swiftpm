@@ -16,7 +16,7 @@ struct PaddleButtonView: View {
     var body: some View {
         Image("Object_No")
             .fixedSize()
-            .position(x: 195, y: 550)
+            .position(x: 195, y: 480)
             .offset(y: (isOffsetActive ? 15 : 0))
             .onTapGesture {
                 isOffsetActive = true
