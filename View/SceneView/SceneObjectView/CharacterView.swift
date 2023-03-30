@@ -8,41 +8,64 @@
 import SwiftUI
 
 struct CharacterView: View {
-     //move%2 ==0 이면 움직이도록 함 -> 나중에 scenNumber에 따라서 바뀌도록 수정해야 함
+    var objectName: String // 오브젝트의 이름
+    var makeDirection: EnumDirection // 오브젝트 방향
+    var start: (Float, Float) // 시작 위치
+    var end: (Float, Float) // 끝 위치
+    
+    
+    // 버튼을 누르면 move+1씩 증가함 -> 홀수 짝수에 따라서 오브젝트의 위치를 바꾸도록 함 -> 나중에 scenNumber에 따라서 바뀌도록 수정해야 함
     @State var move: Int = 0
+    @State var imageNumber: Int = 1
+    @State var imageName: String = "" // 여기에 이미지의 이름을 저장
+    
+    
+    // globalStore에 저장되어 있는 값을 가져오기 위함
+    @EnvironmentObject var globalStore: GlobalStore
+    
+    
+    // 함수에 오브젝트의 방향과 오브젝트 이름을 받음 -> objectName, makeDirection
+    func updateImage(direction: EnumDirection, Name: String) {
+        switch direction {
+        case .Left:
+            imageName = "\(objectName)Left"
+        case .Right:
+            imageName = "\(objectName)Right"
+        case .Front:
+            imageName = "\(objectName)Front"
+        case .Back_1:
+            imageName = "\(objectName)Back_1"
+        case .Back_2:
+            imageName = "\(objectName)Back_2"
+        }
+    }
+    
     
     var body: some View {
-        // User.direction의 방향에 따라 바뀜
-        let objectImage: String = {
-            switch luna.direction {
-            case .left:
-                return "\(luna.name)left"
-            case .right:
-                return "\(luna.name)right"
-            case .front:
-                return "\(luna.name)front"
-            case .back:
-                return "\(luna.name)back"
-            }
-        }()
         
         // Luna의 Image
         VStack{
-            Image(objectImage)
-                .resizable() //이미지 크기 조절을 하기 위해 사용
-                .aspectRatio(contentMode: .fit) //너비 높이 비율
-                .frame(width: 100, height: 100) //사이즈 조정
-                .border(.red) //주변 꾸미기
-                .offset(y: {
-                    if move%2 == 0 { // move변수가 짝수이면
-                        return -50
-                    } else {
-                        return -400
+            Image(imageName)
+                .fixedSize()
+            //.aspectRatio(contentMode: .fit)
+                .border(.red)
+                .offset(x: {
+                    if move%2 == 0 { // 처음 위치
+                        return CGFloat(start.0)
+                    } else { // 이동할 위치
+                        return CGFloat(end.0)
                     }
-                }()) //move가 true이면 위쪽으로 이동하기
-                .animation(.easeOut(duration: 2), value: move) //애니메이션 효과
+                }(), y: {
+                    if move%2 == 0 { // 처음 위치
+                        return CGFloat(start.1)
+                    } else { // 이동할 위치
+                        return CGFloat(end.1)
+                    }
+                }())
+            //move가 true이면 위쪽으로 이동하기
+                .animation(.easeOut(duration: 2), value: move)
                 .onAppear{
-                    print(luna.name)
+                    print(imageName)
                 }
             
             Button {
@@ -50,6 +73,25 @@ struct CharacterView: View {
             } label: {
                 Text("move the character!")
                     .foregroundColor(.black)
+            }
+        }
+        .onAppear{
+            // .Back_1이거나 Back_2이면 뚜벅뚜벅 효과주기
+            if (makeDirection == EnumDirection.Back_1 || makeDirection == EnumDirection.Back_2){
+                setTimeIntervalClosure(Count: 0) {
+                    if (imageNumber == 1){
+                        imageNumber = 2
+                        updateImage(direction: .Back_2, Name: objectName)
+                        print(imageNumber)
+                    } else {
+                        imageNumber = 1
+                        updateImage(direction: .Back_1, Name: objectName)
+                        print(imageNumber)
+                    }
+                }
+            }
+            else { // 뚜벅 뚜벅 효과를 줄 필요 없을때는 바로 이미지를 만들어준다
+                updateImage(direction: makeDirection, Name: objectName)
             }
         }
     }
