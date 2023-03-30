@@ -27,9 +27,11 @@ struct SequenceOpeningView: View {
         switch scriptCount {
         case 0:
             blackbackground1 = true
-        case 4:
-            blackbackground1 = false
-            crowd = true
+        case 3:
+            setTimeoutClosure(timeCount: 1500) {
+                blackbackground1 = false
+                crowd = true
+            }
         case 11:
             crowd = false
             crowd2 = true

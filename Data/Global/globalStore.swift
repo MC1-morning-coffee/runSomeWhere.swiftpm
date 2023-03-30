@@ -122,6 +122,8 @@ class GlobalStore: ObservableObject {
     @Published
     var isQuizSequence = false
     
+    @Published
+    var isScriptBoxOpen = true
     
     @Published
     var paddleCount = 0

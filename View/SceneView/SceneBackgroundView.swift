@@ -91,9 +91,9 @@ struct SceneBackgroundView: View {
                 setTimeoutClosure(timeCount: 100) {
                     isBlinkActive = true
                 }
-            }
-            if scriptCount == 4 {
-                isBlinkActive = false
+                setTimeoutClosure(timeCount: 1500) {
+                    isBlinkActive = false
+                }
             }
             if scriptCount == 12 {
                 globalStore.turnOffIsTapAble()
@@ -174,23 +174,24 @@ struct SceneBackgroundView: View {
                     bgOffsetY = 0
                 }
             }
-            
         case .ending:
             currentBg = .ending
             if scriptCount == 0 {
-                
+                animationDuration = 0
                 setTimeoutClosure(timeCount: 400) {
-                    bgOffsetY = 0
+                    bgOffsetY = 104
+                    globalStore.isScriptBoxOpen = false
                 }
                 isLastSequenceImage = true
                 setTimeoutClosure(timeCount: 1000) {
                     isBlurActive = false
                     globalStore.turnOffIsTapAble()
                     animationDuration = 12
-                    bgOffsetY -= 1800
+                    bgOffsetY -= 104 + 1800 - Int(globalStore.safeAreaSize.1) - Int(globalStore.safeAreaSize.1)
                 }
                 setTimeoutClosure(timeCount: 12000) {
                     globalStore.turnOnIsTapAble()
+                    globalStore.addScriptCount()
                 }
             }
             if scriptCount == 6 {
@@ -211,7 +212,6 @@ struct SceneBackgroundView: View {
                     .zIndex(100)
                 
             }
-            
             /**
              실제 배경 이미지
              */
