@@ -8,17 +8,21 @@
 import SwiftUI
 
 struct AnswerView: View {
+    @EnvironmentObject
+    var globalStore: GlobalStore
     // QuizData에 있는 question값을 가져와서 String으로 형 변환해준다
-    var answer: String = QUESTION_TWO["answer"] as? String ?? ""
+    
+    let answer: String = QUESTION_TWO["answer"] as? String ?? ""
+    let answer1: String = QUESTION_TWO["answer1"] as? String ?? ""
     
     var body: some View {
-        CustomText(value: "\(answer)", fontSize: 18, color: Color.black)
-            .border(.red)
-    }
-}
-
-struct Answer_Previews: PreviewProvider {
-    static var previews: some View {
-        AnswerView()
+        if globalStore.currentScene == EnumScene.sequence1 {
+            CustomText(value: "\(answer)", fontSize: 18, color: Color.black)
+                .border(.red)
+        }
+        else {
+            CustomText(value: "\(answer1)", fontSize: 18, color: Color.black)
+                .border(.red)
+        }
     }
 }

@@ -10,15 +10,23 @@ import SwiftUI
 
 struct SequenceOpeningView: View {
     @EnvironmentObject var globalStore: GlobalStore
-    
+    //var test1 = 0
+    var isHidden: Bool = false
+        
     var body: some View {
+        
         switch globalStore.scriptCount {
-        case 7 : FaceView()
-            
-        default: ShipView()
-            
+        case 2: CharacterView()
+        default: Image(systemName: "b.circle.fill")
         }
-        Text("Scene opening View")
+        
+        
+//        switch globalStore.scriptCount {
+//        case 7:
+//            AnyView(testFunction())
+//        default: ShipView()
+//
+//        }
     }
 }
 
