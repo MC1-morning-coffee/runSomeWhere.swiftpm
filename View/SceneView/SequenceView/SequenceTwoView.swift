@@ -12,6 +12,8 @@ struct SequenceTwoView: View {
     @EnvironmentObject
     var globalStore: GlobalStore
     
+    
+    
     @State
     var isAutoDoorButtonActive = false
     
