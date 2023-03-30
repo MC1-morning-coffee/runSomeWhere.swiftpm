@@ -16,17 +16,17 @@ extension enumCharcter {
     var personalColor: String {
         switch self {
         case .coffee:
-            return "red"
+            return "빨강"
         case .walker:
-            return "green"
+            return "초록"
         case .luna:
-            return "yellow"
+            return "노랑"
         case .henry:
-            return "blue"
+            return "파랑"
         case .muho:
-            return "orange"
+            return "주황"
         case .olive:
-            return "purple"
+            return "보라"
         }
     }
     
