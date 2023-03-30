@@ -12,11 +12,11 @@ struct ContentView: View {
                     SceneView()
 //                    CharacterView()
                     // 모달 뷰를 중간까지만 띄우는 방법은 iOS16부터만 지원 가능..
-//                    if #available(iOS 16.0, *) {
-//                        QuizModalView()
-//                    } else {
-//                        // Fallback on earlier versions
-//                    }
+                    if #available(iOS 16.0, *) {
+                        QuizModalView()
+                    } else {
+                        // Fallback on earlier versions
+                    }
                     ScriptBoxView(script: globalStore.currentScripts[globalStore.scriptCount], width: geo.size.width)
                 }
                 if globalStore.isSelectCharcterViewActive {
