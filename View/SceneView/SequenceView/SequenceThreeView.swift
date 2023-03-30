@@ -8,8 +8,36 @@
 import SwiftUI
 
 struct SequenceThreeView: View {
+    
+    @EnvironmentObject
+    var globalStore: GlobalStore
+        
+    @State
+    var isPaddleBtnActive = false
+    
+    /**
+     sample
+     */
+    private func handleSequenceView(scriptCount: Int) {
+        switch scriptCount {
+            case 19:
+                isPaddleBtnActive = true
+            case 20:
+                isPaddleBtnActive = false
+            default:
+                print("scriptCount", scriptCount)
+        }
+    }
     var body: some View {
-        Text("Scene Three View")
+        ZStack(alignment: .topLeading){
+            Text("globalStore.scriptCount: \(globalStore.scriptCount)")
+            if isPaddleBtnActive {
+                PaddleButtonView()
+            }
+        }
+        .onReceive(globalStore.$scriptCount, perform: { currentCount in
+            handleSequenceView(scriptCount: currentCount)
+        })
     }
 }
 

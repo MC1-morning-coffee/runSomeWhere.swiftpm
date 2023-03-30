@@ -60,7 +60,6 @@ struct SceneView: View {
             let deviceWidth = geo.size.width
             let deviceHeight = geo.size.height
             ZStack(alignment: .topLeading) {
-                
                 // SequenceViewContainer
                 HStack {
                     AnyView(setSequenceView(currentScene: globalStore.currentScene))

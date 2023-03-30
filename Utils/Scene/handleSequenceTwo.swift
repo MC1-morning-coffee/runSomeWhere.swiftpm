@@ -12,6 +12,7 @@ func handleSequenceTwo(globalStore: GlobalStore){
     let scriptCount = globalStore.scriptCount
     switch scriptCount {
         case 0:
+            globalStore.resetUI()
             globalStore.toggleIsFaceViewActive() // false
             globalStore.updateCurrentDetailImage(detailImage: .Door)
             globalStore.toggleIsPopupActive() // true

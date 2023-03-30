@@ -59,11 +59,7 @@ struct SelectCharcterView: View {
     private let charcters: [enumCharcter] = [.walker, .coffee, .luna, .olive, .muho, .henry]
     
     private func handleSelectAnswer() {
-        // here to logic
-        globalStore.toggleIsSelectCharcterViewActive() // false
-        globalStore.toggleIsPopupActive() // false
-        globalStore.addScriptCount()
-        globalStore.toggleIsTapAble() // true
+        handleSequenceSelectCharcter(globalStore: globalStore)
     }
     
     private let gridColumns = [GridItem(),GridItem()]
