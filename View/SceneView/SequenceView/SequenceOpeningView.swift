@@ -15,10 +15,10 @@ struct SequenceOpeningView: View {
         switch globalStore.scriptCount {
         case 7 : FaceView()
             
-        default: ShipView()
-            
+        default:
+//            ShipView()
+            Text("Scene opening View")   
         }
-        Text("Scene opening View")
     }
 }
 
