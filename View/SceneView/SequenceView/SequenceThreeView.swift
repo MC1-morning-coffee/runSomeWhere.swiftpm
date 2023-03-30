@@ -8,23 +8,36 @@
 import SwiftUI
 
 struct SequenceThreeView: View {
-    @EnvironmentObject var globalStore: GlobalStore
     
-    var body: some View {
-        ZStack {
-            CharacterView(objectName: walker.name, makeDirection: EnumDirection.Back_1, start: (-150.0, 100.0), end: (-150.0, 0.0))
-            CharacterView(objectName: luna.name, makeDirection: EnumDirection.Back_1, start: (-90.0, 40.0), end: (0.0, 0.0))
-            CharacterView(objectName: coffee.name, makeDirection: EnumDirection.Back_1, start: (-30.0, 70.0), end: (0.0, 0.0))
-            CharacterView(objectName: muho.name, makeDirection: EnumDirection.Back_1, start: (30.0, 80.0), end: (0.0, 0.0))
-            CharacterView(objectName: olive.name, makeDirection: EnumDirection.Back_1, start: (90.0, 50.0), end: (0.0, 0.0))
-            CharacterView(objectName: henry.name, makeDirection: EnumDirection.Back_1, start: (150.0, 10.0), end: (0.0, 0.0))
+    @EnvironmentObject
+    var globalStore: GlobalStore
+        
+    @State
+    var isPaddleBtnActive = false
+    
+    /**
+     sample
+     */
+    private func handleSequenceView(scriptCount: Int) {
+        switch scriptCount {
+            case 19:
+                isPaddleBtnActive = true
+            case 20:
+                isPaddleBtnActive = false
+            default:
+                print("scriptCount", scriptCount)
         }
     }
-}
-
-struct SequenceThreeView_Previews: PreviewProvider {
-    static var previews: some View {
-        SequenceThreeView()
+    var body: some View {
+        ZStack(alignment: .topLeading){
+            Text("globalStore.scriptCount: \(globalStore.scriptCount)")
+            if isPaddleBtnActive {
+                PaddleButtonView()
+            }
+        }
+        .onReceive(globalStore.$scriptCount, perform: { currentCount in
+            handleSequenceView(scriptCount: currentCount)
+        })
     }
 }
 

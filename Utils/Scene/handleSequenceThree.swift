@@ -15,8 +15,8 @@ func handleSequenceThree(globalStore: GlobalStore){
          TODO: 스크립트에 맞춰서 변경하기
          */
         case 0:
+            globalStore.resetUI()
             globalStore.toggleIsFaceViewActive() // true
-            globalStore.toggleIsPopupActive() // false
         case 6:
             globalStore.toggleIsFaceViewActive() // false
         case 7:

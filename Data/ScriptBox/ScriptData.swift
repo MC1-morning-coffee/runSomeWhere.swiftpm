@@ -35,9 +35,6 @@ let SEQUENCE_OPENING_SCRIPTS: [Script] = [
     ([EnumSpeaker.unknown],
     "어라... 여기가 어디지...?"
     ),
-    ([EnumSpeaker.system],
-    " "
-    ),
     ([EnumSpeaker.unknown],
     "CB...L?? 뭘 어떻게 하라는거야..!!"
     )
