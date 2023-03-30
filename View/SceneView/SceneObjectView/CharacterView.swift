@@ -13,10 +13,7 @@ struct CharacterView: View {
     var start: (Float, Float) // 시작 위치
     var end: (Float, Float) // 끝 위치
     
-    
-    // 버튼을 누르면 move+1씩 증가함 -> 홀수 짝수에 따라서 오브젝트의 위치를 바꾸도록 함 -> 나중에 scenNumber에 따라서 바뀌도록 수정해야 함
-    //@State var move: Int = 0
-    @State var imageNumber: Int = 1
+    @State var imageNumber: Int = 1 // 뚜벅거리는 기능을 위한 변수
     @State var imageName: String = "" // 여기에 이미지의 이름을 저장
     @State var imageOffset: Bool = false
     
