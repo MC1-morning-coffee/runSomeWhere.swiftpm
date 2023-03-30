@@ -42,7 +42,7 @@ enum EnumDetailImage: CaseIterable {
 
 // 이미지를 교체하기 위한 EnumDirection
 enum EnumDirection: CaseIterable {
-    case Front, Back_1, Back_2, Left, Right
+    case Front, Back_1, Back_2, Left, Right,Side_1, Side_2
 }
 
 class GlobalStore: ObservableObject {
