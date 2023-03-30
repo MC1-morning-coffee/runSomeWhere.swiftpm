@@ -37,12 +37,9 @@ struct SequenceOneView: View {
         //                    Text("Scene 0 View")
         switch globalStore.scriptCount {
         case 1:
-            CharacterView(objectName: henry.name, makeDirection: EnumDirection.Back_1)
-                .position(x: 195, y: 300)
-                .offset(y: (isCharacterMove ? 10 : 0))
+            Text("")
         default:
             Text("")
-            
         }
         CharacterView(objectName: henry.name, makeDirection: EnumDirection.Back_1)
             .position(x: 195, y: 300)
