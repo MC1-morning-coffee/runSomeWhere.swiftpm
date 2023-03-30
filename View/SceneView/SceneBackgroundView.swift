@@ -160,10 +160,8 @@ struct SceneBackgroundView: View {
                     bgOffsetY = bgOffsetY + 300
             }
             if scriptCount == 25 {
-                setTimeoutClosure(timeCount: 400) {
+                setTimeoutClosure(timeCount: 2000) {
                     isBlurActive = true
-                }
-                setTimeoutClosure(timeCount: 1000) {
                     bgOffsetY = 0
                 }
             }

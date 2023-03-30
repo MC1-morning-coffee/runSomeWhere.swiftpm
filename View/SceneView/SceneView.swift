@@ -63,7 +63,7 @@ struct SceneView: View {
                 // SequenceViewContainer
                 SceneBackgroundView()
                     .frame(width: deviceWidth, height: deviceHeight)
-                    .border(.orange)
+//                    .border(.orange)
                 HStack {
                     AnyView(setSequenceView(currentScene: globalStore.currentScene))
                 }
