@@ -35,6 +35,7 @@ struct SequenceTwoView_Previews: PreviewProvider{
 }
 
 /*시퀀스 투
+ ..
  - Big_Coffee_Back_1/2 걷는다. (12걸음 뒤 자동 멈춤)
    Big_Muho_Back_1/2 걷는다. (12걸음 뒤 자동 멈춤)
  
