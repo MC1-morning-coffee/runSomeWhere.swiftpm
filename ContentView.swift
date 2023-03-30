@@ -5,13 +5,15 @@ struct ContentView: View {
     
     @EnvironmentObject
     var globalStore: GlobalStore
-    
+        
     var body: some View {
         GeometryReader { geo in
             ZStack(alignment: .topLeading) {
                 VStack(spacing: 0){
                     SceneView()
+                if globalStore.isScriptBoxOpen {
                     ScriptBoxView(script: globalStore.currentScripts[globalStore.scriptCount], width: geo.size.width)
+                }
                 }
                 if globalStore.isSelectCharcterViewActive {
                     SelectCharcterView(width: geo.size.width)

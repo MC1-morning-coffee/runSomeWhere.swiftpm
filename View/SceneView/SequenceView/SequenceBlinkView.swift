@@ -21,15 +21,9 @@ struct SequenceBlinkView: View {
                     currentImageIndex = (currentImageIndex + 1) % introImages.count
                 }
                 DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
-                       timer.invalidate()
-                   }
+                    timer.invalidate()
+                }
             }
     }
 }
-        
-        struct SequenceBlinkView_Previews: PreviewProvider {
-            static var previews: some View {
-                SequenceBlinkView()
-            }
-        }
-        
+
