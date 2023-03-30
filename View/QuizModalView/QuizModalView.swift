@@ -54,14 +54,14 @@ struct QuizModalView: View {
                     
                 }
                  */
+                
                 if globalStore.currentScene == EnumScene.sequence1 {
                     QuizButtonView1(isShowingModal: $isShowingModal, quizFalse: $quizFalse){
-                                        
-                                    }
+                    }
                 }
+                
                 else {
                     QuizButtonView(isShowingModal: $isShowingModal, quizFalse: $quizFalse){
-                                        
                                     }
                 }
 //                QuizButtonView(isShowingModal: $isShowingModal, quizFalse: $quizFalse){

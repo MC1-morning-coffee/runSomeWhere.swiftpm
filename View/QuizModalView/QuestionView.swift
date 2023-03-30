@@ -10,6 +10,8 @@ import SwiftUI
 struct QuestionView: View {
     @EnvironmentObject
     var globalStore: GlobalStore
+    
+//    @Binding var isStart: Bool
 
     let q = QUESTION_TWO["question"] as? String ?? ""
     let q1 = QUESTION_TWO["question1"] as? String ?? ""

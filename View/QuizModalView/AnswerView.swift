@@ -12,6 +12,7 @@ struct AnswerView: View {
     var globalStore: GlobalStore
     // QuizData에 있는 question값을 가져와서 String으로 형 변환해준다
     
+//    @Binding var isStart: Bool
     let answer: String = QUESTION_TWO["answer"] as? String ?? ""
     let answer1: String = QUESTION_TWO["answer1"] as? String ?? ""
     
