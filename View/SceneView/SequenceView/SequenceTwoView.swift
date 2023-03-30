@@ -22,25 +22,44 @@ struct SequenceTwoView: View {
     var isWrongDoorOpen = false
     
     @State
-    var isAutoDoorComing = false
+    var isWrongAutoDoorComing = false
+    
+    @State
+    var isWrongDoorComeActive = false
+    
+    @State
+    var isMainAutoDoorComing = false
+    
+    @State
+    var isMainDoorComeActive = false
     
     @State
     var isCharacterMove = false
+    
+    @State
+    var isDoorButtonClicked = false
     
     
     private func handleSequenceView(scriptCount: Int) {
         switch scriptCount {
             case 0 :
                 isCharacterMove = true
-            case 1:
-                isAutoDoorComing = true
-            case 5:
+                isWrongAutoDoorComing = true
+                isWrongDoorComeActive = true
+                isMainAutoDoorComing = true
+                isMainDoorComeActive = true
+            case 4:
                 isAutoDoorButtonActive = true
             case 6:
-                isWrongDoorOpen = true
-            case 7:
                 isAutoDoorButtonActive = false
-            case 11:
+                isDoorButtonClicked = true
+            case 7:
+                isAutoDoorButtonActive = true
+                isDoorButtonClicked = false
+                isWrongAutoDoorComing = false
+                isWrongDoorOpen = true
+            case 10:
+                isMainAutoDoorComing = false
                 isMainDoorOpen = true
             default:
                 print("scriptCount", scriptCount)
@@ -55,22 +74,47 @@ struct SequenceTwoView: View {
                 CharacterView(objectName: "BigCoffee_", makeDirection: EnumDirection.Back_1, start: (170, 522), end: (0, 0))
                 CharacterView(objectName: "BigMuho_", makeDirection: EnumDirection.Back_1, start: (220, 522), end: (0, 0))
             }
+            if isWrongAutoDoorComing{
+                        Image("Object_Door_Closed")
+                        .position(x: 320, y: 165)
+                        .offset(x: 0 , y: (isWrongDoorComeActive ? -650 : 0))
+                        .onAppear {
+                            withAnimation(.linear(duration: 3))
+                            {
+                                isWrongDoorComeActive.toggle()
+                                
+                            }
+                        }
+            }
+            if isMainAutoDoorComing{
+                        Image("Object_Door_Closed")
+                        .position(x: 195, y: 165)
+                        .offset(x: 0, y: (isMainDoorComeActive ? -650 : 0))
+                        .onAppear {
+                            withAnimation(.linear(duration: 3))
+                            {
+                                isMainDoorComeActive.toggle()
+                                
+                            }
+                        }
+            }
             if isAutoDoorButtonActive {
                 Image("Object_DoorButton")
                     .position(x: 270, y: 380)
             }
+            if isDoorButtonClicked{
+                Image("Object_DoorButton_Dark")
+                    .position(x: 270, y: 380)
+            }
             if isMainDoorOpen {
                 //center Door
-                AutoDoorView(animating: $isMainDoorOpen)
+                AutoDoorView()
                     .position(x: 195, y: 165)
             }
             if isWrongDoorOpen {
                 //Right Door
-                AutoDoorView(animating: $isWrongDoorOpen)
+                AutoDoorView()
                     .position(x: 320, y: 165)
-            }
-            if isAutoDoorComing{
-                
             }
         }
         .onReceive(globalStore.$scriptCount, perform: { currentCount in
