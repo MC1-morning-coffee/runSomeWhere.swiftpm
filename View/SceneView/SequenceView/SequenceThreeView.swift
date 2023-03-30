@@ -1,6 +1,6 @@
 //
 //  SwiftUIView.swift
-//  
+//
 //
 //  Created by Yun Dongbeom on 2023/03/27.
 //
@@ -8,8 +8,23 @@
 import SwiftUI
 
 struct SequenceThreeView: View {
+    @EnvironmentObject var globalStore: GlobalStore
+    
     var body: some View {
-        Text("Scene Three View")
+        ZStack {
+            CharacterView(objectName: walker.name, makeDirection: EnumDirection.Back_1, start: (-150.0, 100.0), end: (-150.0, 0.0))
+            CharacterView(objectName: luna.name, makeDirection: EnumDirection.Back_1, start: (-90.0, 40.0), end: (0.0, 0.0))
+            CharacterView(objectName: coffee.name, makeDirection: EnumDirection.Back_1, start: (-30.0, 70.0), end: (0.0, 0.0))
+            CharacterView(objectName: muho.name, makeDirection: EnumDirection.Back_1, start: (30.0, 80.0), end: (0.0, 0.0))
+            CharacterView(objectName: olive.name, makeDirection: EnumDirection.Back_1, start: (90.0, 50.0), end: (0.0, 0.0))
+            CharacterView(objectName: henry.name, makeDirection: EnumDirection.Back_1, start: (150.0, 10.0), end: (0.0, 0.0))
+        }
+    }
+}
+
+struct SequenceThreeView_Previews: PreviewProvider {
+    static var previews: some View {
+        SequenceThreeView()
     }
 }
 
