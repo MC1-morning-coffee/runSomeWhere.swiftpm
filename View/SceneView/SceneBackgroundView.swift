@@ -75,7 +75,10 @@ struct SceneBackgroundView: View {
         }
     }
     
-
+    @State
+    private var isBlinkActive = false
+    
+    
     @State
     private var isLastScript = false
     
@@ -85,6 +88,12 @@ struct SceneBackgroundView: View {
             currentBg = .opening
             if scriptCount == 3 {
                 isBlurActive = false
+                setTimeoutClosure(timeCount: 100) {
+                    isBlinkActive = true
+                }
+                setTimeoutClosure(timeCount: 1500) {
+                    isBlinkActive = false
+                }
             }
             if scriptCount == 12 {
                 globalStore.turnOffIsTapAble()
@@ -165,23 +174,24 @@ struct SceneBackgroundView: View {
                     bgOffsetY = 0
                 }
             }
-            
         case .ending:
             currentBg = .ending
             if scriptCount == 0 {
-                
+                animationDuration = 0
                 setTimeoutClosure(timeCount: 400) {
-                    bgOffsetY = 0
+                    bgOffsetY = 104
+                    globalStore.isScriptBoxOpen = false
                 }
                 isLastSequenceImage = true
                 setTimeoutClosure(timeCount: 1000) {
                     isBlurActive = false
                     globalStore.turnOffIsTapAble()
                     animationDuration = 12
-                    bgOffsetY -= 1800
+                    bgOffsetY -= 104 + 1800 - Int(globalStore.safeAreaSize.1) - Int(globalStore.safeAreaSize.1)
                 }
                 setTimeoutClosure(timeCount: 12000) {
                     globalStore.turnOnIsTapAble()
+                    globalStore.addScriptCount()
                 }
             }
             if scriptCount == 6 {
@@ -196,6 +206,12 @@ struct SceneBackgroundView: View {
     var body: some View {
         ZStack(alignment: .bottom){
             
+            if isBlinkActive {
+                SequenceBlinkView()
+                    .frame(width: CGFloat(390), height: 650)
+                    .zIndex(100)
+                
+            }
             /**
              실제 배경 이미지
              */
@@ -217,6 +233,7 @@ struct SceneBackgroundView: View {
                 .frame(width: CGFloat(390), height: 650)
                 .opacity(isBlurActive ?  1 : 0)
                 .animation(.easeInOut(duration: 1), value: isBlurActive)
+            
         }
         .edgesIgnoringSafeArea(.all)
         .onReceive(globalStore.$scriptCount, perform: { currentCount in
