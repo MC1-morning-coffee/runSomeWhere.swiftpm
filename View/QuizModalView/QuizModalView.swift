@@ -15,6 +15,8 @@ import SwiftUI
  */
 @available(iOS 16.0, *)
 struct QuizModalView: View {
+    var width = CGFloat(390)
+    
     @State var isShowingModal: Bool = false
     // 모달 뷰를 중간까지만 띄우는 방법은 iOS16부터만 지원 가능..
     @State var quizFalse: Bool = false
@@ -23,16 +25,15 @@ struct QuizModalView: View {
     @EnvironmentObject
     var globalStore: GlobalStore
     @Environment(\.presentationMode) var presentation
-    
+        
     var body: some View {
         Button {
             isShowingModal = true
         } label: {
-            Text("문제풀기 -> Modal View")
-                .foregroundColor(.black)
-                .background(.white)
+            Text("")
+                .frame(width: width, height: SCRIPT_BOX_HEIGHT)
+                .background(.opacity(0))
         }.sheet(isPresented: $isShowingModal) {
-            
             //Text("modal view")
             VStack (alignment: .leading){
                 Spacer()
@@ -69,9 +70,11 @@ struct QuizModalView: View {
                 
             }
             .presentationDetents([.medium, .large], selection: $settingsDetent)
-            
-            
         }
-        
+        .onAppear{
+            setTimeoutClosure(timeCount: 100) {
+                isShowingModal = true
+            }
+        }
     }
 }

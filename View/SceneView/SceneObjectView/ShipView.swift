@@ -8,7 +8,21 @@
 import SwiftUI
 
 struct ShipView: View {
+    @State private var isShaking = false
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        Image("Object_Boat")
+            .fixedSize()
+            .position(x: 195, y: 300)
+            .offset(y: (isShaking ? 10 : -10))
+            .animation(Animation.easeInOut(duration: 0.8) .repeatForever(autoreverses: true))
+            .onAppear() {
+                isShaking = true
+            }
+    }
+}
+
+struct ShipView_Previews: PreviewProvider {
+    static var previews: some View {
+        ShipView()
     }
 }

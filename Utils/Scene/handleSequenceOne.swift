@@ -11,18 +11,30 @@ func handleSequenceOne(globalStore: GlobalStore){
     // write here your logic!
     let scriptCount = globalStore.scriptCount
     switch scriptCount {
-        case 2:
-            globalStore.updateCurrentDetailImage(detailImage: .Water)
-            globalStore.toggleIsPopupActive() // true
+        case 0:
+            globalStore.resetUI()
         case 3:
-            globalStore.toggleIsFaceViewActive()
+            globalStore.updateCurrentDetailImage(detailImage: .Water)
+            globalStore.turnOnIsPopupActive()
         case 4:
-            globalStore.toggleIsPopupActive() // false
+            globalStore.turnOnIsFaceViewActive()
+        case 5:
+            globalStore.turnOffIsPopupActive()
         case 6:
-            globalStore.toggleIsFaceViewActive() // false
-        case 7:
-            globalStore.toggleIsFaceViewActive() // true
+            globalStore.turnOffIsFaceViewActive()
+            globalStore.turnOnIsQuizSequence()
+            globalStore.turnOffIsTapAble()
+        // case 7: handleSequenceQuizOne() 실행될 것
     default:
         print("sequence one is Ready")
+    }
+}
+
+func handleSequenceQuizOne(globalStore: GlobalStore) {
+    globalStore.turnOnIsTapAble()
+    globalStore.turnOffIsQuizSequence()
+    globalStore.turnOnIsFaceViewActive()
+    setTimeoutClosure(timeCount: 400) {
+        globalStore.addScriptCount()
     }
 }

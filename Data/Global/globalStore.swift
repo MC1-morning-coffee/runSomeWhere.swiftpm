@@ -39,8 +39,9 @@ enum EnumDetailImage: CaseIterable {
     case Door
 }
 
+// 이미지를 교체하기 위한 EnumDirection
 enum EnumDirection: CaseIterable {
-    case left, right, back, front
+    case Front, Back_1, Back_2, Left, Right
 }
 
 class GlobalStore: ObservableObject {
@@ -116,6 +117,16 @@ class GlobalStore: ObservableObject {
         }
     }
     
+    @Published
+    var isQuizSequence = false
+    
+    
+    func resetUI() {
+        turnOffIsPopupActive()
+        turnOffIsFaceViewActive()
+        turnOnIsTapAble()
+    }
+    
     init() {
         print("globalStore is ready")
     }
@@ -155,12 +166,28 @@ extension GlobalStore {
     func toggleIsFaceViewActive() {
         isFaceViewActive.toggle()
     }
+    
+    func turnOnIsFaceViewActive() {
+        isFaceViewActive = true
+    }
+    
+    func turnOffIsFaceViewActive() {
+        isFaceViewActive = false
+    }
 }
 
 // isPopupActive
 extension GlobalStore {
     func toggleIsPopupActive() {
         isPopupActive.toggle()
+    }
+    
+    func turnOnIsPopupActive() {
+        isPopupActive = true
+    }
+    
+    func turnOffIsPopupActive() {
+        isPopupActive = false
     }
 }
 
@@ -200,11 +227,42 @@ extension GlobalStore {
     func toggleIsSelectCharcterViewActive() {
         isSelectCharcterViewActive.toggle()
     }
+    
+    func turnOnIsSelectCharcterViewActive() {
+        isSelectCharcterViewActive = true
+    }
+    
+    func turnOffIsSelectCharcterViewActive() {
+        isSelectCharcterViewActive = false
+    }
 }
 
 // isTapAble
 extension GlobalStore {
     func toggleIsTapAble() {
         isTapAble.toggle()
+    }
+    
+    func turnOnIsTapAble() {
+        isTapAble = true
+    }
+    
+    func turnOffIsTapAble() {
+        isTapAble = false
+    }
+}
+
+// isQuizSequence
+extension GlobalStore {
+    func toggleIsQuizSequence() {
+        isQuizSequence.toggle()
+    }
+    
+    func turnOnIsQuizSequence() {
+        isQuizSequence = true
+    }
+    
+    func turnOffIsQuizSequence() {
+        isQuizSequence = false
     }
 }

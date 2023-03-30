@@ -8,6 +8,10 @@
 import SwiftUI
 
 struct QuizButtonView: View {
+    
+    @EnvironmentObject
+    var globalStore: GlobalStore
+    
     @Environment(\.presentationMode) var presentation
     @Binding var isShowingModal: Bool
     @Binding var quizFalse: Bool
@@ -46,6 +50,7 @@ struct QuizButtonView: View {
             .cornerRadius(15)
             Button {
                 isShowingModal = false
+                handleSequenceQuizOne(globalStore: globalStore)
                 
             } label: {
                 CustomText(value: "C", fontSize: 18, color: Color.black)
