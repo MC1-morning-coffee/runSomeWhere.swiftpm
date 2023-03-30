@@ -7,9 +7,8 @@
 
 import SwiftUI
 
-struct AutoDoorView: View {
-    
-    @State private var isAnimating = false
+struct AutoDoorView: View {    
+    @State private var isAnimating = Bool
     
     var body: some View {
         VStack{
@@ -17,15 +16,15 @@ struct AutoDoorView: View {
                 Image("Object_Door_Left")
                 /*.resizable()
                  .frame(width: 100, height: 65)*/
-                    .position(x: 195, y: 165)
+                    //.position(x: 195, y: 165)
                     .offset(x: isAnimating ? -40 : 0)
                 Image("Object_Door_Right")
                 /*.resizable()
                  .frame(width: 100, height: 65)*/
-                    .position(x: 195, y: 165)
+                    //.position(x: 195, y: 165)
                     .offset(x: isAnimating ? 40 : 0)
                 Image("Object_Door_Frame")
-                    .position(x: 195, y: 165)
+                    //.position(x: 195, y: 165)
                 /*.resizable()
                  .frame(width: 100, height: 65)*/
             }
@@ -33,7 +32,7 @@ struct AutoDoorView: View {
             .mask(
                 Rectangle()
                     .frame(width: 100, height: 65)
-                    .position(x: 195, y: 165)
+                    //.position(x: 195, y: 165)
             )
             .onAppear {
                 self.isAnimating = true
