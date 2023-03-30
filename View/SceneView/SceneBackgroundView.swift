@@ -49,6 +49,9 @@ struct SceneBackgroundView: View {
     private var isBlurActive = true
     
     @State
+    private var isLastSequenceImage = false
+    
+    @State
     var currentBg: EnumBackgrundImage = .opening {
         didSet {
             currentSceneHeight = currentBg.imgHeight
@@ -145,14 +148,39 @@ struct SceneBackgroundView: View {
                     isBlurActive = false
                 }
             }
+            if scriptCount == 9 {
+                bgOffsetY = bgOffsetY + 350
+            }
+            
+            if scriptCount == 19 {
+                globalStore.turnOffIsTapAble()
+            }
+            if scriptCount == 21 {
+                    globalStore.turnOnIsTapAble()
+                    bgOffsetY = bgOffsetY + 300
+            }
+            if scriptCount == 25 {
+                setTimeoutClosure(timeCount: 400) {
+                    isBlurActive = true
+                }
+                setTimeoutClosure(timeCount: 1000) {
+                    bgOffsetY = 0
+                }
+            }
+            
         case .ending:
             currentBg = .ending
             if scriptCount == 0 {
-                bgOffsetY = 0
-                setTimeoutClosure(timeCount: 100) {
+                
+                setTimeoutClosure(timeCount: 400) {
+                    bgOffsetY = 0
+                }
+                isLastSequenceImage = true
+                setTimeoutClosure(timeCount: 1000) {
+                    isBlurActive = false
                     globalStore.turnOffIsTapAble()
                     animationDuration = 12
-                    bgOffsetY = 2500 - 650
+                    bgOffsetY -= 1800
                 }
                 setTimeoutClosure(timeCount: 12000) {
                     globalStore.turnOnIsTapAble()
@@ -176,7 +204,7 @@ struct SceneBackgroundView: View {
             Image(currentSceneImage)
                     .resizable()
                     .aspectRatio(contentMode: .fill)
-                    .frame(width: 390, height: 650, alignment: .bottom)
+                    .frame(width: 390, height: 650, alignment: isLastSequenceImage ? .top : .bottom)
                     .offset(y: CGFloat(bgOffsetY))
                     .animation(.linear(duration: animationDuration), value: bgOffsetY)
                     .alignmentGuide(.bottom) { d in
@@ -195,6 +223,15 @@ struct SceneBackgroundView: View {
         .edgesIgnoringSafeArea(.all)
         .onReceive(globalStore.$scriptCount, perform: { currentCount in
             handleCurrentBackground(scriptCount: currentCount)
+        })
+        .onReceive(globalStore.$paddleCount, perform: { currentCount in
+            if bgOffsetY < 1550 {
+                bgOffsetY = bgOffsetY + currentCount * 2
+            }
+            
+            if currentCount > 40 {
+                globalStore.addScriptCount()
+            }
         })
     }
 }

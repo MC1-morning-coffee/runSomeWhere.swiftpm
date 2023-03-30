@@ -23,10 +23,10 @@ func handleSequenceThree(globalStore: GlobalStore){
             print("배가 만들어지는 이벤트 진행")
         case 8:
             globalStore.toggleIsFaceViewActive() // true
-        case 14:
-            globalStore.toggleIsFaceViewActive() // false
-        case 16:
-            globalStore.toggleIsFaceViewActive() // true
+//        case 14:
+////            globalStore.toggleIsFaceViewActive() // false
+//        case 16:
+////            globalStore.toggleIsFaceViewActive() // true
 //        ...
     default:
         print("sequence one is Ready")
