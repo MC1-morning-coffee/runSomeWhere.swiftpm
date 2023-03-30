@@ -75,6 +75,12 @@ struct SequenceThreeView: View {
     @State
     var isLastScene = false
     
+    @State
+    var isWindActive = false
+    
+    @State
+    var isWindReverse = false
+    
     @State private var isWoodMoveActive = false
     @State private var isFabricMoveActive = false
     @State private var isDrawingMoveActive = false
@@ -104,6 +110,7 @@ struct SequenceThreeView: View {
         case 9:
             isPeopleMoving1 = false
             isPeopleMoving2 = true
+            isWindActive = true
         case 10:
             isBoatActive = false
             isPeopleMoving2 = false
@@ -112,11 +119,15 @@ struct SequenceThreeView: View {
             isMagicCircleOn = true
         case 15:
             isMagicCircleOn = false
+            isWindActive = false
+            isWindReverse = true
         case 19:
             isPaddleOn = true
+            isWindReverse = false
         case 21:
             isPeopleOnBoat = false
             isPaddleOn = false
+            isWindReverse = false
             isBoatMove = true
             isPeopleMoving3 = true
             
@@ -212,6 +223,12 @@ struct SequenceThreeView: View {
                             isGomissacColorActive.toggle()
                         }
                     }
+            }
+            if isWindActive {
+                WindView()
+            }
+            if isWindReverse {
+                WindReverseView()
             }
         }
         .onReceive(globalStore.$scriptCount, perform: { currentCount in
