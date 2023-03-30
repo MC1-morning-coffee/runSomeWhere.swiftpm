@@ -38,6 +38,7 @@ enum EnumDetailImage: CaseIterable {
     case Redkey // 열쇠 중 1개(커피)를 선택한다.
     case Water
     case Door
+    case Treasure
 }
 
 // 이미지를 교체하기 위한 EnumDirection

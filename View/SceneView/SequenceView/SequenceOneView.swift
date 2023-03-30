@@ -34,44 +34,37 @@ struct SequenceOneView: View {
     
     private func handleSequenceView(scriptCount: Int) {
         switch scriptCount {
-        case 1, 4, 5, 6, 10, 11:
+        case 0:
+            setTimeoutClosure(timeCount: 3000) {
+                isJolJolMove = true
+            }
+        case 10, 11:
             isCharacterMove = false
             print("scriptCount", scriptCount)
             
             DispatchQueue.main.asyncAfter(deadline: .now() + 0.001) {
                 isCharacterMove = true
             }
-        case 2: // JolJol 나옴
-            isCharacterMove = false
-            print("scriptCount", scriptCount)
-            
-            DispatchQueue.main.asyncAfter(deadline: .now() + 0.001) {
-                isCharacterMove = true
-            }
-            isJolJolMove = true
+         // JolJol 나옴
+//            isCharacterMove = false
+//            print("scriptCount", scriptCount)
+//            
+//            DispatchQueue.main.asyncAfter(deadline: .now() + 0.001) {
+//                isCharacterMove = true
+//            }
         case 3: // JolJol 움직임
-            isCharacterMove = false
+//            isCharacterMove = false
             isJolJolMove = false
-            print("scriptCount", scriptCount)
-            
-            DispatchQueue.main.asyncAfter(deadline: .now() + 0.001) {
-                isCharacterMove = true
-            }
+//            print("scriptCount", scriptCount)
+//
+//            DispatchQueue.main.asyncAfter(deadline: .now() + 0.001) {
+//                isCharacterMove = true
+//            }
             isJolJol = true
         case 7: // JolJol 없어짐
-            isCharacterMove = false
             isJolJol = false
             isJolJolMove = false
-            print("scriptCount", scriptCount)
-            
-            DispatchQueue.main.asyncAfter(deadline: .now() + 0.001) {
-                isCharacterMove = true
-            }
-        case 8:
             isMuho = true
-        case 9:
-            isMuho = false
-            
         default:
             print("scriptCount", scriptCount)
         }
