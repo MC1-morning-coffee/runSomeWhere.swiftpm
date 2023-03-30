@@ -6,6 +6,8 @@
 //
 
 import SwiftUI
+import AVFoundation
+import Combine
 
 /*시퀀스 원
  - BigCoffee_Back_1/2 걸음(12걸음 뒤 자동으로 멈춤)
@@ -31,6 +33,23 @@ struct SequenceOneView: View {
     @State private var isJolJol = false
     @State private var isJolJolMove = false
     @State private var isMuho = false
+    
+    
+    
+    let backgroundMusicFiles = ["BGM_Adventure_Rest", "Walk"]
+    let soundEffectFiles = ["SFX_SeqOne_sound_neutral6", "SFX_SeqOne_lowhealth_alarmloop7", "SFX_SeqOne_sound_neutral11", "SFX_SeqOne_alarm_loop6", "SFX_SeqOne_coin_double7"] // add the names of your sound effect files here
+    let musicFileExtension = "wav" // add the extension of your music files here
+    let musicFileExtension1 = "m4a"
+    //let soundEffectCountIntervals = [2, 4] // play sound effects when the count is equal to these values
+    
+    let volume: Float = 0.1 // adjust this value to set the volume
+    let volume1: Float = 0.3
+    
+    @State private var currentCount = 0
+    @State private var backgroundMusicPlayer: AVPlayer?
+    @State private var soundEffectPlayer: AVPlayer?
+    @State private var currentPlayCount = 0
+    
     
     private func handleSequenceView(scriptCount: Int) {
         switch scriptCount {
@@ -91,6 +110,41 @@ struct SequenceOneView: View {
         }
         .onReceive(globalStore.$scriptCount, perform: { currentCount in
             handleSequenceView(scriptCount: currentCount)
+            switch currentCount {
+            case 0:
+                let musicFileName = backgroundMusicFiles[1] // count starts at 1, but array index starts at 0
+                let musicFileUrl = Bundle.main.url(forResource: musicFileName, withExtension: musicFileExtension)!
+                backgroundMusicPlayer = AVPlayer(url: musicFileUrl)
+                backgroundMusicPlayer?.volume = volume
+                backgroundMusicPlayer?.play()
+            case 1:
+                let musicFileName = soundEffectFiles[0] // count starts at 1, but array index starts at 0
+                let musicFileUrl = Bundle.main.url(forResource: musicFileName, withExtension: musicFileExtension)!
+                backgroundMusicPlayer = AVPlayer(url: musicFileUrl)
+                backgroundMusicPlayer?.volume = volume
+                backgroundMusicPlayer?.play()
+            case 2:
+                let musicFileName = soundEffectFiles[1] // count starts at 1, but array index starts at 0
+                let musicFileUrl = Bundle.main.url(forResource: musicFileName, withExtension: musicFileExtension)!
+                backgroundMusicPlayer = AVPlayer(url: musicFileUrl)
+                backgroundMusicPlayer?.volume = volume
+                backgroundMusicPlayer?.play()
+            case 5:
+                let musicFileName = soundEffectFiles[2] // count starts at 1, but array index starts at 0
+                let musicFileUrl = Bundle.main.url(forResource: musicFileName, withExtension: musicFileExtension)!
+                backgroundMusicPlayer = AVPlayer(url: musicFileUrl)
+                backgroundMusicPlayer?.volume = volume
+                backgroundMusicPlayer?.play()
+            case 7:
+                let musicFileName = soundEffectFiles[3] // count starts at 1, but array index starts at 0
+                let musicFileUrl = Bundle.main.url(forResource: musicFileName, withExtension: musicFileExtension)!
+                backgroundMusicPlayer = AVPlayer(url: musicFileUrl)
+                backgroundMusicPlayer?.volume = volume
+                backgroundMusicPlayer?.play()
+                
+            default:
+                break
+            }
         })
         
     }
