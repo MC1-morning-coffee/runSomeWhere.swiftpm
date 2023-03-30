@@ -9,42 +9,83 @@ import SwiftUI
 
 struct SequenceTwoView: View {
     
-    @State
-    private var isAutoDoor1Open = false
+    @EnvironmentObject
+    var globalStore: GlobalStore
     
     @State
-    private var isAutoDoor2Open = false
+    var isAutoDoorButtonActive = false
     
+    @State
+    var isMainDoorOpen = false
+    
+    @State
+    var isWrongDoorOpen = false
+    
+    @State
+    var isAutoDoorComing = false
+    
+    @State
+    var isCharacterMove = false
+    
+    
+    private func handleSequenceView(scriptCount: Int) {
+        switch scriptCount {
+            case 0 :
+                isCharacterMove = true
+            case 1:
+                isAutoDoorComing = true
+            case 5:
+                isAutoDoorButtonActive = true
+            case 6:
+                isWrongDoorOpen = true
+            case 7:
+                isAutoDoorButtonActive = false
+            case 11:
+                isMainDoorOpen = true
+            default:
+                print("scriptCount", scriptCount)
+        }
+    }
     var body: some View {
-        ZStack{
-            Image("Background_Image2")
-                .position(x:196.5, y:0)
-            Text("Scene Two View")
-            CharacterView(objectName: coffee.name, makeDirection: EnumDirection.Back_1, start: (-25.0, 160.0), end: (-25.0, 160.0))
-            CharacterView(objectName: muho.name, makeDirection: EnumDirection.Back_1, start: (25.0, 160.0), end: (25.0, 160.0))
-            //center Door
-            AutoDoorView(isAnimating: $isAutoDoor1Open)
-                .position(x: 195, y: 165)
-            //Right Door
-            AutoDoorView(isAnimating: $isAutoDoor2Open)
-                .position(x: 320, y: 165)
-        }
-        .onAppear{
-            setTimeoutClosure(timeCount: 2) {
-                isAutoDoor1Open = true
+        ZStack {
+            Text("globalStore.scriptCount: \(globalStore.scriptCount)")
+//            Text("Scene Two View")
+            
+            if isCharacterMove {
+                CharacterView(objectName: "BigCoffee_", makeDirection: EnumDirection.Back_1, start: (170, 522), end: (0, 0))
+                CharacterView(objectName: "BigMuho_", makeDirection: EnumDirection.Back_1, start: (220, 522), end: (0, 0))
             }
-            setTimeoutClosure(timeCount: 4) {
-                isAutoDoor2Open = true
+            if isAutoDoorButtonActive {
+                Image("Object_DoorButton")
+                    .position(x: 270, y: 380)
+            }
+            if isMainDoorOpen {
+                //center Door
+                AutoDoorView(animating: $isMainDoorOpen)
+                    .position(x: 195, y: 165)
+            }
+            if isWrongDoorOpen {
+                //Right Door
+                AutoDoorView(animating: $isWrongDoorOpen)
+                    .position(x: 320, y: 165)
+            }
+            if isAutoDoorComing{
+                
             }
         }
+        .onReceive(globalStore.$scriptCount, perform: { currentCount in
+            handleSequenceView(scriptCount: currentCount)
+        })
     }
 }
 
-struct SequenceTwoView_Previews: PreviewProvider{
-    static var previews: some View{
-        SequenceTwoView()
-    }
-}
+//struct SequenceTwoView_Previews: PreviewProvider{
+//    static var previews: some View{
+//        SequenceTwoView()
+//    }
+//}
+
+
 /*시퀀스 투
  - Big_Coffee_Back_1/2 걷는다. (12걸음 뒤 자동 멈춤)
  Big_Muho_Back_1/2 걷는다. (12걸음 뒤 자동 멈춤)
