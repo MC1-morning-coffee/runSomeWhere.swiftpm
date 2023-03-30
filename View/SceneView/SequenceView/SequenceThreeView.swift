@@ -14,7 +14,6 @@ struct SequenceThreeView: View {
         
     @State
     var isPaddleBtnActive = false
-    
     /**
      sample
      */
@@ -22,12 +21,13 @@ struct SequenceThreeView: View {
         switch scriptCount {
             case 19:
                 isPaddleBtnActive = true
-//            case 20:
-//                isPaddleBtnActive = false
+            case 20:
+                isPaddleBtnActive = false
             default:
                 print("scriptCount", scriptCount)
         }
     }
+    
     var body: some View {
         ZStack(alignment: .topLeading){
             Text("globalStore.scriptCount: \(globalStore.scriptCount)")
