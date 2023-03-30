@@ -90,9 +90,7 @@ struct SequenceOneView: View {
     }
     
     var body: some View {
-        ZStack(alignment: .topLeading){
-            Text("globalStore.scriptCount: \(globalStore.scriptCount)")
-            
+        ZStack(alignment: .topLeading){            
             if isCharacterMove {
                 CharacterView(objectName: "BigCoffee_", makeDirection: .Back_1, start: (195, 540), end: (0, 0))
             }

@@ -128,6 +128,9 @@ class GlobalStore: ObservableObject {
     @Published
     var paddleCount = 0
     
+    @Published
+    var isMovieStart = true
+    
     func resetUI() {
         turnOffIsPopupActive()
         turnOffIsFaceViewActive()

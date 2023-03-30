@@ -9,6 +9,7 @@ struct ContentView: View {
     var body: some View {
         GeometryReader { geo in
             ZStack(alignment: .topLeading) {
+                
                 VStack(spacing: 0){
                     SceneView()
                 if globalStore.isScriptBoxOpen {
@@ -24,6 +25,12 @@ struct ContentView: View {
                     QuizModalContainerView()
                         .offset(y: geo.size.height - SCRIPT_BOX_HEIGHT)
                         .frame(width: geo.size.width, height: SCRIPT_BOX_HEIGHT)
+                }
+                if globalStore.isMovieStart {
+                    SequenceIntroView()
+                        .onTapGesture {
+                            globalStore.isMovieStart = false
+                        }
                 }
             }
         }

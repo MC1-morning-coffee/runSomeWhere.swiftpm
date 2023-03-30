@@ -6,11 +6,26 @@
 //
 
 import SwiftUI
+import AVFoundation
+import Combine
 
 struct SequenceThreeView: View {
     
     @EnvironmentObject
     var globalStore: GlobalStore
+    
+    let backgroundMusicFiles = ["BGM_Adventure_Explore"]
+    let soundEffectFiles = ["Walk", "SFX_SeqThree_sounds_powerup10", "SFX_SeqThree_coin_cluster3", "SFX_SeqThree_menu_select4", "SFX_SeqThree_sound_mechanicalnoise4", "SFX_SeqThree_lowhealth_alarmloop6", "SFX_SeqThree_sounds_fanfare3"] // add the names of your sound effect files here
+    let musicFileExtension = "wav" // add the extension of your music files here
+    let musicFileExtension1 = "wav"
+    
+    let volume: Float = 0.1 // adjust this value to set the volume
+    let volume1: Float = 0.3
+    
+    @State private var currentCount = 0
+    @State private var backgroundMusicPlayer: AVPlayer?
+    @State private var soundEffectPlayer: AVPlayer?
+    @State private var currentPlayCount = 0
     
     @State
     var isPeopleMoving1 = false
@@ -140,9 +155,7 @@ struct SequenceThreeView: View {
     }
     
     var body: some View {
-        ZStack(alignment: .topLeading){
-            Text("globalStore.scriptCount: \(globalStore.scriptCount)")
-            
+        ZStack(alignment: .topLeading){            
             SequenceThreeChildView(isPeopleMoving1: $isPeopleMoving1, isDrawingActive: $isDrawingActive, isWoodFabricActive: $isWoodFabricActive,isWoodMove: $isWoodMove, isFabricMove: $isFabricMove, isDrawingMove: $isDrawingMove, isBoatActive: $isBoatActive, isPeopleMoving2: $isPeopleMoving2, isPeopleOnBoat: $isPeopleOnBoat, isMagicCircleOn: $isMagicCircleOn)
             
             if isPaddleOn {
@@ -220,6 +233,69 @@ struct SequenceThreeView: View {
         }
         .onReceive(globalStore.$scriptCount, perform: { currentCount in
             handleSequenceView(scriptCount: currentCount)
+            
+            switch currentCount {
+            case 0 :
+                let musicFileName = backgroundMusicFiles[0] // count starts at 1, but array index starts at 0
+                let musicFileUrl = Bundle.main.url(forResource: musicFileName, withExtension: musicFileExtension)!
+                backgroundMusicPlayer = AVPlayer(url: musicFileUrl)
+                backgroundMusicPlayer?.volume = volume
+                backgroundMusicPlayer?.play()
+                
+                let effectFileName = soundEffectFiles[0] // count starts at 1, but array index starts at 0
+                let effectFileUrl = Bundle.main.url(forResource: effectFileName, withExtension: musicFileExtension1)!
+                soundEffectPlayer = AVPlayer(url: effectFileUrl)
+                soundEffectPlayer?.volume = volume1
+                soundEffectPlayer?.play()
+
+            case 4 :
+                //backgroundMusicPlayer?.pause()
+                
+                let effectFileName = soundEffectFiles[1] // count starts at 1, but array index starts at 0
+                let effectFileUrl = Bundle.main.url(forResource: effectFileName, withExtension: musicFileExtension1)!
+                soundEffectPlayer = AVPlayer(url: effectFileUrl)
+                soundEffectPlayer?.volume = volume1
+                soundEffectPlayer?.play()
+            case 5 :
+                let effectFileName = soundEffectFiles[2] // count starts at 1, but array index starts at 0
+                let effectFileUrl = Bundle.main.url(forResource: effectFileName, withExtension: musicFileExtension1)!
+                soundEffectPlayer = AVPlayer(url: effectFileUrl)
+                soundEffectPlayer?.volume = volume1
+                soundEffectPlayer?.play()
+            case 7 :
+                let effectFileName = soundEffectFiles[3] // count starts at 1, but array index starts at 0
+                let effectFileUrl = Bundle.main.url(forResource: effectFileName, withExtension: musicFileExtension1)!
+                soundEffectPlayer = AVPlayer(url: effectFileUrl)
+                soundEffectPlayer?.volume = volume1
+                soundEffectPlayer?.play()
+            case 12 :
+                let effectFileName = soundEffectFiles[4] // count starts at 1, but array index starts at 0
+                let effectFileUrl = Bundle.main.url(forResource: effectFileName, withExtension: musicFileExtension1)!
+                soundEffectPlayer = AVPlayer(url: effectFileUrl)
+                soundEffectPlayer?.volume = volume1
+                soundEffectPlayer?.play()
+            case 21 :
+                let effectFileName = soundEffectFiles[0] // count starts at 1, but array index starts at 0
+                let effectFileUrl = Bundle.main.url(forResource: effectFileName, withExtension: musicFileExtension1)!
+                soundEffectPlayer = AVPlayer(url: effectFileUrl)
+                soundEffectPlayer?.volume = volume1
+                soundEffectPlayer?.play()
+            case 22 :
+                let effectFileName = soundEffectFiles[5] // count starts at 1, but array index starts at 0
+                let effectFileUrl = Bundle.main.url(forResource: effectFileName, withExtension: musicFileExtension1)!
+                soundEffectPlayer = AVPlayer(url: effectFileUrl)
+                soundEffectPlayer?.volume = volume1
+                soundEffectPlayer?.play()
+            case 24 :
+                let effectFileName = soundEffectFiles[6] // count starts at 1, but array index starts at 0
+                let effectFileUrl = Bundle.main.url(forResource: effectFileName, withExtension: musicFileExtension1)!
+                soundEffectPlayer = AVPlayer(url: effectFileUrl)
+                soundEffectPlayer?.volume = volume1
+                soundEffectPlayer?.play()
+                
+            default:
+                break
+            }
         })
     }
 }
