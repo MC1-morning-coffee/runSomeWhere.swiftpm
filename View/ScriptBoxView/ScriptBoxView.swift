@@ -15,53 +15,79 @@ import SwiftUI
 3. 스크립트가 다 나타나면 커서가 깜빡이며 탭 클릭이 가능하다.
  */
 struct ScriptBoxView: View {
+    @State private var isFlickering = false
     
     @EnvironmentObject
     var globalStore: GlobalStore
     
-
-//    var sceneCount: Int
-    var scripts: [Script]
-    
     @State
     var currentSceneCount: Int = 0
     
-    @State
-    var scriptCount = 0
-    
+    var script: Script
     var width: CGFloat
     
-    func updateCurrentSequence() {
-        globalStore.scriptCount += 1
+    private let SCRIPT_BOX_VIEW_BACKGROUND_IMAGE = "Background_Text"
+    
+    private func updateCurrentSequence() {
+        if !globalStore.isTapAble{
+            return
+        }
+        
+        if globalStore.scriptCount == globalStore.currentScripts.count - 1 {
+            currentSceneCount += 1
+            if currentSceneCount > 4 {
+                return
+            }
+            globalStore.updateCurrentScene(scene: .allCases[currentSceneCount])
+            globalStore.resetScriptCount()
+        }else{
+            globalStore.scriptCount += 1
+        }
+        handleSceneEvent(globalStore: globalStore)
+    }
+        
+    // Speaker
+    private func setSpeaker()->String {
+        // 둘이상이면?
+        var _speaker = "\(script.0[0])"
+        
+        if script.0.count > 1 {
+            _speaker = "\(script.0[0]), \(script.0[1])"
+        }
+        
+        return _speaker
     }
     
+    
     var body: some View {
-//        var speaker = findSpeaker(scriptCount: scriptCount, scripts: scripts)
-//        var script = findScript(scriptCount: scriptCount, scripts: scripts)
-        
-        ZStack {
+        ZStack(alignment: .topLeading) {
+            let offset = CGFloat(16)
+            
+            // Background Image
+            Image(SCRIPT_BOX_VIEW_BACKGROUND_IMAGE)
+                .zIndex(-1)
+                .offset(y: offset)
+            // Cursor Pointer
+            CursorView()
+                .frame(width: CURSOR_SIZE, height: CURSOR_SIZE)
+                .offset(x: width - CURSOR_SIZE - offset , y: SCRIPT_BOX_HEIGHT - CURSOR_SIZE)
             VStack(alignment: .leading) {
-                HStack(spacing: 0){
-                    VStack(alignment: .leading, spacing: 0){
-//                        CustomText(value: "\(speaker)", fontSize: 24)
-//                            .padding(.bottom, 4)
-//                        CustomText(value: "\(script)")
+                    HStack(spacing: 0){
+                        VStack(alignment: .leading, spacing: 0){
+                            CustomText(value: "\(script.1)")
+                        }
+                        .padding(24)
+                        Spacer()
                     }
-                    Spacer()
-                }
-                .border(.red, width: 1)
-                Spacer()
+                    .offset(y: 20)
             }
-            .border(.red, width: 1)
-            Spacer()
+            .zIndex(10)
         }
         .padding(16)
         .frame(width: width, height: SCRIPT_BOX_HEIGHT)
-        .border(.red, width: 1)
-        .background(CustomColor.scriptBoxColor)
+        .background(CustomColor.scriptBox)
         .onTapGesture {
             updateCurrentSequence()
-            print(scriptCount)
         }
     }
 }

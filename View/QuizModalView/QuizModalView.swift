@@ -17,7 +17,10 @@ import SwiftUI
 struct QuizModalView: View {
     @State var isShowingModal: Bool = false
     // 모달 뷰를 중간까지만 띄우는 방법은 iOS16부터만 지원 가능..
+    @State var quizFalse: Bool = false
+    
     @State private var settingsDetent = PresentationDetent.medium
+    @Environment(\.presentationMode) var presentation
     
     var body: some View {
         Button {
@@ -35,7 +38,23 @@ struct QuizModalView: View {
                 Spacer()
                 AnswerView().padding()
                 Spacer()
-                QuizButtonView()
+                /*
+                Button(action: self.presentation.wrappedValue.dismiss()){
+                    Text("TestButton")
+                }
+                 */
+
+                
+                
+                /*QuizButtonView {
+                    presentation.wrappedValue.dismiss()
+                    
+                }
+                 */
+                QuizButtonView(isShowingModal: $isShowingModal, quizFalse: $quizFalse){
+                                    
+                                }
+                
             }
             .presentationDetents([.medium, .large], selection: $settingsDetent)
             

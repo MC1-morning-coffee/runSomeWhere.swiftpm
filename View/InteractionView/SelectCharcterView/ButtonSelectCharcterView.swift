@@ -10,25 +10,23 @@ import SwiftUI
 struct ButtonSelectCharcterView: View {
     
     var charcter: enumCharcter = .coffee
-    
+    var index: Int
     var completion: () -> Void = {print("Hello")}
     
-//    init(charcter: enumCharcter = .coffee, completion: @escaping ()->Void) {
-//        self.charcter = charcter
-//        self.completion = completion
-//    }
+    init(charcter: enumCharcter = .coffee, index: Int, completion: @escaping ()->Void) {
+        self.charcter = charcter
+        self.completion = completion
+        self.index = index
+    }
     
     var body: some View {
         Button {
             completion()
         } label: {
-            CustomText(value: charcter.personalColor)
+            CustomText(value: "\(index + 1). \(charcter.personalColor)")
                 .frame(minWidth: 0, maxWidth: .infinity, maxHeight: .infinity)
         }
-        .frame(minWidth: 0, maxWidth: .infinity, maxHeight: .infinity)
-        .background(Color(charcter.personalUIColor))
-        .border(.blue)
-        
+        .frame(minWidth: 0, maxWidth: .infinity ,maxHeight: .infinity)
     }
 }
 

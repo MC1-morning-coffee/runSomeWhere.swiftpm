@@ -52,43 +52,52 @@ struct SelectCharcterView: View {
     // TODO: change device width
     var width = CGFloat(390)
     
-    private let charcters: [[enumCharcter]] = [[.walker, .coffee], [.luna, .olive], [.muho, .henry]]
+    @EnvironmentObject
+    var globalStore: GlobalStore
+    
+    private let SCRIPT_BOX_VIEW_BACKGROUND_IMAGE = "Background_Text"
+    private let charcters: [enumCharcter] = [.walker, .coffee, .luna, .olive, .muho, .henry]
     
     private func handleSelectAnswer() {
         // here to logic
-        print("hello coffee")
+        globalStore.toggleIsSelectCharcterViewActive() // false
+        globalStore.toggleIsPopupActive() // false
+        globalStore.addScriptCount()
+        globalStore.toggleIsTapAble() // true
     }
+    
+    private let gridColumns = [GridItem(),GridItem()]
     
     var body: some View {
         GeometryReader { geo in
-            ZStack {
-                VStack(alignment: .leading) {
-                    Spacer()
-                    ForEach(charcters, id: \.self){ _charcters in
-                        HStack(spacing: 0){
-                            ButtonSelectCharcterView(charcter: _charcters[0])
-                            Spacer()
-                            ButtonSelectCharcterView(charcter: _charcters[1]){
-                                if _charcters[1] == .coffee {
-                                    handleSelectAnswer()
-                                }
+            ZStack(alignment: .topLeading) {
+                let offset = CGFloat(16)
+                
+                // Background Image
+                Image(SCRIPT_BOX_VIEW_BACKGROUND_IMAGE)
+                    .zIndex(-1)
+                    .offset(y: offset)
+                LazyVGrid(columns: gridColumns) {
+                    ForEach(Array(charcters.enumerated()), id: \.offset){ index, _charcters in
+                        ButtonSelectCharcterView(charcter: _charcters, index: index) {
+                            if _charcters == .coffee {
+                                handleSelectAnswer()
                             }
                         }
-                        .frame(maxHeight: .infinity)
-                        .border(.red, width: 1)
+                        .frame(minHeight: 48)
                     }
-                    Spacer()
+                    .offset(y: 16)
+                    .padding(.horizontal, 24)
+                    .frame(maxHeight: .infinity)
                 }
-                .border(.red, width: 1)
+                .frame(maxHeight: .infinity)
             }
             .padding(16)
             .frame(width: width, height: SCRIPT_BOX_HEIGHT)
-            .border(.red, width: 1)
-            .background(CustomColor.scriptBoxColor)
+            .background(CustomColor.scriptBox)
             .onTapGesture {
                 print("SelectCharcter")
             }
         }
-    
     }
 }
