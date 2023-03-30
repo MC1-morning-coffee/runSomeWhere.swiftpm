@@ -26,37 +26,42 @@ import SwiftUI
 
 struct SequenceOneView: View {
     @EnvironmentObject var globalStore: GlobalStore
-    @State private var isCharacterMove = false
+    @State var isPaddleBtnActive = false
+    @State private var isCharacterMove = true
     
-    var body: some View {
-        // scriptCount에 따라서 characterView를 바꿔준다
-        //        if globalStore.currentScene == .sequence1 {
-        //            switch globalStore.scriptCount {
-        //            case 0 :
-        //                GeometryReader { geo in
-        //                    Text("Scene 0 View")
-        switch globalStore.scriptCount {
-        case 1:
-            Text("")
+    private func handleSequenceView(scriptCount: Int) {
+        switch scriptCount {
+        case 1...11:
+            isCharacterMove = false
+            print(isCharacterMove)
+            print("scriptCount", scriptCount)
+            
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.001) {
+                isCharacterMove = true
+            }
+
+            print(isCharacterMove)
         default:
-            Text("")
+            print("scriptCount", scriptCount)
         }
     }
-}
-                            
-//            case 1 :
-//                GeometryReader { geo in
-//                    CharacterView(objectName: henry.name, makeDirection: EnumDirection.Back_1)
-//                        .position(x:  100 , y: 100) // start position
-//                        .offset(x:  -20 , y: -20)
-//                }
-//
-//            default:
-//                Text("Scene opening View")
-//            }
-//        }
     
-
+    var body: some View {
+        ZStack(alignment: .topLeading){
+            Text("globalStore.scriptCount: \(globalStore.scriptCount)")
+            
+            if isCharacterMove {
+                CharacterView(objectName: "BigCoffee_", makeDirection: .Back_1, start: (195, 540), end: (0, 0))
+            } else {
+                EmptyView()
+            }
+        }
+        .onReceive(globalStore.$scriptCount, perform: { currentCount in
+            handleSequenceView(scriptCount: currentCount)
+        })
+        
+    }
+}
 
 struct SequenceOneView_Previews: PreviewProvider {
     static var previews: some View {
