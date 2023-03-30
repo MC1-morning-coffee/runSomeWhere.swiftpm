@@ -17,7 +17,7 @@ struct PaddleButtonView: View {
         Image("Object_No")
             .fixedSize()
             .position(x: 195, y: 550)
-            .offset(y: (isOffsetActive ? 10 : 0))
+            .offset(y: (isOffsetActive ? 15 : 0))
             .onTapGesture {
                 isOffsetActive = true
                 DispatchQueue.main.asyncAfter(deadline: .now() + 0.02) {

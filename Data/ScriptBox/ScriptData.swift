@@ -89,7 +89,43 @@ let SEQUENCE_ONE_SCRIPTS: [Script] = [
 
 let SEQUENCE_TWO_SCRIPTS: [Script] = [
     ([EnumSpeaker.system],
-    "앞에 자동문과 버튼이 있다."
+    " "
+    ),
+    ([EnumSpeaker.system],
+    "걷는 중..."
+    ),
+    ([EnumSpeaker.unknown],
+    "이번엔 또 뭐지?"
+    ),
+    ([EnumSpeaker.system],
+    " "
+    ),
+    ([EnumSpeaker.coffee],
+    "열려면 팔을 겁나 뻗어야하는 자동문이 있다!"
+    ),
+    ([EnumSpeaker.coffee],
+    "이 버튼만 누르면 지나갈 수 있는건가...?"
+    ),
+    ([EnumSpeaker.system],
+    "딸깍"
+    ),
+    ([EnumSpeaker.system],
+    "지이잉..."
+    ),
+    ([EnumSpeaker.coffee],
+    "뭐야! 이럴거면 왜 이런 데에 버튼이 있어?!"
+    ),
+    ([EnumSpeaker.system],
+    ""
+    ),
+    ([EnumSpeaker.coffee],
+    "문이 열렸다! GQ는 내가 좀 해봤지, 후후..."
+    ),
+    ([EnumSpeaker.muho],
+    "무호: 커피...좀 치네...?"
+    ),
+    ([EnumSpeaker.system],
+    "근데 저 문은 좀 바꿔야겠다..."
     ),
 ]
 
