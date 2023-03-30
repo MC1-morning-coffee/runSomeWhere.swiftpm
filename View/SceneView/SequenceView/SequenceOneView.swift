@@ -31,16 +31,13 @@ struct SequenceOneView: View {
     
     private func handleSequenceView(scriptCount: Int) {
         switch scriptCount {
-        case 1...11:
+        case 1:
             isCharacterMove = false
             print(isCharacterMove)
             print("scriptCount", scriptCount)
-            
             DispatchQueue.main.asyncAfter(deadline: .now() + 0.001) {
                 isCharacterMove = true
             }
-
-            print(isCharacterMove)
         default:
             print("scriptCount", scriptCount)
         }

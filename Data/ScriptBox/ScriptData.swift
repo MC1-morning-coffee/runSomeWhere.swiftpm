@@ -58,9 +58,6 @@ let SEQUENCE_OPENING_SCRIPTS: [Script] = [
 
 let SEQUENCE_ONE_SCRIPTS: [Script] = [
     ([EnumSpeaker.system],
-    "..."
-    ),
-    ([EnumSpeaker.system],
     "걷는 중..."
     ),
     ([EnumSpeaker.coffee],
@@ -93,9 +90,6 @@ let SEQUENCE_ONE_SCRIPTS: [Script] = [
 ]
 
 let SEQUENCE_TWO_SCRIPTS: [Script] = [
-    ([EnumSpeaker.system],
-    " "
-    ),
     ([EnumSpeaker.system],
     "걷는 중..."
     ),
