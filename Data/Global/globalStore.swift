@@ -39,8 +39,9 @@ enum EnumDetailImage: CaseIterable {
     case Door
 }
 
+// 이미지를 교체하기 위한 EnumDirection
 enum EnumDirection: CaseIterable {
-    case left, right, back, front
+    case Front, Back_1, Back_2, Left, Right
 }
 
 class GlobalStore: ObservableObject {
