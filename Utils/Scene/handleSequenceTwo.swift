@@ -11,13 +11,16 @@ func handleSequenceTwo(globalStore: GlobalStore){
     // write here your logic!
     let scriptCount = globalStore.scriptCount
     switch scriptCount {
-        case 0:
+//3에 자동문 버튼 사진 나왔다가 4에서 사라져야 함
+     case 3:
             globalStore.resetUI()
             globalStore.toggleIsFaceViewActive() // false
             globalStore.updateCurrentDetailImage(detailImage: .Door)
             globalStore.toggleIsPopupActive() // true
+    case 5 :
+            globalStore.toggleIsPopupActive()
 //        ...
     default:
-        print("sequence one is Ready")
+        print("sequence two is Ready")
     }
 }
