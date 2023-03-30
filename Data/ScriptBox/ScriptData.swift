@@ -35,6 +35,9 @@ let SEQUENCE_OPENING_SCRIPTS: [Script] = [
     ([EnumSpeaker.unknown],
     "어라... 여기가 어디지...?"
     ),
+    ([EnumSpeaker.system],
+    " "
+    ),
     ([EnumSpeaker.unknown],
     "CB...L?? 뭘 어떻게 하라는거야..!!"
     )
@@ -66,11 +69,17 @@ let SEQUENCE_ONE_SCRIPTS: [Script] = [
     ([EnumSpeaker.coffee],
     "저게 뭐지...?"
     ),
+    ([EnumSpeaker.system],
+    " "
+    ),
     ([EnumSpeaker.coffee],
     "커피: 앗! 물이 쫄쫄 나오는 정수기에 앞이 막혀있다..."
     ),
     ([EnumSpeaker.coffee],
     "커피: 이런... 얼른 지나가야 할텐데..."
+    ),
+    ([EnumSpeaker.system],
+    " "
     ),
     ([EnumSpeaker.coffee],
     "커피: 쫄쫄 나오는 정수기가 사라졌다...! 이건 껌easy!!"
@@ -88,11 +97,50 @@ let SEQUENCE_ONE_SCRIPTS: [Script] = [
 
 let SEQUENCE_TWO_SCRIPTS: [Script] = [
     ([EnumSpeaker.system],
-    "앞에 자동문과 버튼이 있다."
+    " "
+    ),
+    ([EnumSpeaker.system],
+    "걷는 중..."
+    ),
+    ([EnumSpeaker.coffee],
+    "커피: 이번엔 또 뭐지?"
+    ),
+    ([EnumSpeaker.system],
+    " "
+    ),
+    ([EnumSpeaker.coffee],
+    "커피: 열려면 팔을 겁나 뻗어야하는 자동문이 있다!"
+    ),
+    ([EnumSpeaker.coffee],
+    "커피: 이 버튼만 누르면 지나갈 수 있는건가...?"
+    ),
+    ([EnumSpeaker.system],
+    "딸깍"
+    ),
+    ([EnumSpeaker.system],
+    "지이잉..."
+    ),
+    ([EnumSpeaker.coffee],
+    "커피: 뭐야! 이럴거면 왜 이런 데에 버튼이 있어?!"
+    ),
+    ([EnumSpeaker.system],
+    " "
+    ),
+    ([EnumSpeaker.coffee],
+    "커피: 문이 열렸다! GQ는 내가 좀 해봤지, 후후..."
+    ),
+    ([EnumSpeaker.muho],
+    "무호: 커피...좀 치네...?"
+    ),
+    ([EnumSpeaker.coffee],
+    "커피: 근데 저 문은 좀 바꿔야겠다..."
     ),
 ]
 
 let SEQUENCE_THREE_SCRIPTS: [Script] = [
+    ([EnumSpeaker.system],
+    " "
+    ),
     ([EnumSpeaker.walker],
     "워커: 다들 문제 풀고 온 거야?"
     ),
@@ -151,8 +199,14 @@ let SEQUENCE_THREE_SCRIPTS: [Script] = [
     ([EnumSpeaker.coffee],
     "커피: 노는 이렇게 젓는겁니다."
     ),
+    ([EnumSpeaker.system],
+    " "
+    ),
     ([EnumSpeaker.unknown],
     "우와아아아아!!!!!!"
+    ),
+    ([EnumSpeaker.system],
+    " "
     ),
     ([EnumSpeaker.coffee],
     "커피: 꺅!! 저건 누구지?"
@@ -163,12 +217,15 @@ let SEQUENCE_THREE_SCRIPTS: [Script] = [
     ([EnumSpeaker.gomisac],
     "곰이작: 이건 우리가 주는 선물이니 섬을 탈출하면 열어보세요..축하합니다."
     ),
-    ([EnumSpeaker.walker, EnumSpeaker.olive],
+    ([EnumSpeaker.unknown],
     "와~드디어 탈출했다~!!!!"
     ),
 ]
 
 let SEQUENCE_ENDING_SCRIPTS: [Script] = [
+    ([EnumSpeaker.system],
+    " "
+    ),
     ([EnumSpeaker.muho],
     "무야호~~ 도착했다!"
     ),
@@ -178,11 +235,20 @@ let SEQUENCE_ENDING_SCRIPTS: [Script] = [
     ([EnumSpeaker.system],
     "6개의 열쇠를 꽂아서 보물상자를 열었다."
     ),
+    ([EnumSpeaker.system],
+    " "
+    ),
+    ([EnumSpeaker.system],
+    " "
+    ),
     ([EnumSpeaker.unknown],
     "어어어어!!!"
     ),
     ([EnumSpeaker.system],
     "강렬한 빛이 쏟아져나오며 여섯명이 또 다시 사라졌다."
+    ),
+    ([EnumSpeaker.system],
+    "The end..."
     ),
 ]
 
