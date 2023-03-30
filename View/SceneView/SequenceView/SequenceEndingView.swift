@@ -36,7 +36,7 @@ struct SequenceEndingView: View {
     private func handleSequenceView(scriptCount: Int) {
         switch scriptCount {
         case 1:
-            setTimeoutClosure(timeCount: 1000) {
+            setTimeoutClosure(timeCount: 3000) {
                 globalStore.addScriptCount()
             }
         case 2:
@@ -47,15 +47,27 @@ struct SequenceEndingView: View {
         case 4:
             word2 = false
             treasure = true
+            setTimeoutClosure(timeCount: 3000) {
+                globalStore.addScriptCount()
+            }
         case 5:
             treasure = false
             MC2 = true
+            setTimeoutClosure(timeCount: 3000) {
+                globalStore.addScriptCount()
+            }
         case 6:
             MC2 = false
             word3 = true
+            setTimeoutClosure(timeCount: 3000) {
+                globalStore.addScriptCount()
+            }
         case 7:
             word3 = false
             word4 = true
+            setTimeoutClosure(timeCount: 3000) {
+                globalStore.addScriptCount()
+            }
         default:
             print("scriptCount", scriptCount)
         }
@@ -96,11 +108,11 @@ struct SequenceEndingView: View {
             }
             
             if treasure {
-                Image("Object_Treasure")
+                Image("Image_Treasure")
             }
             if MC2 {
                 ZStack{
-                    Image("Object_Treasure")
+                    Image("Image_Treasure")
                     Image("Object_MC2")
                 }
             }
