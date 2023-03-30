@@ -108,6 +108,7 @@ struct SequenceThreeView: View {
             isWindReverse = true
         case 19:
             isPaddleOn = true
+            isWindReverse = false
         case 21:
             isPeopleOnBoat = false
             isPaddleOn = false
