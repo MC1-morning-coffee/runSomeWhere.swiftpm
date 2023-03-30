@@ -8,13 +8,22 @@
 import SwiftUI
 
 struct SequenceTwoView: View {
-    
+
     var body: some View {
-        HStack{
+        ZStack{
+            Image("Background_Image2")
+                .position(x:196.5, y:0)
             Text("Scene Two View")
+            
+            CharacterView(objectName: coffee.name, makeDirection: EnumDirection.Back_1, start: (-25.0, 150.0), end: (-25.0, 150.0))
+            CharacterView(objectName: muho.name, makeDirection: EnumDirection.Back_1, start: (25.0, 150.0), end: (25.0, 150.0))
+            //center Door
             AutoDoorView()
                 .position(x: 195, y: 165)
+            //Right Door
             AutoDoorView()
+                .position(x: 320, y: 165)
+            
         }
     }
 }

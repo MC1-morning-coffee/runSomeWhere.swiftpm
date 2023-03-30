@@ -40,3 +40,4 @@ struct SequenceOpeningView: View {
  - Character 6명이 이동한다.
  
  */
+
