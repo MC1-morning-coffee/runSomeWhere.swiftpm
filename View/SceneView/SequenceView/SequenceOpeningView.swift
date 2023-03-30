@@ -12,13 +12,9 @@ struct SequenceOpeningView: View {
     @EnvironmentObject var globalStore: GlobalStore
     
     var body: some View {
-        switch globalStore.scriptCount {
-        case 7 : FaceView()
-            
-        default:
-//            ShipView()
-            Text("Scene opening View")   
-        }
+        Text("Scene opening View")
+        // 캐릭터자체를 띄우는 뷰 -> 사람에 따라서 olive.name이런식으로 넣으면 됨 (UserData를 참고하면 됨!)
+        CharacterView(objectName: henry.name, makeDirection: EnumDirection.Back_1, start: (10.0, 0.0), end: (10.0, -280.0))
     }
 }
 
