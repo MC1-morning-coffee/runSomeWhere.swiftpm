@@ -22,6 +22,8 @@ struct QuizModalView: View {
     @State var quizFalse: Bool = false
     
     @State private var settingsDetent = PresentationDetent.medium
+    @EnvironmentObject
+    var globalStore: GlobalStore
     @Environment(\.presentationMode) var presentation
         
     var body: some View {
@@ -39,8 +41,33 @@ struct QuizModalView: View {
                 Spacer()
                 AnswerView().padding()
                 Spacer()
-                QuizButtonView(isShowingModal: $isShowingModal, quizFalse: $quizFalse){
+                /*
+                Button(action: self.presentation.wrappedValue.dismiss()){
+                    Text("TestButton")
                 }
+                 */
+
+                
+                
+                /*QuizButtonView {
+                    presentation.wrappedValue.dismiss()
+                    
+                }
+                 */
+                
+                if globalStore.currentScene == EnumScene.sequence1 {
+                    QuizButtonView1(isShowingModal: $isShowingModal, quizFalse: $quizFalse){
+                    }
+                }
+                
+                else {
+                    QuizButtonView(isShowingModal: $isShowingModal, quizFalse: $quizFalse){
+                                    }
+                }
+//                QuizButtonView(isShowingModal: $isShowingModal, quizFalse: $quizFalse){
+//
+//                                }
+                
             }
             .presentationDetents([.medium, .large], selection: $settingsDetent)
         }
