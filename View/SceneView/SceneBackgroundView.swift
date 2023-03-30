@@ -97,10 +97,8 @@ struct SceneBackgroundView: View {
             if scriptCount == 0 {
                 setTimeoutClosure(timeCount: 400) {
                     isBlurActive = false
+                    bgOffsetY = 650
                 }
-            }
-            if scriptCount == 1 {
-                bgOffsetY = 200
             }
             if scriptCount == 10 {
                 globalStore.turnOffIsTapAble()
@@ -118,7 +116,7 @@ struct SceneBackgroundView: View {
             }
         case .sequence2:
             if scriptCount == 0 {
-                bgOffsetY = 0
+                bgOffsetY = bgOffsetY + 650
                 globalStore.turnOffIsPopupActive()
                 setTimeoutClosure(timeCount: 400) {
                     isBlurActive = false
@@ -126,14 +124,26 @@ struct SceneBackgroundView: View {
                 }
             }
             
-            if scriptCount == 3 {
+            if scriptCount == 2 {
                 globalStore.turnOnIsPopupActive()
+            }
+            if scriptCount == 11 {
+                globalStore.turnOffIsTapAble()
+                setTimeoutClosure(timeCount: 400) {
+                    isBlurActive = true
+                }
+                setTimeoutClosure(timeCount: 1000) {
+                    globalStore.turnOnIsTapAble()
+                }
             }
             
         case .sequence3:
             currentBg = .sequence3
             if scriptCount == 0 {
                 bgOffsetY = 0
+                setTimeoutClosure(timeCount: 400) {
+                    isBlurActive = false
+                }
             }
         case .ending:
             currentBg = .ending
