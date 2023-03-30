@@ -23,7 +23,7 @@ struct QuizModalView: View {
     
     @State private var settingsDetent = PresentationDetent.medium
     @Environment(\.presentationMode) var presentation
-    
+        
     var body: some View {
         Button {
             isShowingModal = true
@@ -43,6 +43,11 @@ struct QuizModalView: View {
                 }
             }
             .presentationDetents([.medium, .large], selection: $settingsDetent)
+        }
+        .onAppear{
+            setTimeoutClosure(timeCount: 100) {
+                isShowingModal = true
+            }
         }
     }
 }

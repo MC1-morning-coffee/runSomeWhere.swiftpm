@@ -12,14 +12,22 @@ func handleSequenceOpening(globalStore: GlobalStore){
     switch scriptCount {
         case 7:
             globalStore.updateCurrentDetailImage(detailImage: .CBL)
-            globalStore.toggleIsPopupActive() // true
+            globalStore.turnOnIsPopupActive()
         case 8:
             globalStore.updateCurrentDetailImage(detailImage: .Pouch)
         case 9:
             globalStore.updateCurrentDetailImage(detailImage: .Keys)
-            globalStore.toggleIsTapAble() // false
-            globalStore.toggleIsSelectCharcterViewActive() // true
+            globalStore.turnOffIsTapAble()
+            globalStore.turnOnIsSelectCharcterViewActive()
+        // case 10: 사용자가 버튼 클릭으로 상태 변경
     default:
         print("openingEvent is Ready")
     }
+}
+
+func handleSequenceSelectCharcter(globalStore: GlobalStore) {
+    globalStore.turnOffIsSelectCharcterViewActive()
+    globalStore.turnOffIsPopupActive() // false
+    globalStore.addScriptCount()
+    globalStore.turnOnIsTapAble()
 }

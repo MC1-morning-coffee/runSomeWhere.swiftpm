@@ -17,9 +17,11 @@ struct ContentView: View {
                         .zIndex(1)
                         .offset(y: geo.size.height - SCRIPT_BOX_HEIGHT)
                 }
-                QuizModalContainerView()
-                    .offset(y: geo.size.height - SCRIPT_BOX_HEIGHT)
-                    .frame(width: geo.size.width, height: SCRIPT_BOX_HEIGHT)
+                if globalStore.isQuizSequence {
+                    QuizModalContainerView()
+                        .offset(y: geo.size.height - SCRIPT_BOX_HEIGHT)
+                        .frame(width: geo.size.width, height: SCRIPT_BOX_HEIGHT)
+                }
             }
         }
         .onAppear{
