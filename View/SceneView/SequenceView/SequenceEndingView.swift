@@ -18,9 +18,7 @@ struct SequenceEndingView: View {
     @State private var MC2 = false
     
     private func handleSequenceView(scriptCount: Int) {
-        // print("나 진짜 뜬다 진짜로 ")
         switch scriptCount {
-            
         case 2:
             word1 = true
         case 3:
