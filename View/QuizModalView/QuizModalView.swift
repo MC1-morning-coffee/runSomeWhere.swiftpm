@@ -22,6 +22,8 @@ struct QuizModalView: View {
     @State var quizFalse: Bool = false
     
     @State private var settingsDetent = PresentationDetent.medium
+    @EnvironmentObject
+    var globalStore: GlobalStore
     @Environment(\.presentationMode) var presentation
         
     var body: some View {
@@ -33,15 +35,45 @@ struct QuizModalView: View {
                 .background(.opacity(0))
         }.sheet(isPresented: $isShowingModal) {
             //Text("modal view")
-            VStack (alignment: .leading){
-                Spacer()
-                QuestionView().padding()
-                Spacer()
-                AnswerView().padding()
-                Spacer()
-                QuizButtonView(isShowingModal: $isShowingModal, quizFalse: $quizFalse){
+            ZStack{
+                Image("Quiz_1")
+                    .offset(y: globalStore.safeAreaSize.1)
+                VStack (alignment: .leading){
+                    Spacer()
+                    QuestionView().padding()
+                    Spacer()
+                    AnswerView().padding()
+                    Spacer()
+                    /*
+                    Button(action: self.presentation.wrappedValue.dismiss()){
+                        Text("TestButton")
+                    }
+                     */
+
+                    
+                    
+                    /*QuizButtonView {
+                        presentation.wrappedValue.dismiss()
+                        
+                    }
+                     */
+                    
+                    if globalStore.currentScene == EnumScene.sequence1 {
+                        QuizButtonView1(isShowingModal: $isShowingModal, quizFalse: $quizFalse){
+                        }
+                    }
+                    
+                    else {
+                        QuizButtonView(isShowingModal: $isShowingModal, quizFalse: $quizFalse){
+                                        }
+                    }
+    //                QuizButtonView(isShowingModal: $isShowingModal, quizFalse: $quizFalse){
+    //
+    //                                }
+                    
                 }
             }
+            .background(CustomColor.scriptBox)
             .presentationDetents([.medium, .large], selection: $settingsDetent)
         }
         .onAppear{

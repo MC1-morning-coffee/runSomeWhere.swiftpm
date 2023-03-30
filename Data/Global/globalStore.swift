@@ -9,6 +9,7 @@ import Combine
 import SwiftUI
 
 enum EnumScene: Int, CaseIterable {
+//    case intro
     case opeaning
     case sequence1
     case sequence2
@@ -120,6 +121,9 @@ class GlobalStore: ObservableObject {
     @Published
     var isQuizSequence = false
     
+    
+    @Published
+    var paddleCount = 0
     
     func resetUI() {
         turnOffIsPopupActive()
