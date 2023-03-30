@@ -24,7 +24,10 @@ func handleSequenceOne(globalStore: GlobalStore){
             globalStore.turnOffIsFaceViewActive()
             globalStore.turnOnIsQuizSequence()
             globalStore.turnOffIsTapAble()
-        
+        case 7:
+            globalStore.turnOffIsFaceViewActive()
+        case 8:
+            globalStore.turnOnIsFaceViewActive()
         //case 7: handleSequenceQuizOne() //실행될 것
     default:
         print("sequence one is Ready")

@@ -113,12 +113,15 @@ struct SequenceThreeView: View {
         case 23:
             isGomissacColor = true
             isBoatMove = false
-        case 24:
+        case 25:
             isLastScene = true
             isPeopleMoving3 = false
-        case 25:
-            isGomissacColor = false
-            isLastScene = false
+            setTimeoutClosure(timeCount: 2000) {
+                isGomissacColor = false
+                isLastScene = false
+            }
+        
+ 
             
         default:
             print("scriptCount", scriptCount)

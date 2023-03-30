@@ -63,7 +63,7 @@ struct SceneView: View {
                 // SequenceViewContainer
                 SceneBackgroundView()
                     .frame(width: deviceWidth, height: deviceHeight)
-                    .border(.orange)
+//                    .border(.orange)
                 HStack {
                     AnyView(setSequenceView(currentScene: globalStore.currentScene))
                 }
@@ -96,7 +96,7 @@ struct SceneView: View {
                 }
             }
             .frame(width: deviceWidth, height: deviceHeight)
-            .background(Color.brown)
+            .background(Color.black)
             .onAppear{
 //                동작 테스트용 코드
 //                globalStore.toggleIsPopupActive()

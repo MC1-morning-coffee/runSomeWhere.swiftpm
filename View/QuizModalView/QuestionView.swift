@@ -13,20 +13,18 @@ struct QuestionView: View {
     
 //    @Binding var isStart: Bool
 
-    let q = QUESTION_TWO["question"] as? String ?? ""
-    let q1 = QUESTION_TWO["question1"] as? String ?? ""
+    let q = QUESTION_INFO["question"] as? String ?? ""
+    let q1 = QUESTION_INFO["question1"] as? String ?? ""
 
     // QuizData에 있는 question값을 가져와서 String으로 형 변환해준다
     
     var body: some View {
         if globalStore.currentScene == EnumScene.sequence1 {
-            CustomText(value: "\(q)", fontSize: 23, color: Color.black)
-                .border(.red)
+            CustomText(value: "\(q)", fontSize: 32, color: Color.black)
         }
         else {
-            CustomText(value: "\(q1)", fontSize: 23, color: Color.black)
-                .border(.red)
+            CustomText(value: "\(q1)", fontSize: 32, color: Color.black)
+                
         }
-        // Text(QUESTION_TWO["question"] as? String ?? "") .border(.red)
     }
 }

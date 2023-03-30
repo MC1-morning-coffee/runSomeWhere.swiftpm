@@ -21,23 +21,37 @@ struct ScriptBoxView: View {
     
     @State
     var currentSceneCount: Int = 0
-    
-    //@Binding var isStart: Bool
-    //@State var isStart: Bool = false
-    
+        
     var script: Script
     var width: CGFloat
     
+    @State
+    var value = ""
     
-    //weak var titleLabel: UILabel!
+    @State
+    var tmpText: String = ""
     
+    func typeWriter(at position: Int = 0) {
+        if position == 0 {
+            tmpText = ""
+        }
+        if position < value.count {
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.05) {
+                tmpText.append(value[position])
+                typeWriter(at: position + 1)
+            }
+        }
+    }
+            
     private let SCRIPT_BOX_VIEW_BACKGROUND_IMAGE = "Background_Text"
     
     private func updateCurrentSequence() {
+        if value.count > tmpText.count {
+            return
+        }
         if !globalStore.isTapAble{
             return
         }
-        
         if globalStore.scriptCount == globalStore.currentScripts.count - 1 {
             currentSceneCount += 1
             if currentSceneCount > 4 {
@@ -63,7 +77,6 @@ struct ScriptBoxView: View {
         return _speaker
     }
     
-    
     var body: some View {
         ZStack(alignment: .topLeading) {
             let offset = CGFloat(16)
@@ -79,7 +92,7 @@ struct ScriptBoxView: View {
             VStack(alignment: .leading) {
                     HStack(spacing: 0){
                         VStack(alignment: .leading, spacing: 0){
-                            CustomText(value: "\(script.1)")
+                            CustomText(value: "\(tmpText)")
                         }
                         .padding(24)
                         Spacer()
@@ -93,8 +106,16 @@ struct ScriptBoxView: View {
         .background(CustomColor.scriptBox)
         .onTapGesture {
             updateCurrentSequence()
-//            isStart = true
         }
+        .onReceive(globalStore.$scriptCount, perform: { currentCount in
+            value = globalStore.currentScripts[currentCount].1
+            typeWriter()
+        })
     }
 }
 
+extension String {
+    subscript(offset: Int) -> Character {
+        self[index(startIndex, offsetBy: offset)]
+    }
+}

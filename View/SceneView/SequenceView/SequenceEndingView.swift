@@ -35,6 +35,10 @@ struct SequenceEndingView: View {
     
     private func handleSequenceView(scriptCount: Int) {
         switch scriptCount {
+        case 1:
+            setTimeoutClosure(timeCount: 1000) {
+                globalStore.addScriptCount()
+            }
         case 2:
             word1 = true
         case 3:
@@ -54,6 +58,25 @@ struct SequenceEndingView: View {
             word4 = true
         default:
             print("scriptCount", scriptCount)
+        }
+    }
+    
+    @State
+    var currentSceneCount: Int = 0
+    
+    private func updateCurrentSequence() {
+        if !globalStore.isTapAble{
+            return
+        }
+        if globalStore.scriptCount == globalStore.currentScripts.count - 1 {
+            currentSceneCount += 1
+            if currentSceneCount > 4 {
+                return
+            }
+            globalStore.updateCurrentScene(scene: .allCases[currentSceneCount])
+            globalStore.resetScriptCount()
+        }else{
+            globalStore.scriptCount += 1
         }
     }
     
@@ -91,6 +114,10 @@ struct SequenceEndingView: View {
             }
             
         }
+        .onTapGesture(perform: {
+            print("test current")
+            updateCurrentSequence()
+        })
         .onReceive(globalStore.$scriptCount, perform: { currentCount in
             handleSequenceView(scriptCount: currentCount)
             switch currentCount {
