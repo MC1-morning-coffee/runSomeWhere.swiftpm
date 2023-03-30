@@ -23,11 +23,20 @@ struct SequenceOpeningView: View {
 }
 
 /*인트로 시작한다
- 6명이 걸으며 나타난다.(12걸음 뒤 멈춤)
- 문6개 이미지가 나타난다.
- CBL이미지 팝업
- 열쇠바구니 팝업
- 6개열쇠 팝업
- 빨간열쇠 팝업
- 6명이 이동한다.
+ - Character 6명이 걸으며 나타난다.(12걸음 뒤 멈춤).
+ 
+ - Image_CBL 팝업
+ 
+ - Image_CBL 사라짐
+ 
+ - Image_Pouch 팝업
+ 
+ - Image_Pouch 사라짐
+   Image_Keys 팝업
+ 
+ - Image_Keys 팝업
+   Image_Redkey 팝업
+ 
+ - Character 6명이 이동한다.
+ 
  */
