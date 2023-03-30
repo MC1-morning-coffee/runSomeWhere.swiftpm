@@ -41,14 +41,6 @@ struct SequenceOneView: View {
         default:
             Text("")
         }
-        CharacterView(objectName: henry.name, makeDirection: EnumDirection.Back_1)
-            .position(x: 195, y: 300)
-            .offset(y: (isCharacterMove ? 10 : 0))
-//            .onTapGesture {
-//                withAnimation {
-//                    isCharacterMove = true
-//                }
-//            }
     }
 }
                             
