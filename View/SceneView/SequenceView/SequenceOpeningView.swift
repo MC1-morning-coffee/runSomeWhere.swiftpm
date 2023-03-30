@@ -1,6 +1,6 @@
 //
 //  SwiftUIView.swift
-//  
+//
 //
 //  Created by Yun Dongbeom on 2023/03/27.
 //
@@ -9,8 +9,7 @@ import SwiftUI
 
 
 struct SequenceOpeningView: View {
-<<<<<<< HEAD
-    
+
     @EnvironmentObject
     var globalStore: GlobalStore
     
@@ -39,12 +38,7 @@ struct SequenceOpeningView: View {
         }
     }
     
-=======
-    @EnvironmentObject var globalStore: GlobalStore
-    //var test1 = 0
-    var isHidden: Bool = false
-        
->>>>>>> main
+
     var body: some View {
         ZStack(alignment: .topLeading){
             Text("globalStore.scriptCount: \(globalStore.scriptCount)")
